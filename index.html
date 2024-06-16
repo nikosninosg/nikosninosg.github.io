@@ -2,11 +2,32 @@
 <html lang="en">
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l !== 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5LQ88VQV');</script>
+    <!-- End Google Tag Manager -->
+
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7D2GYWYH5L"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-7D2GYWYH5L');
@@ -48,23 +69,36 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+    <!-- =======================================================
+    * Template Name: Personal - v2.1.0
+    * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
 </head>
 
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ88VQV"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-<!-- ======= Header ======= -->
+<!-- ======= Home ======= -->
 <header id="header">
     <div class="container">
 
         <h1><a href="index.html">Nikos Georgopoulos Ninos</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-        <h2>I'm a passionate <span>Software Engineer</span></h2>
+        <h2 style="color:#fff">I'm a passionate <span class="typing" style="color:#90EE90"></span></h2>
 
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link active" href="#header">Home</a></li>
-                <!-- <li><a class="nav-link" href="#about">About</a></li> -->
+                <li><a class="nav-link" href="#about">About</a></li>
                 <li><a class="nav-link" href="#experience">Experience</a></li>
                 <li><a class="nav-link" href="#education">Education</a></li>
                 <li><a class="nav-link" href="#certificates">Certificates</a></li>
@@ -107,7 +141,7 @@
                         <ul>
                             <li><i class="bi bi-file-person"></i> <strong>Birthday:</strong> <span>6 August 1998</span>
                             </li>
-                            <li><i class="bi bi-link-45deg"></i> <strong>Website:</strong> <span>www.example.com</span>
+                            <li><i class="bi bi-link-45deg"></i> <strong>Website:</strong> <span>https://nikosninosg.github.io</span>
                             </li>
 
                         </ul>
@@ -120,8 +154,14 @@
                         </ul>
                     </div>
                 </div>
-                <p>
-                </p>
+                <div style="text-align: justify;"><p> I am a passionate technology enthusiast who thrives on exploring
+                    new technological
+                    advancements. I
+                    have a keen interest in learning and adopting new technologies, programming languages, and
+                    innovative tools. My continuous drive to expand my knowledge keeps me engaged and excited about the
+                    ever-evolving tech landscape. I am committed to staying at the forefront of technological
+                    developments and eager to leverage my skills to contribute effectively to dynamic projects.
+                </p></div>
             </div>
         </div>
 
@@ -137,16 +177,16 @@
             <div class="col-lg-3 col-md-6">
                 <div class="count-box">
                     <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                    <span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="1"
                           class="purecounter"></span>
-                    <p>Happy Clients</p>
+                    <p>Customers</p>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                 <div class="count-box">
                     <i class="bi bi-journal-richtext"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                    <span data-purecounter-start="0" data-purecounter-end="7" data-purecounter-duration="1"
                           class="purecounter"></span>
                     <p>Projects</p>
                 </div>
@@ -155,16 +195,16 @@
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="count-box">
                     <i class="bi bi-headset"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
+                    <span data-purecounter-start="0" data-purecounter-end="2463" data-purecounter-duration="1"
                           class="purecounter"></span>
-                    <p>Hours Of Support</p>
+                    <p>Dev Hours</p>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="count-box">
                     <i class="bi bi-award"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1"
+                    <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1"
                           class="purecounter"></span>
                     <p>Awards</p>
                 </div>
@@ -183,58 +223,155 @@
 
         <div class="row skills-content">
 
-            <div class="col-lg-6">
+            <div class="col-lg-4 col-md-6 align-items-stretch">
+                <div style="text-align:center;">
+                    <h4 style="text-align:center;color:#24dbc9;">Languages</h4>
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+                                alt="python" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Python</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"
+                           rel="noreferrer">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+                                 alt="javascript" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">JavaScript</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
 
-                <div class="progress">
-                    <span class="skill">HTML <i class="val">100%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                             aria-valuemax="100"></div>
-                    </div>
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.typescriptlang.org" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+                                alt="typescript" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">TypeScript</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+                    <br>
+
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.cprogramming.com" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/c.svg" alt="c"
+                                width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">C</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+
+
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg"
+                                alt="java" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Java</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
                 </div>
 
-                <div class="progress">
-                    <span class="skill">CSS <i class="val">90%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                             aria-valuemax="100"></div>
-                    </div>
-                </div>
 
-                <div class="progress">
-                    <span class="skill">JavaScript <i class="val">75%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                             aria-valuemax="100"></div>
-                    </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 align-items-stretch">
+                <h4 style="text-align:center;color:#24dbc9;">Technologies</h4>
+                <div style="text-align:center;">
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.mysql.com" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
+                                alt="mysql" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">MySQL</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.mongodb.com" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+                                alt="mongodb" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">MongoDB</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://git-scm.com" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/git.svg"
+                                alt="git" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Git</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://subversion.apache.org" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/subversion.png"
+                                alt="subversion" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">SVN</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer"> <img
+                                src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40"
+                                height="40"/> </a>
+                        <figcaption style="text-align:center;">Bash</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.linux.org" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
+                                alt="linux" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Linux</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://www.docker.com" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg"
+                                alt="docker" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Docker</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                                alt="aws" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">AWS</figcaption>
+                    </figure>
                 </div>
 
             </div>
 
-            <div class="col-lg-6">
 
-                <div class="progress">
-                    <span class="skill">PHP <i class="val">80%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                             aria-valuemax="100"></div>
-                    </div>
-                </div>
+            <div class="col-lg-4 col-md-6 align-items-stretch">
+                <h4 style="text-align:center;color:#24dbc9;">Libraries</h4>
+                <div style="text-align:center;">
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://scikit-learn.org" target="_blank" rel="noreferrer"> <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"
+                                alt="scikit_learn" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Scikit-Learn</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://docs.oracle.com/en/industries/communications/order-service-management/index.html" target="_blank" rel="noreferrer"> <img
+                                src="https://www.vectorlogo.zone/logos/oracle/oracle-icon.svg" alt="oracle"
+                                width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Oracle OSM</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://numpy.org" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/numpy.svg"
+                                alt="numpy" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">NumPy</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
 
-                <div class="progress">
-                    <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                             aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-                <div class="progress">
-                    <span class="skill">Photoshop <i class="val">55%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0"
-                             aria-valuemax="100"></div>
-                    </div>
+                    <figure class="item" style="display:inline-block;">
+                        <a href="https://pandas.pydata.org" target="_blank" rel="noreferrer"> <img
+                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg"
+                                alt="pandas" width="40" height="40"/> </a>
+                        <figcaption style="text-align:center;">Pandas</figcaption>
+                    </figure>
+                    &nbsp; &nbsp;
                 </div>
 
             </div>
@@ -247,87 +384,63 @@
     <div class="interests container">
 
         <div class="section-title">
-            <h2>Interests</h2>
+            <h2>Soft Skills</h2>
         </div>
 
         <div class="row">
             <div class="col-lg-3 col-md-4">
                 <div class="icon-box">
                     <i class="ri-store-line" style="color: #ffbb2c;"></i>
-                    <h3>Lorem Ipsum</h3>
+                    <h3>Project Management</h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
                 <div class="icon-box">
                     <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-                    <h3>Dolor Sitema</h3>
+                    <h3>Problem Solving</h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
                 <div class="icon-box">
                     <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-                    <h3>Sed perspiciatis</h3>
+                    <h3>Time Management</h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
                 <div class="icon-box">
                     <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-                    <h3>Magni Dolores</h3>
+                    <h3>Critical Thinking</h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 mt-4">
                 <div class="icon-box">
                     <i class="ri-database-2-line" style="color: #47aeff;"></i>
-                    <h3>Nemo Enim</h3>
+                    <h3>Adaptability</h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 mt-4">
                 <div class="icon-box">
                     <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-                    <h3>Eiusmod Tempor</h3>
+                    <h3>Communication</h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 mt-4">
                 <div class="icon-box">
                     <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-                    <h3>Midela Teren</h3>
+                    <h3>Teamwork</h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 mt-4">
                 <div class="icon-box">
                     <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-                    <h3>Pira Neve</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 mt-4">
-                <div class="icon-box">
-                    <i class="ri-anchor-line" style="color: #b2904f;"></i>
-                    <h3>Dirada Pack</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 mt-4">
-                <div class="icon-box">
-                    <i class="ri-disc-line" style="color: #b20969;"></i>
-                    <h3>Moton Ideal</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 mt-4">
-                <div class="icon-box">
-                    <i class="ri-base-station-line" style="color: #ff5828;"></i>
-                    <h3>Verdo Park</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 mt-4">
-                <div class="icon-box">
-                    <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-                    <h3>Flavor Nivelanda</h3>
+                    <h3>Team Spirit</h3>
                 </div>
             </div>
         </div>
 
     </div><!-- End Interests -->
 
-    <!-- ======= Testimonials ======= -->
+    <!-- ======= Testimonials =======
     <div class="testimonials container">
 
         <div class="section-title">
@@ -349,7 +462,7 @@
                         <h3>Saul Goodman</h3>
                         <h4>Ceo &amp; Founder</h4>
                     </div>
-                </div><!-- End testimonial item -->
+                </div>
 
                 <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -364,7 +477,7 @@
                         <h3>Sara Wilsson</h3>
                         <h4>Designer</h4>
                     </div>
-                </div><!-- End testimonial item -->
+                </div>
 
                 <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -378,7 +491,7 @@
                         <h3>Jena Karlis</h3>
                         <h4>Store Owner</h4>
                     </div>
-                </div><!-- End testimonial item -->
+                </div>
 
                 <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -393,7 +506,7 @@
                         <h3>Matt Brandon</h3>
                         <h4>Freelancer</h4>
                     </div>
-                </div><!-- End testimonial item -->
+                </div>
 
                 <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -408,7 +521,7 @@
                         <h3>John Larson</h3>
                         <h4>Entrepreneur</h4>
                     </div>
-                </div><!-- End testimonial item -->
+                </div>
 
             </div>
             <div class="swiper-pagination"></div>
@@ -418,7 +531,7 @@
 
         </div>
 
-    </div><!-- End Testimonials  -->
+    </div> End Testimonials  -->
 
 </section><!-- End About Section -->
 
@@ -445,12 +558,7 @@
                         <li>Tester (SIT, UAT)</li>
                     </ul>
                     Technologies: XQuery, XML, MySQL, Java, Oracle OSM, Design Studio, SVN
-
                 </div>
-
-            </div>
-            <div class="col-lg-6">
-                <h3 class="resume-title"></h3>
                 <div class="resume-item">
                     <h4>Back-End Developer</h4>
                     <h5>02/2022 - 06/2022</h5>
@@ -465,8 +573,11 @@
                         </li>
                     </ul>
                     Technologies: NestJS, TypeORM, Docker, Typescript, MySQL, Grafana
-
                 </div>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="resume-title"></h3>
+
                 <div class="resume-item">
                     <h4>Customer Support Engineer (Internship)</h4>
                     <h5>03/2021 - 05/2021</h5>
@@ -830,17 +941,22 @@
         <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                    <label for="name"></label><input type="text" name="name" class="form-control" id="name"
+                                                     placeholder="Your Name" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                    <label for="email"></label><input type="email" class="form-control" name="email" id="email"
+                                                      placeholder="Your Email" required>
                 </div>
             </div>
             <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <label for="subject"></label><input type="text" class="form-control" name="subject" id="subject"
+                                                    placeholder="Subject" required>
             </div>
             <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <label>
+                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                </label>
             </div>
             <div class="my-3">
                 <div class="loading">Loading</div>
@@ -863,6 +979,16 @@
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/typed.js/typed.min.js"></script>
+
+<script>
+    var typed = new Typed('.typing', {
+        strings: ["Software Engineer.", "Developer.", "Person."],
+        loop: true,
+        typeSpeed: 50,
+        backSpeed: 50,
+    });
+</script>
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
