@@ -9,7 +9,7 @@
             'gtm.start':
                 new Date().getTime(), event: 'gtm.js'
         });
-        var f = d.getElementsByTagName(s)[0],
+        let f = d.getElementsByTagName(s)[0],
             j = d.createElement(s), dl = l !== 'dataLayer' ? '&l=' + l : '';
         j.async = true;
         j.src =
@@ -38,8 +38,8 @@
     <title>Nikos Georgopoulos Ninos CV</title>
     <meta content="Nikos Georgopoulos Ninos CV" name="description">
     <meta content="nikosninosg, Nikos Ninos, nikosninosg github io, nikosninosg.github.io" name="keywords">
-    <meta property="og:nikosninosg" content="Nikos Georgopoulos Ninos CV">
-    <meta property="og:nikosninosg.github.io" content="Nikos Georgopoulos Ninos CV">
+    <meta content="Nikos Georgopoulos Ninos CV" property="og:nikosninosg">
+    <meta content="Nikos Georgopoulos Ninos CV" property="og:nikosninosg.github.io">
 
     <script type="application/ld+json">
         {
@@ -81,8 +81,9 @@
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ88VQV"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe height="0"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ88VQV" style="display:none;visibility:hidden"
+            width="0"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -95,7 +96,7 @@
         <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
         <h2 style="color:#fff">I'm a passionate <span class="typing" style="color:#90EE90"></span></h2>
 
-        <nav id="navbar" class="navbar">
+        <nav class="navbar" id="navbar">
             <ul>
                 <li><a class="nav-link active" href="#header">Home</a></li>
                 <li><a class="nav-link" href="#about">About</a></li>
@@ -110,8 +111,8 @@
         <!-- .navbar -->
 
         <div class="social-links">
-            <a href="https://github.com/nikosninosg" class="github" target="_blank"><i class="bi bi-github"></i></a>
-            <a href="https://www.linkedin.com/in/nikos-georgopoulos-ninos" class="linkedin" target="_blank"><i
+            <a class="github" href="https://github.com/nikosninosg" target="_blank"><i class="bi bi-github"></i></a>
+            <a class="linkedin" href="https://www.linkedin.com/in/nikos-georgopoulos-ninos" target="_blank"><i
                     class="bi bi-linkedin"></i></a>
         </div>
 
@@ -120,7 +121,7 @@
 <!-- End Header -->
 
 <!-- ======= About Section ======= -->
-<section id="about" class="about">
+<section class="about" id="about">
 
     <!-- ======= About Me ======= -->
     <div class="about-me container">
@@ -131,7 +132,7 @@
 
         <div class="row">
             <div class="col-lg-4" data-aos="fade-right">
-                <img src="assets/img/me.jpg" class="img-fluid" alt="">
+                <img alt="" class="img-fluid" src="assets/img/me.jpg">
             </div>
             <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                 <h3>Software Engineer</h3>
@@ -177,8 +178,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="count-box">
                     <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1"
-                          class="purecounter"></span>
+                    <span class="purecounter" data-purecounter-duration="1" data-purecounter-end="3"
+                          data-purecounter-start="0"></span>
                     <p>Customers</p>
                 </div>
             </div>
@@ -186,8 +187,8 @@
             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                 <div class="count-box">
                     <i class="bi bi-journal-richtext"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="8" data-purecounter-duration="1"
-                          class="purecounter"></span>
+                    <span class="purecounter" data-purecounter-duration="1" data-purecounter-end="8"
+                          data-purecounter-start="0"></span>
                     <p>Projects</p>
                 </div>
             </div>
@@ -195,8 +196,8 @@
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="count-box">
                     <i class="bi bi-hourglass-bottom"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="3840" data-purecounter-duration="1"
-                          class="purecounter"></span>
+                    <span class="purecounter" data-purecounter-duration="1" data-purecounter-end="3840"
+                          data-purecounter-start="0"></span>
                     <p>Dev Hours</p>
                 </div>
             </div>
@@ -204,8 +205,8 @@
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="count-box">
                     <i class="bi bi-award"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1"
-                          class="purecounter"></span>
+                    <span class="purecounter" data-purecounter-duration="1" data-purecounter-end="2"
+                          data-purecounter-start="0"></span>
                     <p>Awards</p>
                 </div>
             </div>
@@ -228,43 +229,52 @@
                 <div style="text-align:center;">
                     <h4 style="text-align:center;color:#24dbc9;">Languages</h4>
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img
+                        <a href="https://www.python.org" rel="noreferrer" target="_blank"> <img
+                                alt="python"
+                                height="40"
                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-                                alt="python" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Python</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"
-                           rel="noreferrer">
-                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-                                 alt="javascript" width="40" height="40"/> </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="noreferrer"
+                           target="_blank">
+                            <img alt="javascript"
+                                 height="40"
+                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+                                 width="40"/> </a>
                         <figcaption style="text-align:center;">JavaScript</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.typescriptlang.org" target="_blank" rel="noreferrer"> <img
+                        <a href="https://www.typescriptlang.org" rel="noreferrer" target="_blank"> <img
+                                alt="typescript"
+                                height="40"
                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
-                                alt="typescript" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">TypeScript</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.cprogramming.com" target="_blank" rel="noreferrer"> <img
-                                src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/c.svg" alt="c"
-                                width="40" height="40"/> </a>
+                        <a href="https://www.cprogramming.com" rel="noreferrer" target="_blank"> <img
+                                alt="c" height="40"
+                                src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/c.svg"
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">C</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <br>
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img
+                        <a href="https://www.java.com" rel="noreferrer" target="_blank"> <img
+                                alt="java"
+                                height="40"
                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg"
-                                alt="java" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Java</figcaption>
                     </figure>
                     &nbsp; &nbsp;
@@ -276,64 +286,77 @@
                 <h4 style="text-align:center;color:#24dbc9;">Technologies</h4>
                 <div style="text-align:center;">
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.mysql.com" target="_blank" rel="noreferrer"> <img
+                        <a href="https://www.mysql.com" rel="noreferrer" target="_blank"> <img
+                                alt="mysql"
+                                height="40"
                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
-                                alt="mysql" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">MySQL</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://mariadb.org" target="_blank" rel="noreferrer"> <img
-                                src="https://www.vectorlogo.zone/logos/mariadb/mariadb-icon.svg"
-                                alt="mariadb" width="40" height="40"/> </a>
+                        <a href="https://mariadb.org" rel="noreferrer" target="_blank"> <img
+                                alt="mariadb"
+                                height="40" src="https://www.vectorlogo.zone/logos/mariadb/mariadb-icon.svg"
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">MariaDB</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://git-scm.com" target="_blank" rel="noreferrer"> <img
+                        <a href="https://git-scm.com" rel="noreferrer" target="_blank"> <img
+                                alt="git"
+                                height="40"
                                 src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/git.svg"
-                                alt="git" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Git</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://subversion.apache.org" target="_blank" rel="noreferrer"> <img
+                        <a href="https://subversion.apache.org" rel="noreferrer" target="_blank"> <img
+                                alt="subversion"
+                                height="40"
                                 src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/subversion.png"
-                                alt="subversion" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">SVN</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer"> <img
-                                src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40"
-                                height="40"/> </a>
+                        <a href="https://www.gnu.org/software/bash/" rel="noreferrer" target="_blank"> <img
+                                alt="bash" height="40"
+                                src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg"
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Bash</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <br>
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.linux.org" target="_blank" rel="noreferrer"> <img
+                        <a href="https://www.linux.org" rel="noreferrer" target="_blank"> <img
+                                alt="linux"
+                                height="40"
                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
-                                alt="linux" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Linux</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.docker.com" target="_blank" rel="noreferrer"> <img
-                                src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg"
-                                alt="docker" width="40" height="40"/> </a>
+                        <a href="https://www.docker.com" rel="noreferrer" target="_blank"> <img
+                                alt="docker"
+                                height="40" src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" width="40"/>
+                        </a>
                         <figcaption style="text-align:center;">Docker</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img
+                        <a href="https://aws.amazon.com" rel="noreferrer" target="_blank"> <img
+                                alt="aws"
+                                height="40"
                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
-                                alt="aws" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">AWS</figcaption>
                     </figure>
                 </div>
@@ -345,41 +368,48 @@
                 <h4 style="text-align:center;color:#24dbc9;">Libraries</h4>
                 <div style="text-align:center;">
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://scikit-learn.org" target="_blank" rel="noreferrer"> <img
+                        <a href="https://scikit-learn.org" rel="noreferrer" target="_blank"> <img
+                                alt="scikit_learn"
+                                height="40"
                                 src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"
-                                alt="scikit_learn" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Scikit-Learn</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <figure class="item" style="display:inline-block;">
                         <a href="https://docs.oracle.com/en/industries/communications/order-service-management/index.html"
-                           target="_blank" rel="noreferrer"> <img
-                                src="https://www.vectorlogo.zone/logos/oracle/oracle-icon.svg" alt="oracle"
-                                width="40" height="40"/> </a>
+                           rel="noreferrer" target="_blank"> <img
+                                alt="oracle" height="40"
+                                src="https://www.vectorlogo.zone/logos/oracle/oracle-icon.svg" width="40"/> </a>
                         <figcaption style="text-align:center;">Oracle OSM</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://numpy.org" target="_blank" rel="noreferrer"> <img
+                        <a href="https://numpy.org" rel="noreferrer" target="_blank"> <img
+                                alt="numpy"
+                                height="40"
                                 src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/numpy.svg"
-                                alt="numpy" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">NumPy</figcaption>
                     </figure>
                     &nbsp; &nbsp;
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://pandas.pydata.org" target="_blank" rel="noreferrer"> <img
+                        <a href="https://pandas.pydata.org" rel="noreferrer" target="_blank"> <img
+                                alt="pandas"
+                                height="40"
                                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg"
-                                alt="pandas" width="40" height="40"/> </a>
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Pandas</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <br>
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://angular.dev/" target="_blank" rel="noreferrer"> <img
-                                src="https://www.vectorlogo.zone/logos/angular/angular-icon.svg"
-                                alt="angular" width="40" height="40"/> </a>
+                        <a href="https://angular.dev/" rel="noreferrer" target="_blank"> <img
+                                alt="angular"
+                                height="40" src="https://www.vectorlogo.zone/logos/angular/angular-icon.svg"
+                                width="40"/> </a>
                         <figcaption style="text-align:center;">Angular</figcaption>
                     </figure>
                     &nbsp; &nbsp;
@@ -558,7 +588,7 @@
 </section><!-- End About Section -->
 
 <!-- ======= Experience Section ======= -->
-<section id="experience" class="resume">
+<section class="resume" id="experience">
 
     <div class="container">
 
@@ -586,7 +616,7 @@
                     <br>
                 </div>
                 <div class="resume-item">
-                    <h4>Back-End Developer</h4>
+                    <h4>Full-Stack Developer</h4>
                     <h5>02/2022 - 06/2022</h5>
                     <p><em>INDUST Systems, Patras, Greece</em></p>
 
@@ -613,7 +643,7 @@
                     <ul>
                         <li>Analysis and resolution of technical issues in Business Applications</li>
                         <li>Configure and support Infrastructure requests (Microsoft 365 etc.)</li>
-                        <li>Applications testing</li>
+                        <li>Application testing</li>
                         <li>Organization and monitoring of requests and subprojects</li>
                     </ul>
                     Technologies &amp; Skills: CRM, Microsoft Tools, RDP, Support, Problem Solving
@@ -625,7 +655,7 @@
 </section>
 <!-- End Experience Section -->
 
-<section id="education" class="resume">
+<section class="resume" id="education">
 
     <div class="container">
 
@@ -681,7 +711,7 @@
 
 
 <!-- ======= Certificates Section ======= -->
-<section id="certificates" class="services">
+<section class="services" id="certificates">
     <div class="container">
 
         <div class="section-title">
@@ -765,7 +795,7 @@
 <!-- End Certificates Section -->
 
 <!-- ======= Projects Section ======= -->
-<section id="projects" class="portfolio">
+<section class="portfolio" id="projects">
     <div class="container">
 
         <div class="section-title">
@@ -776,7 +806,7 @@
         <div class="row">
             <div class="col-lg-12 d-flex justify-content-center">
                 <ul id="portfolio-flters">
-                    <li data-filter="*" class="filter-active">All</li>
+                    <li class="filter-active" data-filter="*">All</li>
                     <li data-filter=".filter-ai">AI</li>
                     <li data-filter=".filter-telecom">Telecom</li>
                     <li data-filter=".filter-web">Web</li>
@@ -790,11 +820,11 @@
 
             <!-- AI -->
             <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
-                <a href="projects/data-mining.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/data-mining.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/ai-pics/data-mining-bg.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/ai-pics/data-mining-bg.jpeg">
                         <div class="portfolio-info">
                             <h4>Data Mining</h4>
                             <p>University of Patras</p>
@@ -803,11 +833,11 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
-                <a href="projects/mdds.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/mdds.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/web/mdds/mdds.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/web/mdds/mdds.jpeg">
                         <div class="portfolio-info">
                             <h4>Multi-dimensional Data Structures</h4>
                             <p>University of Patras</p>
@@ -819,11 +849,11 @@
 
             <!-- TELECOM -->
             <div class="col-lg-4 col-md-6 portfolio-item filter-telecom">
-                <a href="projects/om-crs.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/om-crs.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/telecom/crs.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/telecom/crs.jpeg">
                         <div class="portfolio-info">
                             <h4>Integration & Order Management CRs</h4>
                             <p>Cosmote</p>
@@ -832,11 +862,11 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-6 portfolio-item filter-telecom">
-                <a href="projects/ote-pia.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/ote-pia.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/telecom/pia.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/telecom/pia.jpeg">
                         <div class="portfolio-info">
                             <h4>New Premium Internet Access</h4>
                             <p>OTE</p>
@@ -845,11 +875,11 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-6 portfolio-item filter-telecom">
-                <a href="projects/dob.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/dob.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/telecom/dob.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/telecom/dob.jpeg">
                         <div class="portfolio-info">
                             <h4>Digital Onboarding</h4>
                             <p>Cosmote</p>
@@ -860,11 +890,11 @@
 
             <!-- WEB -->
             <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                <a href="projects/thingsboard.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/thingsboard.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/web/thingsboard/thingsboard.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/web/thingsboard/thingsboard.jpeg">
                         <div class="portfolio-info">
                             <h4>Thingsboard</h4>
                             <p>INDUST Systems</p>
@@ -874,11 +904,11 @@
             </div>
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                <a href="projects/ecomap.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/ecomap.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/web/ecomap/ecomap-bg.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/web/ecomap/ecomap-bg.jpeg">
                         <div class="portfolio-info">
                             <h4>Ecomap</h4>
                             <p>University of Patras</p>
@@ -889,11 +919,11 @@
 
             <!-- SIMULATION -->
             <div class="col-lg-4 col-md-6 portfolio-item filter-simulation">
-                <a href="projects/simulation-software.html" data-gallery="portfolioDetailsGallery"
-                   data-glightbox="type: external" class="portfolio-details-lightbox"
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/simulation-software.html"
                    title="Portfolio Details">
                     <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/simulation/sim-bg.jpeg" class="img-fluid" alt="">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/simulation/sim-bg.jpeg">
                         <div class="portfolio-info">
                             <h4>Production Line Simulator</h4>
                             <p>Thesis</p>
@@ -909,7 +939,7 @@
 <!-- End Projects Section -->
 
 <!-- ======= Contact Section ======= -->
-<section id="contact" class="contact">
+<section class="contact" id="contact">
     <div class="container">
 
         <div class="section-title">
@@ -930,37 +960,39 @@
                     <i class="bx bx-share-alt"></i>
                     <h3>Social Profiles</h3>
                     <div class="social-links">
-                        <a href="https://github.com/nikosninosg" class="github" target="_blank"><i
+                        <a class="github" href="https://github.com/nikosninosg" target="_blank"><i
                                 class="bi bi-github"></i></a>
-                        <a href="https://www.linkedin.com/in/nikos-georgopoulos-ninos" class="linkedin" target="_blank"><i
+                        <a class="linkedin" href="https://www.linkedin.com/in/nikos-georgopoulos-ninos" target="_blank"><i
                                 class="bi bi-linkedin"></i></a>
-                        <a href="https://www.fiverr.com/nikosgninos" class="fiverr" target="_blank"><i
+                        <a class="fiverr" href="https://www.fiverr.com/nikosgninos" target="_blank"><i
                                 class="bi bi-bug-fill"></i></a>
-                        <a href="https://www.upwork.com/freelancers/~016c6337175cd4c994" class="upwork" target="_blank"><i
+                        <a class="upwork" href="https://www.upwork.com/freelancers/~016c6337175cd4c994" target="_blank"><i
                                 class="bi bi-clipboard2-check-fill"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
+        <form action="forms/contact.php" class="php-email-form mt-4" method="post" role="form">
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="name"></label><input type="text" name="name" class="form-control" id="name"
-                                                     placeholder="Your Name" required>
+                    <label for="name"></label><input class="form-control" id="name" name="name" placeholder="Your Name"
+                                                     required type="text">
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <label for="email"></label><input type="email" class="form-control" name="email" id="email"
-                                                      placeholder="Your Email" required>
+                    <label for="email"></label><input class="form-control" id="email" name="email"
+                                                      placeholder="Your Email"
+                                                      required type="email">
                 </div>
             </div>
             <div class="form-group mt-3">
-                <label for="subject"></label><input type="text" class="form-control" name="subject" id="subject"
-                                                    placeholder="Subject" required>
+                <label for="subject"></label><input class="form-control" id="subject" name="subject"
+                                                    placeholder="Subject"
+                                                    required type="text">
             </div>
             <div class="form-group mt-3">
                 <label>
-                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                    <textarea class="form-control" name="message" placeholder="Message" required rows="5"></textarea>
                 </label>
             </div>
             <div class="my-3">
@@ -988,7 +1020,7 @@
 <script src="assets/vendor/typed.js/typed.min.js"></script>
 
 <script>
-    var typed = new Typed('.typing', {
+    let typed = new Typed('.typing', {
         strings: ["Software Engineer.", "Developer.", "Person."],
         loop: true,
         typeSpeed: 50,
