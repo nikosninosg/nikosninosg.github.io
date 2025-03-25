@@ -136,7 +136,7 @@
             </div>
             <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                 <h3>Software Engineer</h3>
-                <p class="fst-italic">𝕿𝖊𝖈𝖍 𝕰𝖓𝖙𝖍𝖚𝖘𝖎𝖆𝖘𝖙</p>
+                <p class="fst-italic">𝚃𝚎𝚌𝚑 𝙴𝚗𝚝𝚑𝚞𝚜𝚒𝚊𝚜𝚝</p>
                 <div class="row">
                     <div class="col-lg-6">
                         <ul>
@@ -162,6 +162,10 @@
                     innovative tools. My continuous drive to expand my knowledge keeps me engaged and excited about the
                     ever-evolving tech landscape. I am committed to staying at the forefront of technological
                     developments and eager to leverage my skills to contribute effectively to dynamic projects.
+                    <br>
+                    <br>
+                    <b><u>My key characteristic:</u> I excel at generating innovative and creative ideas that drive solutions, enhance strategies,
+                    and foster growth.</b>
                 </p></div>
             </div>
         </div>
@@ -260,11 +264,11 @@
 
 
                     <figure class="item" style="display:inline-block;">
-                        <a href="https://www.cprogramming.com" rel="noreferrer" target="_blank"> <img
-                                alt="c" height="40"
-                                src="https://raw.githubusercontent.com/arasgungore/arasgungore/main/icons/c.svg"
+                        <a href="https://en.wikipedia.org/wiki/XQuery" rel="noreferrer" target="_blank"> <img
+                                alt="xquery" height="40"
+                                src="https://www.vectorlogo.zone/logos/w3c_xml/w3c_xml-ar21~bgwhite.svg"
                                 width="40"/> </a>
-                        <figcaption style="text-align:center;">C</figcaption>
+                        <figcaption style="text-align:center;">XQuery</figcaption>
                     </figure>
                     &nbsp; &nbsp;
                     <br>
@@ -521,7 +525,7 @@
                         </p>
                         <!-- <img src="assets/img/testimonials/filios.jpg" class="testimonial-img" alt=""> -->
                         <h3>Gabriel Filios</h3>
-                        <h4>Co-Founder</h4>
+                        <h4>CEO</h4>
                     </div>
                 </div>
 
@@ -608,11 +612,12 @@
                         <li>Analysis of client's projects and requirements</li>
                         <li>Developer with Oracle Order & Service Management (Oracle OSM)</li>
                         <li>Tester (SIT, UAT)</li>
-                        <li>Support Engineer for the projects</li>
+                        <li>Technical engineer for the developed projects</li>
+                        <li>Camunda</li>
                     </ul>
                     Technologies: Oracle OSM, Java 1.8, Weblogic 10.x, Weblogic Portal 10, Soap – Rest Web Services,
                     Maven, Bizagi Modeler,
-                    SVN, Oracle DB, XQuery, XML, MySQL, Design Studio
+                    SVN, Oracle DB, XQuery, XML, MySQL, Design Studio, Camunda 8, Git, Gitlab
                     <br>
                 </div>
                 <div class="resume-item">
@@ -629,7 +634,7 @@
                         </li>
                     </ul>
                     Technologies: Javascript, NestJS, AngularJS, Docker, Typescript, TimescaleDB, Grafana, WebStorm,
-                    Git, GitHub
+                    Git, GitHub, Keycloak
                 </div>
             </div>
             <div class="col-lg-6">
@@ -646,7 +651,7 @@
                         <li>Application testing</li>
                         <li>Organization and monitoring of requests and subprojects</li>
                     </ul>
-                    Technologies &amp; Skills: CRM, Microsoft Tools, RDP, Support, Problem Solving
+                    Technologies &amp; Skills: CRM, Microsoft Tools, RDP, Customer Support, Problem Solving
                 </div>
             </div>
         </div>
@@ -820,6 +825,20 @@
 
             <!-- AI -->
             <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
+                <!-- todo: construct -->
+                <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
+                   data-glightbox="type: external" href="projects/ai/bi-in-a-box.html">"
+                   title="Portfolio Details">
+                    <div class="portfolio-wrap">
+                        <img alt="" class="img-fluid" src="assets/img/portfolio/ai-pics/bi-in-a-box-bg-2.png">
+                        <div class="portfolio-info">
+                            <h4>BI in a Box</h4>
+                            <p>INDUST Systems</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
                 <a class="portfolio-details-lightbox" data-gallery="portfolioDetailsGallery"
                    data-glightbox="type: external" href="projects/data-mining.html"
                    title="Portfolio Details">
@@ -973,7 +992,10 @@
             </div>
         </div>
 
+        <!-- todo: fix
         <form action="forms/contact.php" class="php-email-form mt-4" method="post" role="form">
+        -->
+        <form id="contact-form" action="https://formsubmit.co/nikosninosg@gmail.com" method="POST" role="form" class="php-email-form mt-4">
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="name"></label><input class="form-control" id="name" name="name" placeholder="Your Name"
@@ -1020,7 +1042,7 @@
 <script src="assets/vendor/typed.js/typed.min.js"></script>
 
 <script>
-    let typed = new Typed('.typing', {
+    new Typed('.typing', {
         strings: ["Software Engineer.", "Developer.", "Person."],
         loop: true,
         typeSpeed: 50,
