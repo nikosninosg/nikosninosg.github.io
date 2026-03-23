@@ -8,8 +8,8 @@
     <title>Projects</title>
     <meta content="Nikos Georgopoulos Ninos CV" name="description">
     <meta content="nikosninosg, Nikos Ninos, nikosninosg github io, nikosninosg.github.io" name="keywords">
-    <meta property="og:nikosninosg" content="Nikos Georgopoulos Ninos CV">
-    <meta property="og:nikosninosg.github.io" content="Nikos Georgopoulos Ninos CV">
+    <meta content="Nikos Georgopoulos Ninos CV" property="og:nikosninosg">
+    <meta content="Nikos Georgopoulos Ninos CV" property="og:nikosninosg.github.io">
 
     <!-- Favicons -->
     <link href="../../assets/img/favicon.png" rel="icon">
@@ -37,7 +37,7 @@
 <main id="main">
 
     <!-- ======= Project Details ======= -->
-    <div id="portfolio-details" class="portfolio-details">
+    <div class="portfolio-details" id="portfolio-details">
         <div class="container">
 
             <div class="row">
@@ -47,12 +47,61 @@
                     <ul>
                         <li><strong>Project</strong>: BI in a Box</li>
                         <li><strong>Client</strong>: INDUST Systems Ltd., Greece</li>
+                        <li><strong>Website</strong>: <a
+                                href="https://bi-in-a-box.gr/" target="_blank">bi-in-a-box.gr</a>
+                        </li>
                         <li>
-                            <div style="text-align: justify;"><strong>Description</strong>:
+                            <div style="text-align: justify;"><strong>Description</strong>: BI-in-a-Box is an end-to-end
+                                Business Intelligence and analytics platform designed to transform raw data into
+                                actionable insights. It integrates data from multiple sources (e.g., ERP systems,
+                                databases) and provides advanced analytics, reporting, and forecasting capabilities.
+
+                                The platform combines data engineering, statistical modeling, and machine learning
+                                techniques to support data-driven decision making. It includes automated data pipelines,
+                                interactive dashboards, and time-series forecasting modules, enabling organizations to
+                                monitor performance, identify trends, and optimize business operations.
+
+                                Designed with scalability and ease of deployment in mind, the system leverages modern
+                                technologies and containerization to deliver a flexible and cost-effective BI solution
+                                suitable for organizations of various sizes
 
                             </div>
                         </li>
-                        <li><strong>Technologies</strong>: </li>
+
+                        <li>Contributed to the design and development of BI-in-a-Box, an end-to-end Business
+                            Intelligence platform with a focus on time-series forecasting and data-driven decision
+                            support. The system implements a scalable ML pipeline for data processing, model training,
+                            and inference.
+                        </li>
+                        <li><strong>Contributions</strong>:</li>
+
+                        <ol>
+                            <li>Designed and implemented a modular architecture by separating the system into Trainer
+                                and Predictor components, enabling scalability, maintainability, and clear MLOps
+                                workflows
+                            </li>
+                            <li>Developed time-series forecasting pipelines using the Nixtla ecosystem (StatsForecast,
+                                NeuralForecast, MLForecast), leveraging both statistical and deep learning models
+                            </li>
+                            <li> Built an intelligent model selection framework that evaluates multiple forecasting
+                                models using performance metrics (e.g., cross-validation, error metrics) and
+                                automatically selects the optimal model
+                            </li>
+                            <li>Containerized the application using Docker, ensuring reproducibility, portability, and
+                                streamlined deployment
+                            </li>
+                            <li> Performed data preprocessing, transformation, and analysis using pandas, and
+                                implemented ML workflows with scikit-learn
+                            </li>
+                            <li>Optimized training and inference performance, improving model efficiency and pipeline
+                                execution
+                            </li>
+                        </ol>
+                        <br>
+
+                        <li><strong>Technologies</strong>:</li>
+                        Python 3.14, Nixtla (StatsForecast,
+                        NeuralForecast, MLForecast), Docker, Pandas, Scikit-Learn, Bash shell
                     </ul>
                 </div>
             </div>
