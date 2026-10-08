@@ -48,7 +48,7 @@ Header markup (nav + actions) exactly as emitted:
 <header class="site-header" data-header>
   <div class="scroll-progress" data-progress aria-hidden="true"><span class="scroll-progress__bar" data-progress-bar></span></div>
   <div class="site-header__inner container">
-    <a class="brand" href="index.html"><span class="brand__mark">NGN</span><span class="brand__name">Nikos Georgopoulos Ninos</span></a>
+    <a class="brand" href="index.html"><span class="brand__mark"><svg class="brand__glyph">…N drawn as a 4-node graph…</svg></span><span class="brand__name">Nikos Georgopoulos Ninos</span></a>
     <nav class="site-nav" id="site-nav" data-nav aria-label="Primary">
       <ul class="site-nav__list"><li><a class="nav-link" href="…" aria-current="page|true">Home</a></li>…</ul>
       <span class="nav-pill" data-nav-pill aria-hidden="true"></span>

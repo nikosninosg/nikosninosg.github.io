@@ -10,6 +10,15 @@ import { html, raw, json, jsLiteral, joinUrl } from './html.mjs';
 import { icon } from './icons.mjs';
 import { imageSize } from './imagesize.mjs';
 
+/**
+ * Brand mark: an "N" drawn as a tiny network graph (four nodes joined by the strokes of the letter).
+ * Pure SVG (no text), so it never depends on a font. Animated on .brand:hover via CSS (components.css).
+ */
+const BRAND_MARK = raw(`<svg class="brand__glyph" viewBox="0 0 40 40" width="40" height="40" fill="none" aria-hidden="true" focusable="false">
+  <path class="brand__stroke" d="M13 28V12l14 16V12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>
+  <g class="brand__nodes" fill="currentColor"><circle cx="13" cy="28" r="3.1"/><circle cx="13" cy="12" r="3.1"/><circle cx="27" cy="28" r="3.1"/><circle cx="27" cy="12" r="3.1"/></g>
+</svg>`);
+
 export const REPO_URL = 'https://github.com/nikosninosg/nikosninosg.github.io';
 export const BRAND_NAME_SHORT = 'Nikos Georgopoulos Ninos';
 
@@ -185,7 +194,7 @@ function renderHeader(pctx, page) {
   <div class="scroll-progress" data-progress aria-hidden="true"><span class="scroll-progress__bar" data-progress-bar></span></div>
   <div class="site-header__inner container">
     <a class="brand" href="${url('index.html')}" aria-label="${site.name} — home">
-      <span class="brand__mark" aria-hidden="true">${site.initials}</span>
+      <span class="brand__mark" aria-hidden="true">${BRAND_MARK}</span>
       <span class="brand__name">${site.name}</span>
     </a>
     <nav class="site-nav" id="site-nav" data-nav aria-label="Primary">
@@ -224,7 +233,7 @@ function renderFooter(pctx) {
     <div class="site-footer__grid">
       <div class="site-footer__brand">
         <a class="brand" href="${url('index.html')}" aria-label="${site.name} — home">
-          <span class="brand__mark" aria-hidden="true">${site.initials}</span>
+          <span class="brand__mark" aria-hidden="true">${BRAND_MARK}</span>
           <span class="brand__name">${site.name}</span>
         </a>
         <p class="site-footer__blurb">${site.title} · ${site.tagline}. ${site.location}.</p>

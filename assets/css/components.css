@@ -2027,19 +2027,47 @@
     border-radius: 12px;
     background: var(--grad-accent);
     color: var(--accent-contrast);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: -0.04em;
     box-shadow:
       0 8px 22px -8px var(--accent-glow),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
     transition: transform var(--dur-base) var(--ease-spring), border-radius var(--dur-base) ease;
   }
 
+  .brand__glyph {
+    inline-size: 100%;
+    block-size: 100%;
+    overflow: visible;
+  }
+
+  .brand__nodes circle {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform var(--dur-base) var(--ease-spring);
+  }
+
   .brand:hover .brand__mark {
     transform: rotate(-6deg) scale(1.06);
     border-radius: 14px;
+  }
+
+  .brand:hover .brand__nodes circle {
+    transform: scale(1.25);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .brand:hover .brand__stroke {
+      stroke-dasharray: 1;
+      animation: brand-draw 0.7s var(--ease-out, ease-out) both;
+    }
+  }
+
+  @keyframes brand-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
 
   .brand__name {

@@ -1,0 +1,58 @@
+{
+  "slug": "iot-control",
+  "title": "IoT Control",
+  "categories": [
+    "web"
+  ],
+  "client": "INDUST Systems, Greece",
+  "organization": "INDUST Systems",
+  "summary": "INDUST Systems' monitoring and notification platform for industrial environments: live SCADA-style dashboards, charts, scenarios and alerts built on device data.",
+  "description": [
+    "IoT Control is INDUST Systems' monitoring and notification platform for industrial environments. IoT devices send their measurements to the platform, where they are stored as time series and presented in live dashboards, charts and SCADA-style views of the installation.",
+    "Users define scenarios with conditions on the measurements (for example low, medium or high temperature states) and are notified when they trigger. Pages can be composed from tiles, charts and SCADA views, and access is controlled per user role.",
+    "The platform is a TypeScript system: a NestJS back end with separate services for data ingestion and notification detection, a time-series database, and an Angular web application, all packaged with Docker."
+  ],
+  "contributions": [],
+  "technologies": [
+    "TypeScript",
+    "NestJS",
+    "Angular",
+    "TimescaleDB",
+    "MQTT",
+    "Keycloak",
+    "Grafana",
+    "Docker"
+  ],
+  "links": [
+    { "label": "iotcontrol.app", "url": "https://www.iotcontrol.app/" }
+  ],
+  "cover": {
+    "src": "assets/img/portfolio/web/iot-control/iot-control.jpeg",
+    "alt": "Illustration of an IoT dashboard: a glowing central IoT hub linked to panels showing air temperature, a humidity gauge, an energy bar chart and a pump switch, with a temperature alert."
+  },
+  "gallery": [
+    {
+      "src": "assets/img/portfolio/web/iot-control/ioc-scada-dashboard.png",
+      "alt": "Pasteur line dashboard: four temperature tiles above a SCADA diagram of six colour-coded tanks with temperature sensors, next to a daily temperature chart.",
+      "caption": "SCADA view of a pasteurisation line with live temperatures and a daily chart"
+    },
+    {
+      "src": "assets/img/portfolio/web/iot-control/ioc-scenario-rule.png",
+      "alt": "Notification scenario card with conditions for low, medium and high temperature states, an Active toggle and the time of the last notification.",
+      "caption": "Notification scenario with temperature-state conditions"
+    },
+    {
+      "src": "assets/img/portfolio/web/iot-control/ioc-page-builder.png",
+      "alt": "Page editor with tabs for choosing devices, creating charts, tiles and SCADA views and arranging the layout, listing a temperature tile and a live page preview.",
+      "caption": "Page editor: compose tiles, charts and SCADA views"
+    }
+  ],
+  "featured": false,
+  "order": 7,
+  "legacyPaths": [],
+  "_notes": [
+    "New project added after the migration. Description written from the iot-control repository README/structure, the owner's screenshots and the CV (INDUST Systems, Full-Stack Developer 02/2022-06/2022). No role stated, per the owner.",
+    "Technologies: Angular is listed instead of the CV's 'AngularJS' because the current web application is Angular; MQTT is used by the services; Grafana and Keycloak are in the stack. Review before publishing.",
+    "Cover is an original illustration made for the site (generic dashboard motif, no client data). Gallery uses the owner's real screenshots (SCADA dashboard, scenario, page editor). Not used: the unreleased redesign mock-ups, the AI Agent panel and the login screen."
+  ]
+}

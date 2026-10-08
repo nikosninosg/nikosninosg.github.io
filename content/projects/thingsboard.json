@@ -55,7 +55,7 @@
     }
   ],
   "featured": true,
-  "order": 7,
+  "order": 8,
   "legacyPaths": ["projects/thingsboard.html"],
   "_notes": [
     "Old page heading was \"Tihingsboard Dashboards\" (typo); corrected to \"ThingsBoard Dashboards\" and used as title. The portfolio card h4 and the \"Project:\" list item both said \"Thingsboard\"; the card label is covered by the title, and the redundant \"Project\" list item was dropped. (The generic <title>Projects</title> of the old HTML was ignored.)",

@@ -45,6 +45,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://nikosninosg.github.io/projects/iot-control.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nikosninosg.github.io/projects/thingsboard.html</loc>
     <priority>0.6</priority>
   </url>
