@@ -10,3 +10,6 @@ npm-debug.log*
 # Local secrets, never commit
 .env
 .env.*
+
+# JetBrains IDE settings
+.idea/
