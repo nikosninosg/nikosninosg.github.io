@@ -1,0 +1,324 @@
+/**
+ * tokens.css: design tokens for the whole site (colour, type, space, shape, motion, depth).
+ *
+ * Order of this file:
+ *   1. @layer declaration (the cascade order for ALL shared css; page css is unlayered and wins)
+ *   2. theme-independent tokens (type, space, radii, motion, z-index, layout)
+ *   3. DARK theme (default, also the no-JS default)
+ *   4. LIGHT theme: [data-theme="light"] (set by the head script / theme.js)
+ *   5. LIGHT theme for no-JS visitors whose OS prefers light (:root:not([data-theme]))
+ *
+ * Both theme blocks define exactly the same variables. When adding a colour token, add it to
+ * the dark block and BOTH light blocks (blocks 4 and 5 are identical on purpose).
+ * Breakpoints (used literally, custom properties cannot be used in media queries): 600 / 900 / 1200px.
+ */
+@layer reset, base, components, utilities, pages;
+
+:root {
+  /* Fonts (Google Fonts are loaded by layout.mjs; the fallbacks keep metrics sane offline) */
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Type scale (fluid) */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: clamp(1.0625rem, 1.02rem + 0.2vw, 1.1875rem);
+  --fs-lg: clamp(1.1875rem, 1.1rem + 0.45vw, 1.4375rem);
+  --fs-xl: clamp(1.375rem, 1.2rem + 0.9vw, 1.875rem);
+  --fs-2xl: clamp(1.75rem, 1.4rem + 1.7vw, 2.75rem);
+  --fs-3xl: clamp(2.125rem, 1.55rem + 2.8vw, 3.75rem);
+  --fs-4xl: clamp(2.625rem, 1.75rem + 4.4vw, 5rem);
+  --fs-display: clamp(2.75rem, 1.2rem + 7.4vw, 7.25rem);
+  --lh-tight: 1.08;
+  --lh-snug: 1.25;
+  --lh-base: 1.6;
+  --lh-loose: 1.8;
+  --tracking-tight: -0.03em;
+  --tracking-mono: 0.14em;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 5rem;
+  --space-10: 6rem;
+  --space-11: 7rem;
+  --space-12: 8rem;
+  --section-y: clamp(4.5rem, 3rem + 6.5vw, 8.5rem);
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container: 1180px;
+  --container-narrow: 760px;
+  --container-wide: 1360px;
+  --gutter: clamp(1rem, 0.35rem + 3vw, 2.5rem);
+  --header-h: 4.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 560ms;
+
+  /* Stacking */
+  --z-base: 1;
+  --z-top: 40;
+  --z-header: 50;
+  --z-palette: 100;
+  --z-toast: 200;
+}
+
+/* ---- DARK (default) ---- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg: #05080a;
+  --bg-elev: #0b1316;
+  --bg-sunken: #030608;
+  --band: rgba(255, 255, 255, 0.018);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --surface-strong: rgba(255, 255, 255, 0.1);
+  --panel-bg: rgba(10, 17, 20, 0.94);
+  --header-bg: rgba(6, 11, 13, 0.72);
+  --input-bg: rgba(255, 255, 255, 0.035);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.17);
+
+  /* Text */
+  --text: #e8f1f2;
+  --text-muted: #9aabaf;
+  --text-subtle: #7a8d92;
+
+  /* Accent */
+  --accent: #2de2c6;
+  --accent-2: #18d26e;
+  --accent-violet: #8b7cff;
+  --accent-contrast: #03140f;
+  --on-accent: #03140f; /* text on a SOLID --accent fill (the gradient fills use --accent-contrast) */
+  --accent-soft: rgba(45, 226, 198, 0.12);
+  --accent-line: rgba(45, 226, 198, 0.38);
+  --accent-glow: rgba(45, 226, 198, 0.35);
+  --grad-accent: linear-gradient(120deg, #2de2c6 0%, #18d26e 100%);
+  --grad-text: linear-gradient(100deg, #6ff5e0 0%, #2de2c6 38%, #18d26e 100%);
+  --focus-ring: #6ff5e0;
+
+  /* Status */
+  --success: #3ddc84;
+  --danger: #ff7a7a;
+  --warning: #f5c451;
+  --success-soft: rgba(61, 220, 132, 0.12);
+  --danger-soft: rgba(255, 122, 122, 0.12);
+  --success-line: rgba(61, 220, 132, 0.42);
+  --danger-line: rgba(255, 122, 122, 0.45);
+  --violet-soft: rgba(139, 124, 255, 0.14);
+  --violet-line: rgba(139, 124, 255, 0.45);
+
+  /* Atmosphere (page background) */
+  --mesh-a: rgba(45, 226, 198, 0.13);
+  --mesh-b: rgba(139, 124, 255, 0.1);
+  --mesh-c: rgba(24, 210, 110, 0.07);
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --noise-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+
+  /* Cards: cursor spotlight */
+  --spot-border: rgba(45, 226, 198, 0.65);
+  --spot-glow: rgba(45, 226, 198, 0.1);
+
+  /* Depth */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 14px 36px -14px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 44px 100px -34px rgba(0, 0, 0, 0.85);
+  --glow: 0 0 0 1px var(--accent-line), 0 18px 60px -18px var(--accent-glow);
+
+  /* Misc */
+  --selection-bg: rgba(45, 226, 198, 0.32);
+  --selection-fg: #ffffff;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.16);
+  --code-bg: rgba(255, 255, 255, 0.06);
+  --scrim: rgba(2, 5, 6, 0.62);
+
+  /* Network canvas (read by hero.js) */
+  --network-node: rgba(160, 240, 230, 0.75);
+  --network-line: rgba(45, 226, 198, 0.2);
+  --network-accent: #2de2c6;
+}
+
+/* ---- LIGHT (explicit) ---- */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #f6faf9;
+  --bg-elev: #ffffff;
+  --bg-sunken: #e9f1f0;
+  --band: rgba(8, 60, 55, 0.035);
+  --surface: rgba(255, 255, 255, 0.74);
+  --surface-hover: #ffffff;
+  --surface-strong: rgba(8, 60, 55, 0.07);
+  --panel-bg: rgba(255, 255, 255, 0.97);
+  --header-bg: rgba(244, 249, 248, 0.78);
+  --input-bg: #ffffff;
+  --border: rgba(8, 45, 50, 0.11);
+  --border-strong: rgba(8, 45, 50, 0.22);
+
+  /* Text */
+  --text: #0b1a1d;
+  --text-muted: #475c61;
+  --text-subtle: #5e7378;
+
+  /* Accent (darkened for contrast on light surfaces) */
+  --accent: #037a69;
+  --accent-2: #0b7a40;
+  --accent-violet: #5b4bd8;
+  --accent-contrast: #03140f;
+  --on-accent: #fff;
+  --accent-soft: rgba(3, 122, 105, 0.1);
+  --accent-line: rgba(3, 122, 105, 0.38);
+  --accent-glow: rgba(15, 184, 159, 0.4);
+  --grad-accent: linear-gradient(120deg, #33e6cb 0%, #1fd677 100%);
+  --grad-text: linear-gradient(100deg, #047565 0%, #0b7f52 100%);
+  --focus-ring: #0a6f61;
+
+  /* Status */
+  --success: #0b7a40;
+  --danger: #c0392b;
+  --warning: #8a5a00;
+  --success-soft: rgba(11, 122, 64, 0.1);
+  --danger-soft: rgba(192, 57, 43, 0.09);
+  --success-line: rgba(11, 122, 64, 0.4);
+  --danger-line: rgba(192, 57, 43, 0.4);
+  --violet-soft: rgba(91, 75, 216, 0.1);
+  --violet-line: rgba(91, 75, 216, 0.4);
+
+  /* Atmosphere */
+  --mesh-a: rgba(45, 226, 198, 0.22);
+  --mesh-b: rgba(139, 124, 255, 0.13);
+  --mesh-c: rgba(24, 210, 110, 0.13);
+  --grid-line: rgba(8, 45, 50, 0.05);
+  --noise-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
+
+  /* Cards */
+  --spot-border: rgba(3, 122, 105, 0.6);
+  --spot-glow: rgba(45, 226, 198, 0.16);
+
+  /* Depth */
+  --shadow-sm: 0 1px 2px rgba(10, 40, 45, 0.08), 0 1px 1px rgba(10, 40, 45, 0.04);
+  --shadow-md: 0 14px 34px -16px rgba(10, 50, 55, 0.24);
+  --shadow-lg: 0 44px 90px -34px rgba(10, 50, 55, 0.34);
+  --glow: 0 0 0 1px var(--accent-line), 0 18px 60px -18px var(--accent-glow);
+
+  /* Misc */
+  --selection-bg: rgba(15, 184, 159, 0.28);
+  --selection-fg: #04201b;
+  --scrollbar-thumb: rgba(8, 45, 50, 0.24);
+  --code-bg: rgba(8, 60, 55, 0.07);
+  --scrim: rgba(10, 30, 34, 0.3);
+
+  /* Network canvas */
+  --network-node: rgba(6, 100, 90, 0.55);
+  --network-line: rgba(6, 120, 105, 0.16);
+  --network-accent: #068a76;
+}
+
+/* ---- LIGHT (no JS + OS prefers light) ---- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #f6faf9;
+  --bg-elev: #ffffff;
+  --bg-sunken: #e9f1f0;
+  --band: rgba(8, 60, 55, 0.035);
+  --surface: rgba(255, 255, 255, 0.74);
+  --surface-hover: #ffffff;
+  --surface-strong: rgba(8, 60, 55, 0.07);
+  --panel-bg: rgba(255, 255, 255, 0.97);
+  --header-bg: rgba(244, 249, 248, 0.78);
+  --input-bg: #ffffff;
+  --border: rgba(8, 45, 50, 0.11);
+  --border-strong: rgba(8, 45, 50, 0.22);
+
+  /* Text */
+  --text: #0b1a1d;
+  --text-muted: #475c61;
+  --text-subtle: #5e7378;
+
+  /* Accent (darkened for contrast on light surfaces) */
+  --accent: #037a69;
+  --accent-2: #0b7a40;
+  --accent-violet: #5b4bd8;
+  --accent-contrast: #03140f;
+  --on-accent: #fff;
+  --accent-soft: rgba(3, 122, 105, 0.1);
+  --accent-line: rgba(3, 122, 105, 0.38);
+  --accent-glow: rgba(15, 184, 159, 0.4);
+  --grad-accent: linear-gradient(120deg, #33e6cb 0%, #1fd677 100%);
+  --grad-text: linear-gradient(100deg, #047565 0%, #0b7f52 100%);
+  --focus-ring: #0a6f61;
+
+  /* Status */
+  --success: #0b7a40;
+  --danger: #c0392b;
+  --warning: #8a5a00;
+  --success-soft: rgba(11, 122, 64, 0.1);
+  --danger-soft: rgba(192, 57, 43, 0.09);
+  --success-line: rgba(11, 122, 64, 0.4);
+  --danger-line: rgba(192, 57, 43, 0.4);
+  --violet-soft: rgba(91, 75, 216, 0.1);
+  --violet-line: rgba(91, 75, 216, 0.4);
+
+  /* Atmosphere */
+  --mesh-a: rgba(45, 226, 198, 0.22);
+  --mesh-b: rgba(139, 124, 255, 0.13);
+  --mesh-c: rgba(24, 210, 110, 0.13);
+  --grid-line: rgba(8, 45, 50, 0.05);
+  --noise-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
+
+  /* Cards */
+  --spot-border: rgba(3, 122, 105, 0.6);
+  --spot-glow: rgba(45, 226, 198, 0.16);
+
+  /* Depth */
+  --shadow-sm: 0 1px 2px rgba(10, 40, 45, 0.08), 0 1px 1px rgba(10, 40, 45, 0.04);
+  --shadow-md: 0 14px 34px -16px rgba(10, 50, 55, 0.24);
+  --shadow-lg: 0 44px 90px -34px rgba(10, 50, 55, 0.34);
+  --glow: 0 0 0 1px var(--accent-line), 0 18px 60px -18px var(--accent-glow);
+
+  /* Misc */
+  --selection-bg: rgba(15, 184, 159, 0.28);
+  --selection-fg: #04201b;
+  --scrollbar-thumb: rgba(8, 45, 50, 0.24);
+  --code-bg: rgba(8, 60, 55, 0.07);
+  --scrim: rgba(10, 30, 34, 0.3);
+
+  /* Network canvas */
+  --network-node: rgba(6, 100, 90, 0.55);
+  --network-line: rgba(6, 120, 105, 0.16);
+  --network-accent: #068a76;
+}
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-h: 4.75rem;
+  }
+}

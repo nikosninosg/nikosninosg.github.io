@@ -1,0 +1,59 @@
+{
+  "slug": "bi-in-a-box",
+  "title": "BI in a Box",
+  "subtitle": "Business Intelligence in a Box",
+  "categories": ["ai"],
+  "client": "INDUST Systems Ltd., Greece",
+  "organization": "INDUST Systems",
+  "summary": "End-to-end Business Intelligence platform that turns raw data from ERP systems and databases into insights via dashboards, reporting and time-series forecasting.",
+  "description": [
+    "BI-in-a-Box is an end-to-end Business Intelligence and analytics platform designed to transform raw data into actionable insights. It integrates data from multiple sources (e.g., ERP systems, databases) and provides advanced analytics, reporting, and forecasting capabilities.",
+    "The platform combines data engineering, statistical modeling, and machine learning techniques to support data-driven decision making. It includes automated data pipelines, interactive dashboards, and time-series forecasting modules, enabling organizations to monitor performance, identify trends, and optimize business operations.",
+    "Designed with scalability and ease of deployment in mind, the system leverages modern technologies and containerization to deliver a flexible and cost-effective BI solution suitable for organizations of various sizes.",
+    "Contributed to the design and development of BI-in-a-Box, an end-to-end Business Intelligence platform with a focus on time-series forecasting and data-driven decision support. The system implements a scalable ML pipeline for data processing, model training, and inference."
+  ],
+  "contributions": [
+    "Designed and implemented a modular architecture by separating the system into Trainer and Predictor components, enabling scalability, maintainability, and clear MLOps workflows",
+    "Developed time-series forecasting pipelines using the Nixtla ecosystem (StatsForecast, NeuralForecast, MLForecast), leveraging both statistical and deep learning models",
+    "Built an intelligent model selection framework that evaluates multiple forecasting models using performance metrics (e.g., cross-validation, error metrics) and automatically selects the optimal model",
+    "Containerized the application using Docker, ensuring reproducibility, portability, and streamlined deployment",
+    "Performed data preprocessing, transformation, and analysis using pandas, and implemented ML workflows with scikit-learn",
+    "Optimized training and inference performance, improving model efficiency and pipeline execution"
+  ],
+  "technologies": [
+    "Python 3.14",
+    "Nixtla (StatsForecast, NeuralForecast, MLForecast)",
+    "Docker",
+    "Pandas",
+    "Scikit-Learn",
+    "Bash shell"
+  ],
+  "links": [
+    {
+      "label": "bi-in-a-box.gr",
+      "url": "https://bi-in-a-box.gr/"
+    }
+  ],
+  "cover": {
+    "src": "assets/img/portfolio/ai-pics/bi-in-a-box-bg-2.jpeg",
+    "alt": "Illustration of a glowing black box labelled \"AI Business Intelligence\" projecting holographic charts, graphs and data panels into the air"
+  },
+  "gallery": [],
+  "featured": true,
+  "order": 1,
+  "legacyPaths": ["projects/ai/bi-in-a-box.html"],
+  "_notes": [
+    "Title: the old page <title> is the generic \"Projects\" and its <h2> reads \"Business Intelligence in a Box\"; the page's own \"Project\" line and the index card both say \"BI in a Box\". Used \"BI in a Box\" as title and kept the long heading as subtitle, so both survive.",
+    "Client: \"INDUST Systems Ltd., Greece\" kept verbatim in client; the index card label \"INDUST Systems\" is kept in organization.",
+    "Description: the old page had one run-on block with blank lines between three passages; split into three paragraphs. Added the missing final full stop after \"organizations of various sizes\".",
+    "Structure: the standalone list item before \"Contributions\" (\"Contributed to the design and development of BI-in-a-Box ... model training, and inference.\") is an introductory statement about the author's involvement, not one of the six numbered contributions. The schema has no field for a contributions intro, so it is kept verbatim as the fourth (last) description paragraph.",
+    "Structure: the old Technologies line was stray text sitting outside any <li> inside the <ul> (and an <ol> was nested directly in the <ul>); content was placed in the proper fields. Layout markup (<br>, inline justify style, <u>) dropped.",
+    "Technologies: split on top-level commas only; \"Nixtla (StatsForecast, NeuralForecast, MLForecast)\" kept as one entry because the parenthesised libraries belong to the Nixtla ecosystem. Wording (\"Python 3.14\", \"Scikit-Learn\", \"Bash shell\") kept exactly as on the old page.",
+    "Contributions: only stray leading/trailing whitespace trimmed (items 3 and 5 started with a space); wording unchanged and no trailing full stops were added, matching the old list.",
+    "Gallery is empty: the old detail page contains no <img> elements. The cover is the index card image only, so it is not repeated in the gallery.",
+    "Cover alt text: the index card had alt=\"\"; new alt describes the artwork. The cover is a 1024x1024 PNG of about 2.4 MB (not wider than 1600 px, so not downscaled per spec; a smaller encode would help page weight).",
+    "assets/img/portfolio/ai-pics/bi-in-a-box-bg.png (about 1.6 MB) is not referenced anywhere in the repository; only bi-in-a-box-bg-2.png is used. Left untouched.",
+    "year and role omitted: the old page states neither.",
+    "Old meta description/keywords on the page are site-wide boilerplate (\"Nikos Georgopoulos Ninos CV\") and carry no project content, so they were not migrated."
+  ]
+}

@@ -1,0 +1,541 @@
+/**
+ * modules/header.css: sticky glass header, nav + sliding pill, scroll progress, theme/nav toggles,
+ * mobile menu panel and the back-to-top button. Hooks are written by assets/js/modules/header.js
+ * (data-scrolled, data-hidden, data-nav-open, --progress, --pill-x, --pill-w, data-visible).
+ *
+ * Layout trick: the <header> keeps a constant height (no layout shift when it "shrinks"); only the
+ * glass bar (::before) and the inner row change height. It is transparent at the very top so heroes
+ * can run underneath it.
+ */
+@layer components {
+  .site-header {
+    --bar-h: var(--header-h);
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-header);
+    block-size: var(--header-h);
+    pointer-events: none;
+    /* NB: no view-transition-name here. A named element becomes a "backdrop root", which stops the
+       glass bar's backdrop-filter from seeing (and blurring) the page behind it. The name lives on
+       the inner row instead (below), so the bar's glass is part of the root snapshot. */
+  }
+
+  .site-header[data-scrolled="true"] {
+    --bar-h: 3.75rem;
+  }
+
+  /* glass bar */
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 0;
+    block-size: var(--bar-h);
+    background: transparent;
+    border-block-end: 1px solid transparent;
+    transition:
+      block-size var(--dur-base) var(--ease-out),
+      background-color var(--dur-base) ease,
+      border-color var(--dur-base) ease,
+      box-shadow var(--dur-base) ease,
+      translate 450ms var(--ease-out);
+  }
+
+  .site-header[data-scrolled="true"]::before,
+  .site-header[data-nav-open="true"]::before {
+    background: var(--header-bg);
+    border-color: var(--border);
+    box-shadow: 0 14px 40px -26px rgba(0, 0, 0, 0.55);
+    -webkit-backdrop-filter: blur(18px) saturate(1.6);
+    backdrop-filter: blur(18px) saturate(1.6);
+  }
+
+  .site-header[data-nav-open="true"]::before {
+    background: var(--panel-bg);
+  }
+
+  /* Before (or without) header.js: let the glass fade in over the first 120px of scrolling, CSS only.
+     Reduced motion gets a static glass bar instead. */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .site-header:not([data-scrolled])::before {
+        animation: header-glass linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 120px;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header:not([data-scrolled])::before {
+      background: var(--header-bg);
+      border-color: var(--border);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      backdrop-filter: blur(18px) saturate(1.6);
+    }
+  }
+
+  @keyframes header-glass {
+    to {
+      background: var(--header-bg);
+      border-color: var(--border);
+      box-shadow: 0 14px 40px -26px rgba(0, 0, 0, 0.55);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      backdrop-filter: blur(18px) saturate(1.6);
+    }
+  }
+
+  /* dim page while the mobile menu is open */
+  .site-header[data-nav-open="true"]::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--scrim);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    animation: fade-in var(--dur-base) ease both;
+  }
+
+  .site-header__inner {
+    position: relative;
+    display: grid;
+    /* brand | nav | actions: the nav hugs its links and sits on the page's centre line */
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-4);
+    block-size: var(--bar-h);
+    pointer-events: auto;
+    view-transition-name: site-header;
+    transition: block-size var(--dur-base) var(--ease-out), translate 450ms var(--ease-out);
+  }
+
+  .site-header__inner > .brand {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  /* >= 900px only: below that the nav is an absolutely positioned panel, and a grid-column would
+     shrink its containing block to that one grid area */
+  @media (min-width: 900px) {
+    .site-header__inner > .site-nav {
+      grid-column: 2;
+    }
+  }
+
+  .site-header__actions {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  /* hide on scroll down (the progress bar stays) */
+  .site-header[data-hidden="true"]::before,
+  .site-header[data-hidden="true"] .site-header__inner {
+    translate: 0 -130%;
+  }
+
+  /* keyboard focus inside a hidden header reveals it (a mouse-clicked button keeping focus must not) */
+  .site-header[data-hidden="true"]:has(:focus-visible)::before,
+  .site-header[data-hidden="true"]:has(:focus-visible) .site-header__inner {
+    translate: 0 0;
+  }
+
+  /* scroll progress */
+  .scroll-progress {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 0;
+    z-index: 2;
+    block-size: 2px;
+    pointer-events: none;
+  }
+
+  .scroll-progress__bar {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    background: var(--grad-accent);
+    box-shadow: 0 0 14px var(--accent-glow);
+    transform: scaleX(var(--progress, 0));
+    transform-origin: left;
+  }
+
+  /* Works without JS where scroll-driven animations exist; header.js writes --progress everywhere else. */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-progress__bar {
+        animation: progress-grow linear both;
+        animation-timeline: scroll(root block);
+      }
+    }
+  }
+
+  @keyframes progress-grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* brand name hides when space is tight */
+  @media (max-width: 519px) {
+    .site-header .brand__name {
+      display: none;
+    }
+  }
+
+  @media (min-width: 900px) and (max-width: 1119px) {
+    .site-header .brand__name {
+      display: none;
+    }
+  }
+
+  /* ------------------------------------------------------------- desktop nav */
+  .site-nav {
+    position: relative;
+    padding: 0.25rem;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--border);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .site-nav__list {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.5rem 1.05rem;
+    border-radius: var(--radius-pill);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.3;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--dur-fast) ease, background-color var(--dur-base) ease;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible,
+  .nav-link[aria-current] {
+    color: var(--text);
+  }
+
+  .nav-link:focus-visible {
+    outline-offset: -2px;
+  }
+
+  /* no-JS: the active link paints its own pill; with JS the sliding pill takes over */
+  .nav-link[aria-current] {
+    background: var(--surface-strong);
+  }
+
+  .site-nav:has(.nav-pill[data-visible="true"]) .nav-link[aria-current] {
+    background: transparent;
+  }
+
+  .nav-pill {
+    position: absolute;
+    inset-block: 0.25rem;
+    inset-inline-start: 0;
+    inline-size: var(--pill-w, 0px);
+    border-radius: var(--radius-pill);
+    background: var(--surface-strong);
+    box-shadow: inset 0 0 0 1px var(--border-strong), 0 6px 18px -8px var(--accent-glow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(var(--pill-x, 0px));
+    transition:
+      transform 420ms var(--ease-out),
+      inline-size 420ms var(--ease-out),
+      opacity var(--dur-base) ease;
+  }
+
+  .nav-pill[data-visible="true"] {
+    opacity: 1;
+  }
+
+  /* header.js sets this for the very first placement and for re-measures (resize, font swap):
+     the pill jumps there instead of sliding in from x = 0. Opacity still fades. */
+  .nav-pill[data-instant] {
+    transition-duration: 0s, 0s, var(--dur-base);
+  }
+
+  /* ------------------------------------------------------------- actions */
+  .palette-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .palette-trigger .kbd {
+    display: none;
+  }
+
+  @media (min-width: 1120px) and (hover: hover) {
+    .palette-trigger {
+      padding-inline: 0.9rem 0.65rem;
+    }
+
+    .palette-trigger .kbd {
+      display: inline-flex;
+    }
+  }
+
+  .theme-toggle {
+    overflow: hidden;
+  }
+
+  .theme-toggle__icon {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    transition: transform 520ms var(--ease-spring), opacity var(--dur-base) ease;
+  }
+
+  /* dark -> show sun (click goes light); light -> show moon */
+  :root[data-theme="dark"] .theme-toggle__icon--moon,
+  :root:not([data-theme]) .theme-toggle__icon--moon {
+    opacity: 0;
+    transform: rotate(-100deg) scale(0.4);
+  }
+
+  :root[data-theme="light"] .theme-toggle__icon--sun {
+    opacity: 0;
+    transform: rotate(100deg) scale(0.4);
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-toggle__icon {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-fast) ease;
+  }
+
+  .nav-toggle__icon--close,
+  .nav-toggle[aria-expanded="false"] .nav-toggle__icon--close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon--open {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon--close {
+    opacity: 1;
+    transform: none;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .header-cta {
+      display: inline-flex;
+    }
+  }
+
+  /* ------------------------------------------------------------- mobile menu (< 900px) */
+  @media (max-width: 899px) {
+    .nav-toggle {
+      display: inline-grid;
+    }
+
+    .site-nav {
+      position: absolute;
+      inset-inline: var(--gutter);
+      inset-block-start: calc(100% + 0.35rem);
+      padding: 0.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--panel-bg);
+      box-shadow: inset 0 0 0 1px var(--border-strong), var(--shadow-lg);
+      pointer-events: auto;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+      transform-origin: top center;
+      transition:
+        opacity var(--dur-base) ease,
+        transform var(--dur-base) var(--ease-out),
+        visibility 0s linear var(--dur-base);
+    }
+
+    .site-header[data-nav-open="true"] .site-nav {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      transition-delay: 0s;
+    }
+
+    .site-nav__list {
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .site-nav__list > li {
+      opacity: 0;
+      translate: 0 8px;
+      transition: opacity var(--dur-base) ease, translate var(--dur-base) var(--ease-out);
+    }
+
+    .site-header[data-nav-open="true"] .site-nav__list > li {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    .site-header[data-nav-open="true"] .site-nav__list > li:nth-child(1) {
+      transition-delay: 40ms;
+    }
+    .site-header[data-nav-open="true"] .site-nav__list > li:nth-child(2) {
+      transition-delay: 80ms;
+    }
+    .site-header[data-nav-open="true"] .site-nav__list > li:nth-child(3) {
+      transition-delay: 120ms;
+    }
+    .site-header[data-nav-open="true"] .site-nav__list > li:nth-child(4) {
+      transition-delay: 160ms;
+    }
+    .site-header[data-nav-open="true"] .site-nav__list > li:nth-child(5) {
+      transition-delay: 200ms;
+    }
+    .site-header[data-nav-open="true"] .site-nav__list > li:nth-child(n + 6) {
+      transition-delay: 240ms;
+    }
+
+    .nav-link {
+      padding: 0.95rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+    }
+
+    .nav-link[aria-current] {
+      background: var(--surface-strong);
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+
+    .site-nav:has(.nav-pill[data-visible="true"]) .nav-link[aria-current] {
+      background: var(--surface-strong);
+    }
+
+    .nav-pill {
+      display: none;
+    }
+  }
+
+  /* ------------------------------------------------------------- no-JS fallbacks */
+  .no-js .theme-toggle,
+  .no-js .palette-trigger,
+  .no-js .nav-toggle,
+  .no-js .to-top {
+    display: none;
+  }
+
+  @media (max-width: 899px) {
+    .no-js .site-header {
+      position: relative;
+      block-size: auto;
+    }
+
+    .no-js .site-header::before {
+      display: none;
+    }
+
+    .no-js .site-header__inner {
+      grid-template-columns: 1fr auto;
+      block-size: auto;
+      padding-block: 0.75rem;
+      row-gap: 0.5rem;
+    }
+
+    .no-js .site-nav {
+      position: static;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      overflow-x: auto;
+      border-radius: var(--radius-pill);
+      padding: 0.25rem;
+    }
+
+    .no-js .site-nav__list {
+      flex-direction: row;
+    }
+
+    .no-js .site-nav__list > li {
+      opacity: 1;
+      translate: none;
+    }
+
+    .no-js .nav-link {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* ------------------------------------------------------------- back to top */
+  .to-top {
+    position: fixed;
+    inset-block-end: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    inset-inline-end: 1.25rem;
+    z-index: var(--z-top);
+    display: grid;
+    place-items: center;
+    inline-size: 3rem;
+    block-size: 3rem;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--panel-bg);
+    color: var(--text);
+    box-shadow: var(--shadow-md);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transition:
+      opacity var(--dur-base) ease,
+      translate var(--dur-base) var(--ease-out),
+      visibility 0s linear var(--dur-base),
+      border-color var(--dur-fast) ease,
+      color var(--dur-fast) ease;
+  }
+
+  .js .to-top:not([data-visible="true"]) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    translate: 0 14px;
+  }
+
+  .to-top[data-visible="true"] {
+    transition-delay: 0s;
+  }
+
+  .to-top:hover {
+    color: var(--accent);
+    border-color: var(--accent-line);
+    translate: 0 -3px;
+  }
+}

@@ -1,0 +1,85 @@
+[
+  {
+    "id": "cognity-software-engineer",
+    "role": "Software Engineer",
+    "company": "Cognity",
+    "location": "Athens, Greece",
+    "start": "2022-07",
+    "end": "present",
+    "period": "07/2022 – present",
+    "bullets": [
+      "Analysis of client's projects and requirements",
+      "Developer with Oracle Order & Service Management (Oracle OSM)",
+      "Tester (SIT, UAT)",
+      "Support Engineer for the projects",
+      "Camunda"
+    ],
+    "technologies": [
+      "Oracle OSM",
+      "Java 1.8",
+      "Weblogic 10.x",
+      "Weblogic Portal 10",
+      "Soap – Rest Web Services",
+      "Maven",
+      "Bizagi Modeler",
+      "SVN",
+      "Oracle DB",
+      "XQuery",
+      "XML",
+      "MySQL",
+      "Design Studio",
+      "Camunda 8",
+      "Git",
+      "Gitlab",
+      "Docker"
+    ]
+  },
+  {
+    "id": "indust-full-stack-developer",
+    "role": "Full-Stack Developer",
+    "company": "INDUST Systems",
+    "location": "Patras, Greece",
+    "start": "2022-02",
+    "end": "2022-06",
+    "period": "02/2022 – 06/2022",
+    "bullets": [
+      "Cloud development services on the IoT platform IoTControl, to improve efficiency and reduce energy consumption on production lines.",
+      "AI development - enabled App for product quality control during the pasteurization process, in the European research project zPasteurAIzer"
+    ],
+    "technologies": [
+      "JavaScript",
+      "NestJS",
+      "AngularJS",
+      "Docker",
+      "TypeScript",
+      "TimescaleDB",
+      "Grafana",
+      "WebStorm",
+      "Git",
+      "GitHub",
+      "Keycloak"
+    ]
+  },
+  {
+    "id": "pobuca-customer-support-internship",
+    "role": "Customer Support Engineer (Internship)",
+    "company": "Pobuca",
+    "location": "Athens, Greece",
+    "start": "2021-03",
+    "end": "2021-05",
+    "period": "03/2021 – 05/2021",
+    "bullets": [
+      "Analysis and resolution of technical issues in Business Applications",
+      "Configure and support Infrastructure requests (Microsoft 365 etc.)",
+      "Application testing",
+      "Organization and monitoring of requests and subprojects"
+    ],
+    "technologies": [
+      "CRM",
+      "Microsoft Tools",
+      "RDP",
+      "Support",
+      "Problem Solving"
+    ]
+  }
+]

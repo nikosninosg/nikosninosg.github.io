@@ -1,0 +1,40 @@
+{
+  "slug": "data-mining",
+  "title": "Data Mining",
+  "categories": ["ai"],
+  "client": "University of Patras, Greece",
+  "organization": "University of Patras",
+  "summary": "Model evaluation on a 75%-25% training-test split using f1 score, precision and recall, parameter tuning, SVM training and the use of neural networks.",
+  "description": [
+    "Training-test data set with 75%-25% ratio and model performance measurement using f1 score, precision and recall metrics. Improve results by experimenting with input parameters.",
+    "Training SVM with the best parameters and listing findings on how much the classification quality was affected.",
+    "Use of neural networks."
+  ],
+  "contributions": [],
+  "technologies": ["Scikit-Learn", "SVM", "Python3", "ML", "Neural Networks", "NLTK"],
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/nikosninosg/Data-Mining"
+    }
+  ],
+  "cover": {
+    "src": "assets/img/portfolio/ai-pics/data-mining-bg.jpeg",
+    "alt": "Robot miner with headlamp and pickaxe kneeling on a hillside of binary digits, holding a bucket of gold nuggets"
+  },
+  "gallery": [],
+  "featured": false,
+  "order": 2,
+  "legacyPaths": ["projects/data-mining.html"],
+  "_notes": [
+    "Old page title was the generic heading \"Projects\" (<title>); the visible heading, the \"Project\" list item and the portfolio card all say \"Data Mining\", so that is used as the title.",
+    "The old description was one <div> with blank-line-separated chunks that browsers collapse into a single run of text; it is split here into its 3 evident paragraphs (text unchanged, no typos found).",
+    "The old page has no separate contributions list, so \"contributions\" is empty and all work items stay in \"description\" exactly as written (nothing invented, nothing re-labelled).",
+    "\"client\" is taken from the page (\"University of Patras, Greece\"); \"organization\" is the card's <p> label on index.html (\"University of Patras\"). They are near-duplicates, so the renderer may show only one of them in the meta panel.",
+    "The old GitHub link had label \"Github\" and link text \"Data-Mining\"; normalised the label to \"GitHub\", URL unchanged (https://github.com/nikosninosg/Data-Mining).",
+    "Technologies split from the old comma-separated line, spelling and order unchanged (\"Python3\", \"ML\" kept as written).",
+    "The old page contained no <img>, so \"gallery\" is empty. The cover (1024x1024 artwork used only on the index card) is not duplicated into the gallery. Alt text for the cover was written from the artwork itself.",
+    "No role or year is stated on the old page, so both fields are omitted.",
+    "Dropped non-content markup only: <u>/align attributes on the heading, inline text-align:justify, \"Project\" meta line (merged into title)."
+  ]
+}

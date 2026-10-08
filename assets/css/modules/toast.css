@@ -1,0 +1,107 @@
+/**
+ * modules/toast.css: toast region + toasts (created by assets/js/modules/core.js).
+ * Markup: .toast-region > .toast[data-type][.is-in|.is-out] > .toast__icon + .toast__message
+ */
+@layer components {
+  .toast-region {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding-inline: var(--gutter);
+    pointer-events: none;
+  }
+
+  @media (min-width: 600px) {
+    .toast-region {
+      inset-block-end: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  .toast {
+    --toast-accent: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    max-inline-size: min(100%, 28rem);
+    padding: 0.75rem 1.15rem 0.75rem 0.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--panel-bg);
+    color: var(--text);
+    font-size: 0.925rem;
+    line-height: 1.35;
+    box-shadow: var(--shadow-lg);
+    -webkit-backdrop-filter: blur(18px) saturate(1.5);
+    backdrop-filter: blur(18px) saturate(1.5);
+    pointer-events: auto;
+    opacity: 0;
+    translate: 0 14px;
+    scale: 0.96;
+    transition:
+      opacity var(--dur-base) ease,
+      translate var(--dur-base) var(--ease-out),
+      scale var(--dur-base) var(--ease-out);
+  }
+
+  .toast[data-type="success"] {
+    --toast-accent: var(--success);
+  }
+
+  .toast[data-type="error"] {
+    --toast-accent: var(--danger);
+  }
+
+  .toast.is-in {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  .toast.is-out {
+    opacity: 0;
+    translate: 0 -8px;
+    scale: 0.97;
+  }
+
+  .toast__icon {
+    position: relative;
+    flex: none;
+    inline-size: 1.65rem;
+    block-size: 1.65rem;
+    border-radius: 50%;
+    background: var(--toast-accent);
+  }
+
+  /* glyph drawn with a mask so it follows the accent colour */
+  .toast__icon::after {
+    content: "";
+    position: absolute;
+    inset: 0.3rem;
+    background: var(--on-accent);
+    -webkit-mask: var(--toast-glyph) center / contain no-repeat;
+    mask: var(--toast-glyph) center / contain no-repeat;
+    --toast-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 11v6M12 7h.01'/%3E%3C/svg%3E");
+  }
+
+  .toast[data-type="success"] .toast__icon::after {
+    --toast-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  }
+
+  .toast[data-type="error"] .toast__icon::after {
+    --toast-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E");
+  }
+
+  :root[data-theme="light"] .toast__icon::after {
+    background: #fff;
+  }
+
+  .toast__message {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+}

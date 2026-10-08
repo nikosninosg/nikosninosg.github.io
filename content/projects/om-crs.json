@@ -1,0 +1,52 @@
+{
+  "slug": "om-crs",
+  "title": "Integration & Order Management CRs",
+  "categories": [
+    "telecom"
+  ],
+  "client": "OTE, Greece",
+  "organization": "Cosmote",
+  "summary": "New Order Management and Integration functionalities enabling BSS–OSS communication, built on Oracle SOA Suite 12c, Oracle OSM, WebLogic Integration (WLI) and Java EE.",
+  "description": [
+    "Implementation of new functionalities in Order Management and Integration systems to enable communication between BSS and OSS systems, for Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas. The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE."
+  ],
+  "contributions": [],
+  "technologies": [
+    "Java 1.8",
+    "WebLogic 10.x",
+    "JavaScript",
+    "ReactJS",
+    "AngularJS",
+    "Redis",
+    "Microservices",
+    "WebLogic Portal 10",
+    "SOAP – REST Web Services",
+    "WebSockets",
+    "Maven",
+    "SVN",
+    "Git",
+    "Oracle DB"
+  ],
+  "links": [],
+  "year": "2022, 2023, 2024",
+  "cover": {
+    "src": "assets/img/portfolio/telecom/crs.jpeg",
+    "alt": "Dark isometric illustration of suited figures at workstations linked by glowing circuit lines beneath floating screens showing icons."
+  },
+  "gallery": [],
+  "featured": false,
+  "order": 4,
+  "legacyPaths": [
+    "projects/om-crs.html"
+  ],
+  "_notes": [
+    "Old page title was the generic \"Projects\"; the title \"Integration & Order Management CRs\" comes from the page heading and the card heading in index.html (identical in both).",
+    "The old page's \"Project\" line read \"Integration & Order Management CRs 2022, 2023, 2024\"; the name became the title and the years were kept as year: \"2022, 2023, 2024\". The abbreviation \"CRs\" is not expanded on the old page, so it was left as is.",
+    "Discrepancy kept as-is: the old project page says Client: \"OTE, Greece\", while the index.html card label says \"Cosmote\". Both are preserved: client = \"OTE, Greece\", organization = \"Cosmote\". Owner should confirm which label is wanted.",
+    "The old page had no contributions list, no links/website and no screenshots; contributions, links and gallery are therefore empty. The cover (card artwork crs.jpeg) was not shown on the old detail page, so it is not duplicated in the gallery.",
+    "No role was stated on the old page, so role is omitted.",
+    "Technologies split from one comma-separated line into an array; capitalisation normalised only: Weblogic -> WebLogic (matches the description text), Javascript -> JavaScript, MicroServices -> Microservices, Websockets -> WebSockets, Soap – Rest Web Services -> SOAP – REST Web Services (kept as a single item, as on the old page). Stray line breaks/whitespace removed.",
+    "Description text kept verbatim apart from whitespace/line-break cleanup (the old page used hard line breaks inside the paragraph and a justified-text wrapper, both dropped).",
+    "Cover alt text describes the artwork (figures at desks around a central table, floating screen panels with a location pin, an envelope and network icons)."
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "slug": "thingsboard",
+  "title": "ThingsBoard Dashboards",
+  "categories": ["web"],
+  "client": "INDUST Systems, Greece",
+  "organization": "INDUST Systems",
+  "summary": "IoT platform for data collection, processing, visualization and device management, using MQTT, CoAP and HTTP, with scalability, fault-tolerance and performance.",
+  "description": [
+    "IoT platform designed for data collection, processing, visualization, and device management. Use of industry-standard IoT protocols such as MQTT, CoAP, and HTTP. ThingsBoard provides scalability, fault-tolerance, and performance. Provision and manage devices, collect and visualize telemetry data, define data processing rules."
+  ],
+  "contributions": [],
+  "technologies": [
+    "ThingsBoard Cloud Platform",
+    "JavaScript",
+    "Dashboard",
+    "MQTT",
+    "Data Converters",
+    "Rule Chain"
+  ],
+  "links": [],
+  "cover": {
+    "src": "assets/img/portfolio/web/thingsboard/thingsboard.jpeg",
+    "alt": "Illustration of glowing dashboard widgets on a dark panel: gauges, bar and line charts, a world map, a large dial."
+  },
+  "gallery": [
+    {
+      "src": "assets/img/portfolio/web/thingsboard/th-01.png",
+      "alt": "Dashboard widgets: 58% greenhouse health gauge, alarms light, VPD 1.04, water consumption 489 lt and an irrigation system button.",
+      "caption": "Greenhouse health, alarms, VPD, water consumption and irrigation system widgets"
+    },
+    {
+      "src": "assets/img/portfolio/web/thingsboard/th-02.png",
+      "alt": "Aerial dashboard map of two greenhouse tunnels with temperature markers reading 32.5, 35.5, 30.7 and 34.7 degrees Celsius.",
+      "caption": "Installation plan view with temperature markers"
+    },
+    {
+      "src": "assets/img/portfolio/web/thingsboard/th-2.png",
+      "alt": "Temperature, humidity and pressure tiles above a real-time VPD chart covering the last four days.",
+      "caption": "Environmental readings and VPD trend"
+    },
+    {
+      "src": "assets/img/portfolio/web/thingsboard/th-3.png",
+      "alt": "CO2, VPD and signal tiles above a history table of timestamped temperature, humidity, pressure, CO2 and VPD readings.",
+      "caption": "Latest readings and telemetry history table"
+    },
+    {
+      "src": "assets/img/portfolio/web/thingsboard/th-4.png",
+      "alt": "Satellite map of a mountainous area with three colour-coded location markers labelled in Greek.",
+      "caption": "Site locations on a satellite map"
+    },
+    {
+      "src": "assets/img/portfolio/web/thingsboard/th-5.png",
+      "alt": "Isometric 3D building floor plan with map pins labelled Energy Meter, HVAC, Smart Sensor and Water Meter.",
+      "caption": "Energy meter, HVAC, smart sensor and water meter overview"
+    }
+  ],
+  "featured": true,
+  "order": 7,
+  "legacyPaths": ["projects/thingsboard.html"],
+  "_notes": [
+    "Old page heading was \"Tihingsboard Dashboards\" (typo); corrected to \"ThingsBoard Dashboards\" and used as title. The portfolio card h4 and the \"Project:\" list item both said \"Thingsboard\"; the card label is covered by the title, and the redundant \"Project\" list item was dropped. (The generic <title>Projects</title> of the old HTML was ignored.)",
+    "client is \"INDUST Systems, Greece\" (from the old page); organization \"INDUST Systems\" is the card label from the portfolio grid on index.html.",
+    "Description is one paragraph on the old page and is kept as one paragraph, verbatim apart from whitespace/line-break normalisation (old text was hard-wrapped, justified via inline style, and had a stray line break inside \"data processing rules\"). The sentence fragments (\"Use of industry-standard IoT protocols...\", \"Provision and manage devices...\") are kept as the author wrote them.",
+    "Technologies line normalised: typo \"Thinsboard Cloud Platform\" -> \"ThingsBoard Cloud Platform\"; capitalisation of proper name \"Javascript\" -> \"JavaScript\"; split into an array (Dashboard, MQTT, Data Converters, Rule Chain unchanged).",
+    "The old page lists no contributions, no links/website, no year and no role, so contributions and links are empty and year/role are omitted. Nothing was invented.",
+    "Gallery contains all six <img> slides of the old swiper in their original order (th-01.png, th-02.png, th-2.png, th-3.png, th-4.png, th-5.png); the odd file names were left unchanged so paths stay stable. Stray <br> elements between slides were ignored. The old images had empty alt text, so alt text and captions were written from the screenshots.",
+    "Screenshots contain Greek dashboard labels (e.g. greenhouse health, water consumption, irrigation system, installation plan view); captions give short English descriptions of them. Personal names visible on the map screenshot (th-4.png) were deliberately not transcribed into alt text or captions.",
+    "The cover (thingsboard.jpeg) is the portfolio card image and was not shown on the old detail page, so it is used as cover only and not duplicated in gallery. Its alt text was written from the artwork.",
+    "summary (<=170 chars) written strictly from the description: IoT platform, data collection/processing/visualization, device management, MQTT/CoAP/HTTP, scalability, fault-tolerance and performance."
+  ]
+}

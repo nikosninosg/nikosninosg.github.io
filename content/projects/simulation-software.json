@@ -1,0 +1,77 @@
+{
+  "slug": "simulation-software",
+  "title": "Production Line Simulator",
+  "subtitle": "Thesis",
+  "categories": [
+    "simulation"
+  ],
+  "client": "University of Patras, Greece",
+  "summary": "Simulation of a production line that tracks machine stops across RUN, STANDBY and STOP states to identify problems and optimize production performance indicators.",
+  "description": [
+    "Production Line Simulator is a simulation of a production line system aimed at identifying problems to optimize production performance indicators. More specifically, the user can monitor the production process and the behavior of the line from the conditions that affect it.",
+    "For the operation of the simulation, all the stops of the automatic operation of the machines due to a problem or the stops caused manually by the user are monitored so the system can draw specific conclusions. The user through the application sees which factors and to what extent influenced the operation of the line, sees the effects and what interaction there is in combination with the other machines in the production line.",
+    "For the operation of the application, monitor in each machine has three statuses (RUN - STANDBY - STOP). Each machine is affected by the operating conditions of the same machine but also by the operating conditions of the downstream and upstream machine.",
+    "The user through the simulator can execute different operating scenarios with the results to make optimal settings or change in the configurations of the machines, thus ensuring the continuous flow of the line operation, without unjustified stops, while achieving the increase of the performance indicators and the reduction of production costs."
+  ],
+  "contributions": [],
+  "technologies": [
+    "Python3",
+    "SimPy",
+    "Pandas",
+    "Threading",
+    "Tkinter",
+    "Matplotlib",
+    "MySQL"
+  ],
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/nikosninosg/Simulation-Software-Thesis"
+    }
+  ],
+  "cover": {
+    "src": "assets/img/portfolio/simulation/sim-bg.jpeg",
+    "alt": "Dark isometric illustration of a factory with glowing conveyor belts and machines beside floating dashboard panels showing charts and gears."
+  },
+  "gallery": [
+    {
+      "src": "assets/img/portfolio/simulation/sim-start.png",
+      "alt": "Setup window with simulation step and duration inputs, a Start Simulation button and breakdown-probability fields for Depall, Filler and Pasteur.",
+      "caption": "Simulation setup screen (Greek interface): time step, total duration and breakdown probabilities per machine."
+    },
+    {
+      "src": "assets/img/portfolio/simulation/in-simulation.png",
+      "alt": "Live simulation screen showing Depall, Filler and Pasteur machines with Break/Repair buttons, status lights, capacities and run/standby/stop KPIs.",
+      "caption": "Live process simulation with per-machine status, capacities, manual Break and Repair controls and KPIs."
+    },
+    {
+      "src": "assets/img/portfolio/simulation/after-sim1.png",
+      "alt": "Line performance results screen: 72.72% overall production performance, RUN, STAND_BY and STOP percentages, and an analysis button per machine.",
+      "caption": "Line performance indicators after a 6-hour simulation: 261798 of 360000 expected products at 16.67 cans per second."
+    },
+    {
+      "src": "assets/img/portfolio/simulation/sim-analysis.png",
+      "alt": "DEPALL efficiency analysis: production percentage, root cause analysis table by machine, and stoppage logs with breakdown counts and MTBF.",
+      "caption": "Depall efficiency analysis with root cause analysis (RCA) of non-productive time and stoppage logs."
+    }
+  ],
+  "featured": true,
+  "order": 9,
+  "legacyPaths": [
+    "projects/simulation-software.html"
+  ],
+  "_notes": [
+    "Old page <title> was the generic \"Projects\"; the title \"Production Line Simulator\" comes from the page heading and the index.html card <h4> (identical in both, no typo to fix).",
+    "The old page's \"Project\" line read \"Production Line Simulator — Thesis\", and the index.html card <p> label is \"Thesis\". The name became the title and \"Thesis\" is kept as subtitle. \"Thesis\" is a project type, not an organisation, so organization is omitted (client already names the University of Patras); a renderer that shows the card label should use subtitle for this project. Owner/renderer may change this.",
+    "The old Description was one justified <div> with hard line breaks (which browsers collapse into a single run of text). It is split here into 4 paragraphs at its natural topic boundaries; sentence order and wording are unchanged.",
+    "One grammar fix: the sentence fragment \"... configurations of the machines. Thus ensuring the continuous flow ...\" was joined to the previous sentence as \"..., thus ensuring ...\". Other slightly awkward phrasing (e.g. \"monitor in each machine has three statuses\", \"change in the configurations\") is left exactly as written because the intended meaning is not certain.",
+    "Technologies split from one comma-separated line, same order. Typo/capitalisation fix only: \"Simpy\" -> \"SimPy\" (the library's real name). \"Python3\" kept as written.",
+    "The old GitHub link had label \"Github\" and link text \"Simulation-Software-Thesis\"; the label is normalised to \"GitHub\", URL unchanged (https://github.com/nikosninosg/Simulation-Software-Thesis).",
+    "The old page had no separate contributions list, so \"contributions\" is empty and all content stays in \"description\" (nothing invented or re-labelled). No role or year is stated on the old page, so both fields are omitted.",
+    "Gallery: the old slider had 5 <img> (sim-start, in-simulation, after-sim1, sim-analysis-2, sim-analysis). after-sim1.png and sim-analysis-2.png are byte-identical (same MD5 996c20dc...), so the duplicate sim-analysis-2.png was dropped from the gallery and the first occurrence (after-sim1.png) kept; slide order is otherwise unchanged. sim-analysis-2.png is therefore no longer referenced by any content file and can be deleted by the owner (it was not touched).",
+    "All screenshots show a Tkinter application whose labels are largely in Greek (e.g. the title \"Προσομοίωση Γραμμής Παραγωγής\", i.e. Production Line Simulation); alt texts and captions describe them in English and only restate what is visible (machine names Depall, Filler, Pasteur; figures such as 72.72%, 261798 / 360000, 16.67 cans per second). The old page had empty alt attributes on all images.",
+    "The cover (sim-bg.jpeg, 1024x1024 artwork used on the index card) was not shown on the old detail page, so it is not duplicated in the gallery. A second near-identical artwork file, simulation-bg.jpeg, exists in the same folder but is not referenced by this page or card and was left untouched.",
+    "Dropped non-content markup only: <u>/align attributes on the heading, inline text-align:justify, the swiper slider wrappers and the \"Project\" meta line (merged into title/subtitle).",
+    "The same thesis is also described in index.html's education block (\"Design and development of a simulation software system ...\"); that text belongs to education.json and was not copied here."
+  ]
+}

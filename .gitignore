@@ -1,0 +1,12 @@
+# macOS / editors
+.DS_Store
+*.swp
+*~
+
+# Node tooling (the generator has no dependencies, but just in case)
+node_modules/
+npm-debug.log*
+
+# Local secrets, never commit
+.env
+.env.*

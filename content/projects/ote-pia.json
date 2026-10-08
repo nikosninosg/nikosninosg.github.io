@@ -1,0 +1,33 @@
+{
+  "slug": "ote-pia",
+  "title": "New Premium Internet Access",
+  "categories": ["telecom"],
+  "client": "OTE, Greece",
+  "organization": "OTE",
+  "summary": "Order to Bill and Fault to Repair solution for OTE's Premium Internet Access, a symmetric internet product, built on Oracle Siebel CRM, OSM and UIM.",
+  "description": [
+    "Premium Internet Access is a product that extends the OTE Business Product portfolio providing a Symmetric Internet Solution. Cognity delivers in the context of the OTE project the Order to Bill and Fault to Repair solution including Order Capture with Oracle Siebel CRM, Central Order Management, Service Order Management and Technical Order Management with Oracle OSM platform and Service modeling with Oracle UIM. The solution conforms to RSDOD architecture and will integrate with various OTE existing systems, such as WFM Wrapper, Promitheas, NRI, ASAP, Super Repo through SOA platform. The solution tackles the challenges of ordering a Business Product through the processes of the Residential products, without affecting their ordering or fulfillment."
+  ],
+  "contributions": [],
+  "technologies": ["Oracle OSM", "XQuery", "XML", "XPath", "Oracle SQL Developer"],
+  "links": [],
+  "cover": {
+    "src": "assets/img/portfolio/telecom/pia.jpeg",
+    "alt": "Illustration of a glowing network globe with connectivity icons above a night street, a red bus and business people."
+  },
+  "gallery": [],
+  "featured": false,
+  "order": 5,
+  "legacyPaths": ["projects/ote-pia.html"],
+  "_notes": [
+    "Page title in the old HTML was the generic heading \"Projects\"; used the on-page project title / card title \"New Premium Internet Access\" instead.",
+    "Old page showed the title twice (underlined centred h2 and a \"Project:\" list item); stored once as title. Dropped the redundant \"Project\" label.",
+    "client is \"OTE, Greece\" (from the old page); organization \"OTE\" is the card label from the portfolio grid on index.html (kept so the card label is preserved exactly).",
+    "Description is a single paragraph on the old page and is kept as one paragraph, verbatim apart from whitespace/line-break normalisation (old text was hard-wrapped and justified via inline style).",
+    "Technologies line normalised for capitalisation of proper names: \"Xquery\" -> \"XQuery\", \"Xpath\" -> \"XPath\"; split into an array.",
+    "The old page lists no contributions, no links/website, no year, no role and contains no <img> tags, so contributions, links and gallery are empty and year/role are omitted. Nothing was invented.",
+    "The only image associated with the project is the cover shown on the portfolio card (assets/img/portfolio/telecom/pia.jpeg, 1024x1024), used as cover only; the old detail page did not display it, so it is not duplicated in gallery.",
+    "The old card image had empty alt text; cover alt text was written from the artwork (illustration of a network globe with connectivity icons, night street, red bus, business people with tablets).",
+    "summary (<=170 chars) written strictly from the description: Order to Bill and Fault to Repair, symmetric internet product, Oracle Siebel CRM / OSM / UIM."
+  ]
+}

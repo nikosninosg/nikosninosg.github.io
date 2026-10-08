@@ -1,0 +1,59 @@
+{
+  "slug": "mdds",
+  "title": "Multi-dimensional Data Structures",
+  "subtitle": "2D kNN Queries Implementation",
+  "categories": [
+    "ai"
+  ],
+  "client": "University of Patras, Greece",
+  "organization": "University of Patras",
+  "summary": "2D kNN query implementation using K-D Trees, Quad Trees and 2D Range Trees over a dataset of check-in events with x/y coordinates, accuracy, timestamps and place ids.",
+  "description": [
+    "The train and test dataset is split based on time, and the public/private leaderboard in the test data are split randomly. There is no concept of a person in this dataset. All the row_id's are events, not people. Some of the columns, such as time and accuracy, are intentionally left vague in their definitions. Please consider them as part of the challenge.",
+    "File descriptions:",
+    "1. train.csv, test.csv (https://www.kaggle.com/c/facebook-v-predicting-check-ins/data)",
+    "row_id: id of the check-in event; x y: coordinates; accuracy: location accuracy; time: timestamp; place_id: id of the business, this is the target you are predicting",
+    "2. train_x_y.csv",
+    "x y: coordinates (https://drive.google.com/file/d/151xoFDNtabYaFT6Dxy5D1nXp_-8L1ttq/view?usp=sharing)"
+  ],
+  "contributions": [],
+  "technologies": [
+    "K-D Trees",
+    "Quad Trees",
+    "2D Range Trees"
+  ],
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/nikosninosg/Multi-dimensional-Data-Structures"
+    },
+    {
+      "label": "Kaggle data: train.csv, test.csv",
+      "url": "https://www.kaggle.com/c/facebook-v-predicting-check-ins/data"
+    },
+    {
+      "label": "Google Drive: train_x_y.csv",
+      "url": "https://drive.google.com/file/d/151xoFDNtabYaFT6Dxy5D1nXp_-8L1ttq/view?usp=sharing"
+    }
+  ],
+  "cover": {
+    "src": "assets/img/portfolio/web/mdds/mdds.jpeg",
+    "alt": "Abstract artwork of a transparent multi-dimensional grid holding colorful cubes and spheres above a glowing network of points."
+  },
+  "gallery": [],
+  "featured": false,
+  "order": 3,
+  "legacyPaths": [
+    "projects/mdds.html"
+  ],
+  "_notes": [
+    "Old page <title> was the generic \"Projects\"; used the page heading and index card title \"Multi-dimensional Data Structures\" as the project title (they match). No typos in the title.",
+    "Old page had a list item \"Project: Multi-dimensional Data Structures\" (duplicate of the heading); dropped as a duplicate, the value is kept in \"title\".",
+    "\"client\" taken from the page (\"University of Patras, Greece\"); \"organization\" taken from the index card label (\"University of Patras\").",
+    "The old \"Technologies\" line read \"K-D trees, Quad Trees και 2D Range Trees: 2D kNN Queries Implementation\". \"και\" (Greek for \"and\") was a language slip and was replaced by a list split. The three data structures went into \"technologies\" (capitalisation normalised to \"K-D Trees\"); the trailing \"2D kNN Queries Implementation\" is a description of what was built rather than a technology, so it was kept verbatim as \"subtitle\" (and in the summary) instead of being counted as a technology.",
+    "The old page's \"Description\" is a dataset description (train/test split, file and column descriptions, apparently the Kaggle check-ins data text) and contains no author-written project narrative; it is kept verbatim apart from whitespace. The original nested list of columns (row_id, x y, accuracy, time, place_id) is joined into one paragraph separated by semicolons; the original <br> structure became separate paragraphs. \"is split\"/\"are split\" wording of the original was left untouched.",
+    "The Kaggle and Google Drive URLs were plain text in the old description; they are kept in the description text and also added to \"links\" so they are clickable. The GitHub link label was written \"Github\" with the repository name as link text; normalised to \"GitHub\" (repository name is in the URL).",
+    "Old page had no contributions list, no role, no year and no <img> elements, so \"contributions\" is an empty array, \"role\"/\"year\" are omitted and \"gallery\" is empty. The cover image was only shown on the index card (empty alt there); the alt text here is newly written from the artwork.",
+    "Summary is distilled from the description and the technologies line: it mentions kNN query implementation with the three tree structures and the check-in dataset columns; no new facts added."
+  ]
+}

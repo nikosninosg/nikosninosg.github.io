@@ -1,0 +1,103 @@
+/**
+ * modules/reveal.css: scroll-reveal + count-up helpers.
+ *
+ * IMPORTANT: [data-reveal] is hidden ONLY under html.js.reveal-ready. The reveal module adds
+ * `reveal-ready` to <html> once its IntersectionObserver is live, so a missing/failed script can
+ * never leave content invisible. Reveal uses the individual `translate` / `scale` properties so it
+ * composes with hover lifts and 3D tilt, which use `transform`.
+ */
+@layer components {
+  html.js.reveal-ready [data-reveal] {
+    opacity: 0;
+    translate: 0 1.75rem;
+    transition:
+      opacity 700ms var(--ease-out) var(--reveal-delay, 0ms),
+      translate 700ms var(--ease-out) var(--reveal-delay, 0ms),
+      scale 700ms var(--ease-out) var(--reveal-delay, 0ms);
+  }
+
+  html.js.reveal-ready [data-reveal="left"] {
+    translate: -2.25rem 0;
+  }
+
+  html.js.reveal-ready [data-reveal="right"] {
+    translate: 2.25rem 0;
+  }
+
+  html.js.reveal-ready [data-reveal="zoom"] {
+    translate: 0 0.75rem;
+    scale: 0.93;
+  }
+
+  html.js.reveal-ready [data-reveal="fade"] {
+    translate: none;
+  }
+
+  html.js.reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    translate: none;
+    scale: none;
+  }
+
+  /* Elements that have their own hover transitions keep them: re-declare the full list incl. the reveal properties. */
+  html.js.reveal-ready .card[data-reveal],
+  html.js.reveal-ready .stat[data-reveal] {
+    transition:
+      border-color var(--dur-base) ease,
+      background-color var(--dur-base) ease,
+      box-shadow var(--dur-base) ease,
+      transform var(--dur-base) var(--ease-out),
+      opacity 700ms var(--ease-out) var(--reveal-delay, 0ms),
+      translate 700ms var(--ease-out) var(--reveal-delay, 0ms),
+      scale 700ms var(--ease-out) var(--reveal-delay, 0ms);
+  }
+
+  /* Generic alternate entrance for two-sided timelines whose items carry a bare data-reveal
+     (odd = left column slides in from the left, even = right column from the right). */
+  @media (min-width: 900px) {
+    html.js.reveal-ready .timeline:not(.timeline--single) .timeline-item:nth-child(odd)[data-reveal=""]:not(.is-visible) {
+      translate: -2.25rem 0;
+    }
+
+    html.js.reveal-ready .timeline:not(.timeline--single) .timeline-item:nth-child(even)[data-reveal=""]:not(.is-visible) {
+      translate: 2.25rem 0;
+    }
+  }
+
+  /* ---- timeline progress states (reveal.js: .is-active = marker passed the reading line, .is-current = latest one) ----
+     Only under reveal-ready, so without JS / with reduced motion the default (outlined dot, full rail) stays. */
+  html.js.reveal-ready .timeline-item__marker {
+    transition:
+      background-color var(--dur-base) ease,
+      border-color var(--dur-base) ease,
+      box-shadow var(--dur-slow) var(--ease-out),
+      scale var(--dur-slow) var(--ease-spring, var(--ease-out));
+  }
+
+  html.js.reveal-ready .timeline-item:not(.is-active) .timeline-item__marker {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 5px transparent;
+  }
+
+  html.js.reveal-ready .timeline-item.is-active .timeline-item__marker {
+    background: var(--accent);
+  }
+
+  html.js.reveal-ready .timeline-item.is-current .timeline-item__marker {
+    scale: 1.15;
+    box-shadow: 0 0 0 7px var(--accent-soft), 0 0 18px var(--accent-glow);
+  }
+
+  [data-count] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js.reveal-ready [data-reveal] {
+      opacity: 1;
+      translate: none;
+      scale: none;
+      transition: none;
+    }
+  }
+}

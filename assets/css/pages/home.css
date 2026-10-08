@@ -1,0 +1,580 @@
+/**
+ * pages/home.css: layout + decoration that only the home page needs.
+ * Shared components (cards, buttons, marquee, carousel, timeline...) are in components.css.
+ * Page css is unlayered on purpose: it overrides the shared @layer styles.
+ */
+
+/* ================================================================== HERO */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-block-size: 100vh;
+  min-block-size: 100svh;
+  margin-block-start: calc(var(--header-h) * -1);
+  padding-block: calc(var(--header-h) + var(--space-7)) clamp(5.5rem, 4rem + 5vw, 8rem);
+  overflow: clip;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Static fallback for the canvas network: soft mesh + dot lattice (no JS needed) */
+.hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(58rem 40rem at 82% 28%, var(--mesh-a), transparent 66%),
+    radial-gradient(44rem 34rem at 8% 78%, var(--mesh-b), transparent 66%),
+    radial-gradient(34rem 26rem at 52% 100%, var(--mesh-c), transparent 66%);
+}
+
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--network-line) 1.2px, transparent 1.6px) 0 0 / 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 64% 38%, #000, transparent 78%);
+  mask-image: radial-gradient(ellipse 70% 60% at 64% 38%, #000, transparent 78%);
+  opacity: 0.8;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-8);
+}
+
+@media (min-width: 1000px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    gap: var(--space-7);
+  }
+}
+
+.hero__content {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-5);
+  min-inline-size: 0;
+}
+
+/* entrance choreography: pure CSS, no JS dependency */
+.hero__content > *,
+.hero__aside {
+  animation: hero-rise 1s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 120ms);
+}
+
+.hero__content > :nth-child(1) { --i: 0; }
+.hero__content > :nth-child(2) { --i: 1; }
+.hero__content > :nth-child(3) { --i: 2; }
+.hero__content > :nth-child(4) { --i: 3; }
+.hero__content > :nth-child(5) { --i: 4; }
+.hero__content > :nth-child(6) { --i: 5; }
+.hero__aside { --i: 4; animation-duration: 1.3s; }
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+.hero__badge {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.72rem;
+}
+
+.hero__name {
+  font-size: clamp(2.5rem, 0.9rem + 5.9vw, 5.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  max-inline-size: 13ch;
+  color: var(--text);
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .hero__name {
+    background: linear-gradient(100deg, var(--text) 35%, var(--accent) 110%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-block-end: 0.06em;
+  }
+}
+
+.hero__role {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 0.95rem + 2vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--text-muted);
+}
+
+/* Phones: the prefix and the typed role are deliberately two stacked lines (the role cell is reserved to the
+   longest role by hero.js, so neither line ever re-wraps while typing: zero layout shift). */
+@media (max-width: 639px) {
+  .hero__role {
+    display: grid;
+    justify-items: start;
+    gap: 0.15em;
+  }
+
+  .hero__prefix {
+    font-size: 0.72em;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__role [data-typed] {
+    font-size: 1.22em;
+    font-weight: 600;
+  }
+}
+
+.hero__intro {
+  max-inline-size: 58ch;
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-2);
+}
+
+.hero__socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.hero__socials-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-subtle);
+}
+
+.hero__socials-label::after {
+  content: "";
+  inline-size: 2rem;
+  block-size: 1px;
+  background: linear-gradient(90deg, var(--border-strong), transparent);
+}
+
+.hero__socials-list {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---- profile.ts card ---- */
+.hero__aside {
+  display: none;
+  position: relative;
+  justify-self: end;
+  inline-size: min(100%, 27rem);
+}
+
+.hero__aside::before {
+  content: "";
+  position: absolute;
+  inset: -12% -10% -12% -8%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--accent-soft), transparent 70%);
+  filter: blur(10px);
+}
+
+@media (min-width: 1000px) {
+  .hero__aside {
+    display: block;
+  }
+}
+
+.code-card {
+  --card-pad: 0;
+  padding: 0;
+  overflow: hidden;
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.55rem + 0.4vw, 0.84rem);
+  line-height: 1.85;
+  animation: float 9s ease-in-out 1.6s infinite;
+}
+
+@keyframes float {
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+.code-card__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0.8rem 1.1rem;
+  border-block-end: 1px solid var(--border);
+  background: var(--band);
+}
+
+.code-card__dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.code-card__dots i {
+  inline-size: 0.6rem;
+  block-size: 0.6rem;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.code-card__dots i:last-child {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.code-card__file {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+}
+
+.code-card__body {
+  margin: 0;
+  padding: 1.15rem 1.3rem 1.3rem;
+  color: var(--text-muted);
+  white-space: pre;
+  overflow: hidden;
+  tab-size: 2;
+}
+
+.code-card__body code {
+  font: inherit;
+  background: none;
+  padding: 0;
+}
+
+.tok-key {
+  color: var(--accent-violet);
+}
+.tok-var {
+  color: var(--accent);
+}
+.tok-prop {
+  color: var(--text);
+}
+.tok-str {
+  color: var(--accent-2);
+}
+.tok-num {
+  color: var(--warning);
+}
+
+.code-card__cursor {
+  display: inline-block;
+  inline-size: 0.55em;
+  block-size: 1.15em;
+  margin-inline-start: 0.25em;
+  vertical-align: -0.2em;
+  background: var(--accent);
+  opacity: 0.85;
+  animation: caret-blink 1.05s steps(1, end) infinite;
+}
+
+/* ---- scroll cue ---- */
+.scroll-cue {
+  position: absolute;
+  inset-block-end: 1.75rem;
+  inset-inline-start: 50%;
+  translate: -50% 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--text-subtle);
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+.scroll-cue:hover {
+  color: var(--accent);
+}
+
+.scroll-cue__line {
+  position: relative;
+  display: block;
+  inline-size: 1px;
+  block-size: 2.75rem;
+  background: var(--border-strong);
+  overflow: hidden;
+}
+
+.scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  block-size: 40%;
+  background: linear-gradient(var(--accent), transparent);
+  animation: scroll-drip 2.2s var(--ease-in-out) infinite;
+}
+
+@keyframes scroll-drip {
+  from {
+    translate: 0 -100%;
+  }
+  to {
+    translate: 0 260%;
+  }
+}
+
+@media (max-height: 620px), (max-width: 699px) {
+  .scroll-cue {
+    display: none;
+  }
+}
+
+/* ================================================================== STATS */
+.stats {
+  padding-block: 0 calc(var(--section-y) * 0.15);
+}
+
+.stats__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+@media (min-width: 860px) {
+  .stats__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+}
+
+/* ================================================================== ABOUT TEASER */
+.about-teaser__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-8);
+}
+
+@media (min-width: 1000px) {
+  .about-teaser__grid {
+    align-items: center;
+  }
+}
+
+@media (min-width: 700px) {
+  .about-teaser__grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2.5rem, 6vw, 6.5rem);
+  }
+}
+
+.about-teaser__media {
+  inline-size: min(100%, 19rem);
+  margin-inline: 0 auto;
+  padding-inline-end: 12px; /* room for the offset outline of the photo frame */
+}
+
+@media (min-width: 700px) {
+  .about-teaser__media {
+    inline-size: min(100%, 28rem);
+    padding-inline-end: 14px;
+  }
+}
+
+.about-teaser__body {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+  min-inline-size: 0;
+}
+
+.about-teaser__body .section-head {
+  margin-block-end: 0;
+}
+
+.about-teaser__lead {
+  max-inline-size: 60ch;
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.about-teaser__body .callout {
+  inline-size: 100%;
+}
+
+.about-teaser__skills .chip {
+  color: var(--text-muted);
+}
+
+.about-teaser__skills .chip svg {
+  color: var(--accent);
+}
+
+/* ================================================================== FEATURED PROJECTS */
+.featured-grid {
+  gap: clamp(1rem, 0.5rem + 2vw, 2rem);
+}
+
+.featured-grid > li {
+  display: flex;
+}
+
+.featured-grid .project-card {
+  inline-size: 100%;
+}
+
+/* ================================================================== SKILLS */
+.skills__marquee {
+  margin-block-end: var(--space-8);
+}
+
+.skill-cat {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+}
+
+.skill-cat__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.skill-cat__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.skill-cat__title {
+  font-size: var(--fs-lg);
+}
+
+.skill-cat__count {
+  margin-inline-start: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+}
+
+.skill-cat__count::before {
+  content: "×";
+  margin-inline-end: 0.15em;
+  opacity: 0.6;
+}
+
+/* ================================================================== EXPERIENCE PREVIEW */
+.xp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-7);
+}
+
+@media (min-width: 1000px) {
+  .xp-layout {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .xp-layout__intro {
+    position: sticky;
+    inset-block-start: calc(var(--header-h) + 2.5rem);
+    margin-block-end: 0;
+  }
+}
+
+.xp-layout__intro {
+  margin-block-end: 0;
+}
+
+.xp-layout__action {
+  margin-block-start: var(--space-3);
+}
+
+.xp-now {
+  color: var(--accent);
+}
+
+.xp-preview .timeline-item__period {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ================================================================== TESTIMONIALS */
+.testimonials .quote__text {
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 599px) {
+  .testimonials .quote__text {
+    font-size: var(--fs-md);
+  }
+}
+
+/* ================================================================== CLOSING CTA */
+.closing {
+  padding-block-end: calc(var(--section-y) * 0.6);
+}
+
+.closing .cta-band__actions .btn {
+  max-inline-size: 100%;
+}
+
+@media (max-width: 479px) {
+  .closing .cta-band__actions .btn {
+    inline-size: 100%;
+    white-space: normal;
+  }
+}
+
+/* ================================================================== NO-JS / REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .code-card,
+  .scroll-cue__line::after {
+    animation: none;
+  }
+}

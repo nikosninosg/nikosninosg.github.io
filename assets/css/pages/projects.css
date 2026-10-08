@@ -1,0 +1,322 @@
+/**
+ * pages/projects.css: layout + decoration that only the Projects index needs.
+ * Shared pieces (page-hero, chip, search-field, project-card, empty-state ...) live in components.css;
+ * this file is unlayered on purpose so it wins over the shared @layer rules without specificity games.
+ *
+ * Contents: hero / sticky filter toolbar / status row / grid + cards / empty state / no-JS + motion.
+ */
+
+/* ================================================================== HERO */
+.projects-hero {
+  padding-block-end: clamp(1.75rem, 1rem + 2.4vw, 3rem);
+}
+
+/* dot lattice echoing the home network; decorative, no JS */
+.projects-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle, var(--network-line) 1.2px, transparent 1.6px) 0 0 / 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 46% 85% at 86% 25%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse 46% 85% at 86% 25%, #000, transparent 75%);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.projects-hero__title {
+  max-inline-size: none;
+  font-size: clamp(2.75rem, 1.4rem + 6.6vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.projects-hero__inner > * {
+  animation: projects-rise 0.9s var(--ease-out) both;
+}
+.projects-hero__inner > :nth-child(2) { animation-delay: 0.1s; }
+.projects-hero__inner > :nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes projects-rise {
+  from {
+    opacity: 0;
+    translate: 0 1.25rem;
+  }
+}
+
+/* ================================================================== TOOLBAR */
+/* Sticky glass bar (from 700px; on phones it would eat too much of the viewport). The header hides on
+   scroll-down, so the bar slides up into its place and drops back below it on scroll-up. */
+.projects-toolbar {
+  --toolbar-top: calc(var(--header-h) + 0.6rem);
+  position: sticky;
+  inset-block-start: var(--toolbar-top);
+  z-index: calc(var(--z-header) - 1);
+  margin-block-end: var(--space-3);
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--header-bg);
+  box-shadow: 0 18px 44px -30px rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+}
+
+@media (max-width: 699px) {
+  .projects-toolbar {
+    position: static;
+  }
+}
+
+@media (min-width: 700px) {
+  body:has(.site-header[data-hidden="true"]) .projects-toolbar {
+    --toolbar-top: 0.75rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .projects-toolbar {
+      transition: inset-block-start var(--dur-base) var(--ease-out);
+    }
+  }
+}
+
+.projects-toolbar__form {
+  margin: 0;
+}
+
+.projects-toolbar .filter-bar {
+  gap: 0.5rem;
+}
+
+/* chips: a touch more presence than the default, still compact */
+.projects-toolbar .chip {
+  min-block-size: 2.5rem;
+  padding-inline: 1rem 0.65rem;
+  cursor: pointer;
+}
+
+.projects-toolbar .chip[data-none]:not([aria-pressed="true"]) {
+  opacity: 0.55;
+}
+
+.projects-toolbar .chip__count {
+  min-inline-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.projects-toolbar .search-field {
+  flex: 1 1 12rem;
+  inline-size: auto;
+  max-inline-size: 20rem;
+}
+
+.projects-toolbar .search-field input {
+  min-block-size: 2.5rem;
+}
+
+/* we have our own clear affordance (Esc / reset); hide the native cancel button's odd styling */
+.projects-toolbar .search-field input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+@media (max-width: 599px) {
+  .projects-toolbar .search-field {
+    flex-basis: 100%;
+    max-inline-size: none;
+  }
+
+  /* phone: search on top, chips wrap below; chips shrink to the "sm" scale to fit 3 per row */
+  .projects-toolbar {
+    padding: 0.5rem;
+  }
+
+  .projects-toolbar .chip {
+    min-block-size: 2.4rem;
+    padding-inline: 0.8rem 0.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ================================================================== STATUS ROW */
+.projects-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-block-size: 2rem;
+  margin-block-end: var(--space-4);
+  padding-inline: 0.25rem;
+}
+
+.projects-count {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.projects-reset {
+  padding: 0.35rem 0.2rem;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-line);
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.projects-reset:hover {
+  color: var(--text);
+  text-decoration-color: currentColor;
+}
+
+.projects-reset[hidden] {
+  display: none;
+}
+
+/* ================================================================== GRID + CARDS */
+.projects-grid {
+  gap: clamp(1rem, 0.6rem + 1.4vw, 1.75rem);
+}
+
+.projects-grid > li[hidden] {
+  display: none;
+}
+
+/* Once the filter has animated something, scroll-reveal must stop interfering (the FLIP code owns
+   opacity/transform from then on); neutralise its hidden state and transitions. */
+html.js.reveal-ready .projects-grid[data-live] > [data-reveal] {
+  opacity: 1;
+  translate: none;
+  scale: none;
+  transition: none;
+}
+
+.projects-card {
+  /* the tilt, hover and cursor-spotlight come from shared components; just make the card a clean column */
+  min-block-size: 100%;
+}
+
+/* consistent media box: same ratio for every cover, whatever the source art */
+.projects-card .project-card__media {
+  aspect-ratio: 16 / 10;
+}
+
+.projects-card .project-card__media img {
+  object-position: center;
+}
+
+.projects-card .project-card__year {
+  margin-inline-start: auto;
+}
+
+.projects-card .project-card__title {
+  font-size: var(--fs-xl);
+  letter-spacing: -0.02em;
+}
+
+.project-card__client {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: calc(var(--space-2) * -1) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--text-subtle);
+}
+
+.project-card__client > svg {
+  flex: none;
+  margin-block-start: 0.12em;
+  color: var(--accent);
+}
+
+/* long technology names (e.g. a library list) stay on one line instead of building tall tags */
+.projects-card .tag {
+  max-inline-size: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* equal-ish heights: summaries are capped at four lines, tags and CTA stick to the bottom */
+.projects-card .project-card__summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+
+.projects-card .project-card__tags {
+  min-block-size: 1.75rem;
+}
+
+/* ================================================================== EMPTY STATE */
+.projects-empty {
+  margin-block-start: var(--space-2);
+  padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  background: var(--surface);
+}
+
+.projects-empty[hidden] {
+  display: none;
+}
+
+.projects-empty__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  margin-block-end: var(--space-2);
+  border: 1px solid var(--accent-line);
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.projects-empty__title {
+  margin: 0;
+  max-inline-size: 28ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.projects-empty p {
+  margin: 0;
+}
+
+.projects-empty .btn {
+  margin-block-start: var(--space-3);
+}
+
+/* ================================================================== NO JS / MOTION */
+/* The filter UI needs JS; without it every project simply stays listed. */
+.no-js .projects-toolbar,
+.no-js .projects-status {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-hero__inner > * {
+    animation: none;
+  }
+}
+
+/* light theme: the active chip's count sits on a dark teal pill, so it needs light text (AA) */
+:root[data-theme="light"] .projects-toolbar .chip[aria-pressed="true"] .chip__count {
+  background: var(--accent);
+  color: #fff;
+}

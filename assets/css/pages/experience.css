@@ -1,0 +1,847 @@
+/**
+ * pages/experience.css: layout + decoration for the Experience page, plus the CV print stylesheet.
+ * Shared components (timeline, card, badge, tag, cta-band...) live in components.css.
+ * Page css is unlayered on purpose: it overrides the shared @layer styles.
+ */
+
+/* Print-only blocks never show on screen. */
+.print-only {
+  display: none;
+}
+
+/* The buttons need JS (window.print); hide them if it is off. */
+.no-js [data-print] {
+  display: none;
+}
+
+/* closing CTA: equal-width stacked buttons on phones (same as home) */
+@media (max-width: 479px) {
+  .xp-cta .cta-band__actions .btn {
+    inline-size: 100%;
+    white-space: normal;
+  }
+}
+
+/* ================================================================== INTRO */
+.xp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+}
+
+.xp-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-start: var(--space-5);
+}
+
+.xp-jump .chip {
+  text-decoration: none;
+}
+
+.xp-section {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(3.5rem, 2.25rem + 5vw, 6.5rem);
+}
+
+/* the hero already ends with generous space */
+.xp-work {
+  padding-block-start: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+}
+
+/* ================================================================== TIMELINE */
+.xp-work .timeline {
+  --tl-gap: clamp(3.5rem, 2rem + 5vw, 6rem);
+}
+
+.xp-item .timeline-item__card {
+  display: grid;
+  align-content: start;
+}
+
+/* Period pill + "Current" badge + computed duration on one wrapping row */
+.xp-period {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.65rem;
+  margin-block-end: 0.15rem;
+}
+
+.xp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.xp-pill .icon {
+  flex: none;
+}
+
+.xp-duration {
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.xp-current {
+  /* the pulsing dot is the "live" cue; keep the label compact */
+  padding-block: 0.2rem;
+}
+
+.xp-org {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.5rem;
+}
+
+.xp-company {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.xp-sep {
+  color: var(--text-subtle);
+}
+
+.xp-loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-subtle);
+  font-size: var(--fs-sm);
+}
+
+.xp-loc .icon {
+  flex: none;
+}
+
+.xp-list {
+  display: grid;
+  gap: 0.5rem;
+  margin-block: var(--space-4);
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.xp-list > li {
+  position: relative;
+  padding-inline-start: 1.15rem;
+}
+
+.xp-list > li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.62em;
+  inset-inline-start: 0;
+  inline-size: 0.4rem;
+  block-size: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.8;
+}
+
+/* Alternating layout (>= 900px): every item spans two grid rows and starts one row after the previous
+   one, so the cards interleave left/right like a zipper instead of leaving half of each row empty.
+   --i (1-based position) is set inline by the page module. */
+@media (min-width: 900px) {
+  .xp-work .timeline__list {
+    grid-auto-flow: row;
+  }
+
+  .xp-work .timeline-item {
+    grid-column: 1;
+    grid-row: var(--i) / span 2;
+    margin-block-start: 0;
+    padding-block-end: var(--space-5);
+  }
+
+  .xp-work .timeline-item:nth-child(even) {
+    grid-column: 2;
+    margin-block-start: 0;
+  }
+}
+
+/* Entrance direction: sideways only where the timeline alternates (>= 900px), otherwise rise up.
+   Specific to the not-yet-visible state so it never fights the shared `.is-visible` rule. */
+@media (max-width: 899px) {
+  html.js.reveal-ready .xp-item[data-reveal]:not(.is-visible) {
+    translate: 0 1.75rem;
+  }
+}
+
+/* ================================================================== EDUCATION */
+.edu-grid > li,
+.cert-grid > li {
+  display: flex;
+}
+
+.edu-grid > li > .card,
+.cert-grid > li > .card {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.edu-card,
+.cert-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card__head,
+.cert-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+}
+
+.edu-card__icon,
+.cert-card__icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.edu-card__degree {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+}
+
+.edu-card__school {
+  margin-block-start: 0.35rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.edu-card__loc {
+  margin-block-start: 0.3rem;
+}
+
+.edu-card .xp-list {
+  margin-block-end: var(--space-4);
+}
+
+.edu-card__thesis {
+  margin-block: 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-inline-start: 2px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.edu-card__label {
+  margin-block-end: 0.25rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+}
+
+.edu-card__honors {
+  margin-block-end: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+/* Pinned to the card bottom so both cards end on the same line */
+.edu-card__grade {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-block-start: auto;
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--border);
+}
+
+.edu-card__grade-value {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+/* ================================================================== CERTIFICATES */
+.cert-card__date {
+  padding: 0.22rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+}
+
+.cert-card__title {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+}
+
+.cert-card__issuer {
+  margin-block-start: 0.3rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.cert-card__desc {
+  margin-block-start: var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+/* ================================================================== PRINT: a clean 1-2 page A4 CV */
+@page {
+  size: A4;
+  margin: 13mm 15mm 14mm;
+}
+
+@media print {
+  html,
+  body {
+    font-size: 9.5pt;
+    line-height: 1.38;
+    background: #fff !important;
+    color: #000;
+  }
+
+  /* Chrome, header, decoration, interaction: gone */
+  .page-hero,
+  .xp-cta,
+  .xp-actions,
+  .xp-jump,
+  .xp-current,
+  .section__blob,
+  .timeline__line,
+  .timeline-item__marker,
+  .section-head .eyebrow,
+  .cta-band,
+  main svg,
+  [data-print] {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Plain flow everywhere; the cards become simple blocks */
+  .xp-section,
+  .section--alt {
+    padding: 0 !important;
+    margin: 0 0 4.5mm !important;
+    border: 0 !important;
+    background: none !important;
+    isolation: auto;
+  }
+
+  .container {
+    max-inline-size: none;
+    padding-inline: 0;
+  }
+
+  .card,
+  .edu-card,
+  .cert-card {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  .card::before,
+  .card::after {
+    display: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+
+  /* ---- CV header (name, contact, profile, skills) ---- */
+  .cv-head {
+    margin-block-end: 4.5mm;
+    color: #000;
+  }
+
+  .cv-head__name {
+    font-family: var(--font-display);
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  .cv-head__title {
+    margin-block-start: 1mm;
+    font-size: 11.5pt;
+    font-weight: 500;
+    color: #222;
+  }
+
+  .cv-head__contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4mm 6mm;
+    margin: 2mm 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 8.6pt;
+    color: #000;
+  }
+
+  .cv-head__contact a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .cv-head__heading,
+  .xp-section .section-title {
+    inline-size: 100%;
+    max-inline-size: none;
+    margin: 4.5mm 0 1.8mm;
+    padding-block-end: 0.8mm;
+    border-block-end: 0.6pt solid #000;
+    font-family: var(--font-display);
+    font-size: 10.5pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #000;
+    break-after: avoid;
+  }
+
+  .xp-section .section-head {
+    display: block;
+    margin: 0;
+  }
+
+  .xp-section .section-title {
+    margin-block-start: 0;
+  }
+
+  .cv-head__profile,
+  .cv-head__skills {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 9.5pt;
+    color: #000;
+  }
+
+  .cv-head__skills li {
+    margin-block-end: 0.6mm;
+  }
+
+  /* ---- Timeline -> compact job list ---- */
+  .timeline {
+    --tl-gap: 0;
+  }
+
+  .timeline__list {
+    display: block;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    margin: 0 0 3.6mm !important;
+    padding: 0 !important;
+    break-inside: avoid;
+  }
+
+  .timeline-item__card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title period"
+      "org org"
+      "list list"
+      "tags tags";
+    column-gap: 4mm;
+  }
+
+  .timeline-item__title {
+    grid-area: title;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 11pt;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .xp-period {
+    grid-area: period;
+    margin: 0;
+    gap: 0 2mm;
+    justify-content: flex-end;
+    font-size: 9pt;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #000;
+  }
+
+  .xp-pill {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #000;
+    font-size: 9pt;
+    letter-spacing: 0;
+  }
+
+  .xp-duration {
+    font-size: 9pt;
+    letter-spacing: 0;
+    color: #444;
+  }
+
+  .xp-duration::before {
+    content: "(";
+  }
+
+  .xp-duration::after {
+    content: ")";
+  }
+
+  .timeline-item__org {
+    grid-area: org;
+    margin: 0.3mm 0 0;
+    font-size: 9.5pt;
+    color: #000;
+  }
+
+  .xp-company {
+    color: #000;
+    font-weight: 600;
+  }
+
+  .xp-loc {
+    font-size: 9.5pt;
+    color: #333;
+  }
+
+  .xp-list {
+    grid-area: list;
+    gap: 0.5mm;
+    margin: 1.2mm 0 0;
+    font-size: 9.5pt;
+    line-height: 1.38;
+    color: #000;
+  }
+
+  .xp-list > li {
+    padding-inline-start: 3.6mm;
+  }
+
+  .xp-list > li::before {
+    inset-block-start: 0.55em;
+    inline-size: 1.1mm;
+    block-size: 1.1mm;
+    background: #000;
+    opacity: 1;
+  }
+
+  /* Technologies as a plain comma-separated line (copies and parses cleanly) */
+  .xp-tags {
+    grid-area: tags;
+    display: block;
+    margin: 1.2mm 0 0;
+    font-size: 8.5pt;
+    color: #333;
+  }
+
+  .xp-tags::before {
+    content: "Technologies: ";
+    font-weight: 600;
+    color: #000;
+  }
+
+  .xp-tags .tag {
+    display: inline;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: 0;
+    color: #333;
+  }
+
+  .xp-tags .tag:not(:last-child)::after {
+    content: ", ";
+  }
+
+  /* ---- Education ---- (always starts page 2: the two degrees and the certificates stay together) */
+  .xp-education {
+    break-before: page;
+  }
+
+  .xp-education,
+  .xp-certs {
+    break-inside: avoid;
+  }
+
+  .edu-grid,
+  .cert-grid {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .edu-grid > li {
+    display: block;
+    margin-block-end: 3mm;
+    break-inside: avoid;
+  }
+
+  .edu-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "degree period"
+      "school loc"
+      "list list"
+      "thesis thesis"
+      "grade grade";
+    column-gap: 4mm;
+  }
+
+  .edu-card__head {
+    display: contents;
+  }
+
+  .edu-card__icon {
+    display: none;
+  }
+
+  .edu-card__period {
+    grid-area: period;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 9pt;
+    color: #000;
+  }
+
+  .edu-card__degree {
+    grid-area: degree;
+    font-family: var(--font-display);
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .edu-card__school {
+    grid-area: school;
+    margin: 0.3mm 0 0;
+    font-size: 9.5pt;
+    font-weight: 400;
+    color: #000;
+  }
+
+  /* location sits on the school line, right-aligned */
+  .edu-card__loc {
+    grid-area: loc;
+    margin: 0.3mm 0 0;
+    font-size: 9pt;
+    color: #333;
+  }
+
+  .edu-card .xp-list {
+    grid-area: list;
+    margin: 1mm 0 0;
+  }
+
+  .edu-card__thesis {
+    grid-area: thesis;
+    margin: 1.2mm 0 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 9.5pt;
+    color: #000;
+  }
+
+  .edu-card__thesis p {
+    display: inline;
+  }
+
+  .edu-card__label {
+    margin: 0;
+    font-family: inherit;
+    font-size: 9.5pt;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #000;
+  }
+
+  .edu-card__label::after {
+    content: ": ";
+  }
+
+  .edu-card__honors {
+    margin: 1mm 0 0;
+    font-size: 9.5pt;
+  }
+
+  .edu-card__grade {
+    grid-area: grade;
+    display: block;
+    margin: 1.2mm 0 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .edu-card__grade .badge {
+    display: inline;
+    margin-inline-end: 1mm;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #000;
+    font-family: inherit;
+    font-size: 9.5pt;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .edu-card__grade .badge::after {
+    content: ":";
+  }
+
+  /* dates in the body font: mono looks odd in a CV */
+  .xp-pill,
+  .xp-duration,
+  .edu-card__period,
+  .cert-card__date {
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .edu-card__grade-value {
+    font-family: inherit;
+    font-size: 9.5pt;
+    font-weight: 400;
+    color: #000;
+  }
+
+  /* ---- Certificates: two compact columns ---- */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.6mm 7mm;
+  }
+
+  .cert-grid > li {
+    display: block;
+    break-inside: avoid;
+  }
+
+  .cert-card {
+    display: block;
+  }
+
+  .cert-card__head {
+    display: block;
+    margin: 0;
+  }
+
+  .cert-card__icon {
+    display: none;
+  }
+
+  .cert-card__title {
+    display: inline;
+    font-family: var(--font-display);
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .cert-card__head {
+    float: right;
+  }
+
+  .cert-card__date {
+    padding: 0;
+    border: 0;
+    font-size: 8.5pt;
+    letter-spacing: 0;
+    color: #000;
+  }
+
+  .cert-card__issuer {
+    margin: 0.2mm 0 0;
+    font-family: inherit;
+    font-size: 8.5pt;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: #000;
+  }
+
+  .cert-card__desc {
+    margin: 0.6mm 0 0;
+    font-size: 8.5pt;
+    line-height: 1.32;
+    color: #333;
+  }
+
+  /* No URL expansion anywhere: the profile links are written out in the header */
+  a[href]::after {
+    content: none !important;
+  }
+}
+
+/* Honour reduced motion: the pulsing "Current" dot stays still */
+@media (prefers-reduced-motion: reduce) {
+  .xp-current .badge__dot::after {
+    animation: none;
+  }
+}

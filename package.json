@@ -1,0 +1,23 @@
+{
+  "name": "nikosninosg.github.io",
+  "version": "2.0.0",
+  "description": "Personal CV site of Nikos Georgopoulos Ninos: plain HTML/CSS/JS generated from content/*.json by a zero-dependency Node script.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node src/build.mjs",
+    "check": "node src/build.mjs --check",
+    "watch": "node src/build.mjs --watch",
+    "dev": "node src/build.mjs --serve",
+    "stale": "node src/build.mjs --clean-stale",
+    "test": "node --test src/lib/html.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikosninosg/nikosninosg.github.io.git"
+  },
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "msc-international-business-alba",
+    "degree": "M.Sc. in International Business and Management",
+    "school": "ALBA Graduate Business School, The American College of Greece",
+    "location": "Athens, Greece",
+    "period": "September 2022 – April 2024",
+    "bullets": [
+      "Business Economics, Financial Accounting, Financial Management",
+      "Production & Operations, Marketing Management, Strategy Formulation",
+      "International Business, Digital Business Strategy",
+      "Strategy Formulation & Implementation, Negotiations",
+      "Career Development"
+    ],
+    "grade": "3.15 / 4 GPA"
+  },
+  {
+    "id": "bsc-computer-engineering-patras",
+    "degree": "B.Sc. in Computer Engineering and Informatics",
+    "school": "Department of Computer Engineering & Informatics, University of Patras",
+    "location": "Patras, Greece",
+    "period": "October 2016 – July 2022",
+    "bullets": [
+      "Integrated Master"
+    ],
+    "grade": "7.5 / 10",
+    "thesis": "Design and development of a simulation software system for modeling industrial production processes and implementation of performance improvement methods with real-time data."
+  }
+]

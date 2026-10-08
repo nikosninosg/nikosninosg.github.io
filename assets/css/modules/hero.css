@@ -1,0 +1,158 @@
+/**
+ * modules/hero.css: hero effect hooks (assets/js/modules/hero.js).
+ * [data-typed] caret + reserved space, [data-scramble*] text, canvas[data-network] layer.
+ * The hero *layout* is in assets/css/pages/home.css.
+ */
+@layer components {
+  /* ---- typewriter ----
+     Without JS the element is plain text (first role). hero.js turns it into an inline grid whose single
+     cell holds the live text AND an invisible copy of every role, so the cell is always as wide as the
+     longest role: the caret and the line never move, whatever is being typed. */
+  [data-typed] {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    color: var(--accent);
+  }
+
+  [data-typed][data-typed-ready] {
+    display: inline-grid;
+    justify-items: start;
+    vertical-align: top;
+  }
+
+  @supports (-webkit-background-clip: text) or (background-clip: text) {
+    /* Pre-JS: the element itself carries the text gradient. After hero.js ran, the gradient moves to the
+       live text container (.typed__live) so the invisible ghost spacers can never leak into the clip mask. */
+    [data-typed]:not([data-typed-ready]),
+    .typed__live {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* the caret is a child with its own background, but its fill colour must not be transparent */
+    .typed__caret {
+      -webkit-text-fill-color: initial;
+    }
+  }
+
+  .typed__live,
+  .typed__ghost {
+    grid-area: 1 / 1;
+    white-space: nowrap;
+  }
+
+  /* Invisible spacers: they size the grid cell, nothing else (not selectable, not findable, not read). */
+  .typed__ghost {
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+    /* room for the caret so the longest role + caret still fits the cell */
+    padding-inline-end: calc(0.1em + max(0.075em, 3px));
+  }
+
+  .typed__text {
+    display: inline;
+  }
+
+  .typed__caret {
+    display: inline-block;
+    inline-size: 0.075em;
+    min-inline-size: 3px;
+    block-size: 0.95em;
+    margin-inline-start: 0.1em;
+    border-radius: 2px;
+    background: var(--accent);
+    vertical-align: -0.1em;
+    box-shadow: 0 0 14px var(--accent-glow);
+    animation: caret-blink 1.05s steps(1, end) infinite;
+  }
+
+  /* solid while characters are being typed / deleted, blinking while the word rests */
+  [data-typed].is-typing .typed__caret {
+    animation: none;
+  }
+
+  /* reduced motion switched on at runtime: show the first role, no caret */
+  [data-typed].is-static .typed__caret {
+    display: none;
+  }
+
+  @keyframes caret-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* ---- text scramble ----
+     Each letter keeps its real glyph in the flow (so widths, kerning and wrapping never change). While a
+     letter is still "encrypted" the real glyph is visibility:hidden and an absolutely positioned overlay
+     glyph (accent coloured) is shown in its place. Words stay unbroken, like the original text. */
+  [data-scramble-load],
+  [data-scramble] {
+    font-variant-ligatures: none;
+  }
+
+  .scr-word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .scr {
+    position: relative;
+  }
+
+  .scr__g {
+    position: absolute;
+    inset: 0;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+    -webkit-text-fill-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .scr.is-u {
+    visibility: hidden;
+  }
+
+  .scr.is-u > .scr__g {
+    display: block;
+    visibility: visible;
+    opacity: 0.85;
+  }
+
+  /* ---- network canvas ---- */
+  canvas[data-network] {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  }
+
+  @media (forced-colors: active) {
+    .typed__live {
+      background: none;
+      -webkit-text-fill-color: currentColor;
+    }
+
+    .scr__g {
+      -webkit-text-fill-color: currentColor;
+      color: currentColor;
+    }
+  }
+
+  @media print {
+    .typed__live {
+      background: none !important;
+      -webkit-text-fill-color: currentColor !important;
+      color: var(--accent) !important;
+    }
+  }
+}

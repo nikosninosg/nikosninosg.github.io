@@ -1,0 +1,181 @@
+{
+  "name": "Nikos Georgopoulos Ninos",
+  "shortName": "Nikos",
+  "initials": "NGN",
+  "url": "https://nikosninosg.github.io",
+  "email": "nikosninosg@gmail.com",
+  "copyrightYear": 2026,
+  "location": "Athens, Greece",
+  "nationality": "Greek",
+  "title": "Software Engineer",
+  "tagline": "Tech Enthusiast",
+  "heroPrefix": "I'm a passionate",
+  "roles": [
+    "Software Engineer",
+    "Developer",
+    "Tech Enthusiast",
+    "Idea Generator",
+    "Person"
+  ],
+  "intro": "I am a passionate technology enthusiast who thrives on exploring new technological advancements, programming languages and innovative tools. I am eager to leverage my skills to contribute effectively to dynamic projects, and I excel at generating creative ideas that drive solutions and foster growth.",
+  "socials": [
+    {
+      "id": "github",
+      "label": "GitHub",
+      "url": "https://github.com/nikosninosg"
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/nikos-georgopoulos-ninos"
+    },
+    {
+      "id": "fiverr",
+      "label": "Fiverr",
+      "url": "https://www.fiverr.com/nikosgninos"
+    },
+    {
+      "id": "upwork",
+      "label": "Upwork",
+      "url": "https://www.upwork.com/freelancers/~016c6337175cd4c994"
+    }
+  ],
+  "facts": [
+    {
+      "label": "Birthday",
+      "value": "6 August 1998",
+      "icon": "cake"
+    },
+    {
+      "label": "Website",
+      "value": "https://nikosninosg.github.io",
+      "icon": "globe"
+    },
+    {
+      "label": "Nationality",
+      "value": "Greek",
+      "icon": "flag"
+    },
+    {
+      "label": "City",
+      "value": "Athens, Greece",
+      "icon": "map-pin"
+    }
+  ],
+  "about": {
+    "paragraphs": [
+      "I am a passionate technology enthusiast who thrives on exploring new technological advancements. I have a keen interest in learning and adopting new technologies, programming languages, and innovative tools.",
+      "My continuous drive to expand my knowledge keeps me engaged and excited about the ever-evolving tech landscape. I am committed to staying at the forefront of technological developments and eager to leverage my skills to contribute effectively to dynamic projects."
+    ],
+    "keyCharacteristic": {
+      "label": "My key characteristic",
+      "text": "I excel at generating innovative and creative ideas that drive solutions, enhance strategies, and foster growth."
+    }
+  },
+  "softSkills": [
+    {
+      "name": "Project Management",
+      "icon": "workflow"
+    },
+    {
+      "name": "Problem Solving",
+      "icon": "puzzle"
+    },
+    {
+      "name": "Time Management",
+      "icon": "clock"
+    },
+    {
+      "name": "Critical Thinking",
+      "icon": "brain"
+    },
+    {
+      "name": "Adaptability",
+      "icon": "sliders"
+    },
+    {
+      "name": "Communication",
+      "icon": "message"
+    },
+    {
+      "name": "Teamwork",
+      "icon": "users"
+    },
+    {
+      "name": "Focus",
+      "icon": "focus"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Projects",
+      "value": "auto:projects",
+      "icon": "folder"
+    },
+    {
+      "label": "Technologies",
+      "value": "auto:technologies",
+      "icon": "cpu"
+    },
+    {
+      "label": "Customers",
+      "value": 3,
+      "icon": "users"
+    },
+    {
+      "label": "Certifications",
+      "value": "auto:certificates",
+      "icon": "award"
+    }
+  ],
+  "seo": {
+    "description": "Nikos Georgopoulos Ninos, software engineer based in Athens. CV and portfolio with Oracle OSM telecom integrations, IoT platforms, data mining and forecasting.",
+    "keywords": [
+      "nikosninosg",
+      "Nikos Ninos",
+      "Nikos Georgopoulos Ninos",
+      "nikosninosg github io",
+      "nikosninosg.github.io",
+      "software engineer",
+      "software developer",
+      "Athens",
+      "Greece",
+      "CV",
+      "portfolio",
+      "Oracle OSM",
+      "IoT",
+      "data mining"
+    ]
+  },
+  "analytics": {
+    "gtm": "GTM-5LQ88VQV",
+    "ga4": "G-7D2GYWYH5L"
+  },
+  "formEndpoint": "https://formsubmit.co/nikosninosg@gmail.com",
+  "formAjaxEndpoint": "https://formsubmit.co/ajax/nikosninosg@gmail.com",
+  "_notes": [
+    "site: stats - old hard-coded numbers were Projects 8 / Technologies 10 / Customers 3 / Certifications 6. New values are derived from data and two of them differ: Projects 8 -> 9 (number of project files; 9 project pages exist on the old site, the old counter said 8) and Technologies 10 -> 16 (number of visible skills). Certifications stays 6 (number of certificates). Customers stays at 3 as on the old site. To keep an old number, replace the 'auto:...' value in the stats list with a plain number.",
+    "site: old fraktur text 'Tech Enthusiast' (mathematical alphanumeric unicode) replaced by plain 'Tech Enthusiast' (tagline); styling is now CSS.",
+    "site: roles - first, second and last come from the old typing effect ('Software Engineer.', 'Developer.', 'Person.', trailing full stops dropped); 'Tech Enthusiast' and 'Idea Generator' were added from the About text ('technology enthusiast', 'generating innovative and creative ideas').",
+    "site: intro is a new 2-sentence distillation using only phrases from the old About paragraph; about.paragraphs are the old paragraph verbatim, split into two paragraphs after the second sentence (line breaks and double spaces normalised).",
+    "site: about.keyCharacteristic - the old bold, underlined lead-in 'My key characteristic:' became label 'My key characteristic' and the bold sentence became text (inline formatting dropped).",
+    "site: initials 'NGN' and shortName 'Nikos' are derived from the full name; the old site had no initials or short name.",
+    "site: the old Website fact used a link icon, replaced by 'globe' per icon vocabulary; Nationality icon 'flag'; City icon 'map-pin'; Birthday icon 'cake'.",
+    "site: softSkills - icons mapped to the closest vocabulary entries (Project Management -> workflow, Problem Solving -> puzzle, Time Management -> clock, Critical Thinking -> brain, Adaptability -> sliders, Communication -> message, Teamwork -> users, Focus -> focus). Old per-icon colours dropped.",
+    "site: seo.description is new (old meta description was just 'Nikos Georgopoulos Ninos CV'); keywords keep the old four plus role/topic keywords. The old malformed og meta tags (property 'og:nikosninosg') were dropped.",
+    "site: the old page also contained a commented-out LinkedIn profile badge and a commented-out PHP form action; neither is carried over.",
+    "site: the old header showed only GitHub and LinkedIn; Contact section showed GitHub, LinkedIn, Fiverr and Upwork. All four are kept in socials.",
+    "site: formEndpoint is the existing formsubmit.co action of the old form; formAjaxEndpoint is formsubmit.co's documented /ajax/ variant of the same address (new, used for the no-reload enhancement). The old form had no honeypot.",
+    "experience: old per-job 'Technologies:' lines were split on commas into technologies arrays with original spelling (e.g. 'Weblogic 10.x', 'Soap – Rest Web Services' kept as one item, 'Gitlab' kept as written). Periods use an en dash. start/end derived from the periods.",
+    "experience: the Pobuca line was labelled 'Technologies & Skills' and is stored as the technologies array (CRM, Microsoft Tools, RDP, Support, Problem Solving). '(Internship)' kept in the role.",
+    "experience: the old Cognity bullet list ends with the bare bullet 'Camunda' and the INDUST bullet 'AI development - enabled App for product quality control ...' reads awkwardly; both kept verbatim for the owner to polish.",
+    "experience: the old page placed Cognity and INDUST in the left column and Pobuca in the right; order is now strictly newest first (Cognity, INDUST, Pobuca). Location taken from the old italic company line.",
+    "education: GPA / Degree stored as grade strings '3.15 / 4 GPA' and '7.5 / 10'. M.Sc. period 'September 2022 - April 2024' and B.Sc. period 'October 2016 - July 2022' normalised to an en dash. HTML ampersand entities in the old markup were converted to a plain '&'. The old page labelled the B.Sc. value 'Degree: 7.5/10' and the M.Sc. value 'GPA: 3.15/4'; the M.Sc. grade string keeps the 'GPA' label, the B.Sc. grade '7.5 / 10' is the degree grade (the 'Degree' label is not stored).",
+    "education: B.Sc. thesis text kept verbatim (line break inside the old markup normalised to a single space); the school name and location were split from the old two-line italic block.",
+    "education: order is newest first (M.Sc. then B.Sc.); the old page showed M.Sc. left and B.Sc. right, same order.",
+    "certificates: order kept as on the old page (Cybersecurity, DevSecOps Academy, Industrial IoT on Google Cloud Platform, Personal Development, Distributed Computing in Sensor Systems, Digital Marketing). Descriptions kept verbatim with line breaks normalised; HTML ampersand entities in the old markup were converted to a plain '&'. Old icons (dribbble, file, tachometer, world, slideshow, arch) replaced by shield / cloud / gauge / users / presentation / megaphone.",
+    "certificates: the Cybersecurity description is a sentence fragment in the original ('Company's resilience against cyber threats, ...') and was kept as is.",
+    "skills: only the 16 visible skills are included (Languages 4, Technologies 7, Libraries 5). Commented-out entries C and MariaDB are excluded. Old logos were hot-linked images (devicon, vectorlogo.zone, Wikimedia, a GitHub user's repo) and are not carried over; only the local assets/img/skills/nixtla.png existed. 'Oracle OSM' stays in the Libraries group as on the old page. SVN keeps its visible caption (alt text said 'subversion').",
+    "testimonials: the 5 quotes are verbatim (line breaks normalised, curly apostrophe in 'I’ve' kept). The old images for each testimonial were commented out in the markup and are not used. Quote 4 contains the odd phrase 'dedication spirit' and quote 1 and 2 switch between 'Their' and 'He'; left untouched on purpose because testimonials are quoted text."
+  ]
+}

@@ -1,0 +1,541 @@
+/**
+ * pages/contact.css: layout + decoration that only the Contact page needs.
+ * Shared pieces (card, btn, form-field, input, alert, eyebrow...) live in components.css.
+ * Page css is unlayered on purpose: it overrides the shared @layer styles without specificity games.
+ *
+ * Contents: hero / layout / direct-contact cards / social links / form / status panels.
+ */
+
+/* ================================================================== HERO */
+.contact-hero__inner {
+  position: relative;
+}
+
+.contact-hero__text {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-hero__title {
+  max-inline-size: 14ch;
+  font-size: clamp(2.5rem, 1.3rem + 5.6vw, 5.25rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.contact-hero__actions {
+  margin-block-start: var(--space-6);
+}
+
+/* Decorative network on the right: static lines, slowly pulsing nodes. Hidden on phones. */
+.contact-hero__net {
+  display: none;
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 0;
+  inline-size: min(34rem, 44%);
+  block-size: auto;
+  translate: 0 -46%;
+  overflow: visible;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 28%);
+  mask-image: linear-gradient(90deg, transparent, #000 28%);
+}
+
+@media (min-width: 900px) {
+  .contact-hero__net {
+    display: block;
+  }
+}
+
+.contact-hero__links line {
+  stroke: var(--accent-line);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 7;
+  animation: contact-flow 14s linear infinite;
+}
+
+.contact-hero__nodes circle {
+  fill: var(--accent);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: contact-pulse 4.5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.7s);
+}
+
+.contact-hero__nodes circle:nth-child(3n + 2) {
+  fill: var(--accent-violet);
+}
+
+@keyframes contact-flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+@keyframes contact-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    scale: 1;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.45;
+  }
+}
+
+/* ================================================================== LAYOUT */
+.contact-main {
+  padding-block-start: 0;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2.5rem, 1.5rem + 4vw, 4rem);
+}
+
+@media (min-width: 960px) {
+  .contact-layout {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  /* The direct-contact column is shorter than the form, so let it ride along. */
+  .contact-aside {
+    position: sticky;
+    inset-block-start: calc(var(--header-h) + 1.5rem);
+  }
+}
+
+.contact-aside {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: stretch;
+  min-inline-size: 0;
+}
+
+.contact-aside > .eyebrow {
+  justify-self: start;
+}
+
+.contact-aside__title {
+  font-size: var(--fs-2xl);
+  margin-block-end: var(--space-1);
+}
+
+.contact-aside__cards {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* ================================================================== CARDS */
+.contact-card {
+  display: grid;
+  gap: var(--space-4);
+  --card-pad: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+}
+
+.contact-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.contact-card__icon,
+.contact-social__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.contact-card__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-card__value {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  overflow-wrap: anywhere;
+}
+
+.contact-card__value a {
+  color: var(--text);
+  text-decoration: none;
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 2px no-repeat;
+  padding-block-end: 0.15em;
+  transition: background-size var(--dur-base) var(--ease-out), color var(--dur-fast) ease;
+}
+
+.contact-card__value a:hover {
+  color: var(--accent);
+  background-size: 100% 2px;
+}
+
+.contact-card__value--plain {
+  font-size: var(--fs-md);
+}
+
+/* Email: slightly larger value, so the address is the hero of the card. */
+.contact-card--email .contact-card__value {
+  font-size: clamp(1.25rem, 1rem + 1.3vw, 1.65rem);
+}
+
+/* Copy needs JS (clipboard + toast); the mailto button still works without it. */
+.no-js [data-copy] {
+  display: none;
+}
+
+.btn[data-copied="true"] {
+  color: var(--success);
+  border-color: var(--success-line);
+  background: var(--success-soft);
+}
+
+/* ================================================================== SOCIAL */
+.contact-social {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-start: var(--space-2);
+}
+
+.contact-social__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-social__list {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 560px) and (max-width: 959px) {
+  .contact-social__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.contact-social__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  --card-pad: 0.85rem 1rem;
+  padding: var(--card-pad);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* The lift/spotlight of .card--interactive is plenty; keep the row itself calm. */
+.contact-social__link .contact-social__icon {
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border-color: var(--border);
+  background: var(--surface-strong);
+  color: var(--text);
+  transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+
+.contact-social__link:hover .contact-social__icon,
+.contact-social__link:focus-visible .contact-social__icon {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.contact-social__text {
+  display: grid;
+  min-inline-size: 0;
+  flex: 1;
+}
+
+.contact-social__name {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.contact-social__handle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.contact-social__go {
+  flex: none;
+  color: var(--text-subtle);
+  transition: color var(--dur-fast) ease, translate var(--dur-base) var(--ease-out);
+}
+
+.contact-social__link:hover .contact-social__go {
+  color: var(--accent);
+  translate: 2px -2px;
+}
+
+.contact-social__note {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  max-inline-size: 44ch;
+}
+
+/* ================================================================== FORM */
+.contact-form-card {
+  --card-pad: clamp(1.25rem, 0.6rem + 3vw, 2.5rem);
+  display: grid;
+  gap: var(--space-5);
+  min-inline-size: 0;
+  scroll-margin-block-start: calc(var(--header-h) + 1rem);
+}
+
+.contact-form-card__head {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+
+.contact-form-card__title {
+  font-size: var(--fs-2xl);
+  margin-block-start: var(--space-1);
+}
+
+.contact-form-card__intro {
+  color: var(--text-muted);
+}
+
+.contact-form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.contact-form__grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start; /* an error line under one field must not stretch its neighbour */
+}
+
+@media (min-width: 600px) {
+  .contact-form__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.contact-field__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.contact-field__optional {
+  font-weight: 400;
+  color: var(--text-subtle);
+}
+
+.contact-field__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+.contact-field__count[data-state="near"] {
+  color: var(--warning);
+}
+
+.contact-field__count[data-state="limit"] {
+  color: var(--danger);
+}
+
+/* Inline errors get a little warning glyph so colour is never the only signal. */
+.form-field__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  line-height: 1.4;
+}
+
+.form-field__error:not(:empty)::before {
+  content: "!";
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 1.05rem;
+  block-size: 1.05rem;
+  margin-block-start: 0.05rem;
+  border-radius: 50%;
+  background: var(--danger);
+  color: var(--bg);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.form-field.is-invalid .form-field__label {
+  color: var(--danger);
+}
+
+.form-field.is-invalid .textarea,
+.form-field.is-invalid .input {
+  background-color: var(--danger-soft);
+}
+
+.form-field.is-valid .input,
+.form-field.is-valid .textarea {
+  border-color: var(--border-strong);
+}
+
+.textarea {
+  min-block-size: 10rem;
+}
+
+.contact-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.contact-form__actions .btn {
+  min-inline-size: 12rem;
+}
+
+@media (max-width: 559px) {
+  .contact-form__actions .btn {
+    inline-size: 100%;
+  }
+}
+
+/* Busy: keep the button shape stable; the global spinner is drawn by .btn[aria-busy]. */
+.contact-form [data-submit][aria-busy="true"] svg.icon {
+  display: none;
+}
+
+/* ================================================================== STATUS PANELS */
+.form-status {
+  display: grid;
+}
+
+.contact-panel {
+  display: none;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  scroll-margin-block-start: calc(var(--header-h) + 1rem);
+}
+
+.contact-panel:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.contact-panel__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: 50%;
+}
+
+.contact-panel--success .contact-panel__icon {
+  background: var(--success);
+  color: var(--bg);
+}
+
+.contact-panel--error .contact-panel__icon {
+  background: var(--danger);
+  color: var(--bg);
+}
+
+.contact-panel__body {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  min-inline-size: 0;
+}
+
+.contact-panel__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.contact-panel__text {
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.contact-panel__text a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.contact-panel__again {
+  margin-block-start: var(--space-2);
+}
+
+/* State machine: contact.js sets data-state="idle|success|error" on the card.
+   Without JS the card has no data-state and the no-JS return path (#form-sent) shows the panel. */
+[data-form-card][data-state="success"] [data-panel="success"],
+[data-form-card][data-state="error"] [data-panel="error"],
+[data-form-card]:not([data-state]) #form-sent:target {
+  display: flex;
+  animation: contact-panel-in 0.5s var(--ease-out) both;
+}
+
+[data-form-card][data-state="success"] .contact-form,
+[data-form-card][data-state="success"] .contact-form-card__intro {
+  display: none;
+}
+
+.no-js .contact-panel__again {
+  display: none;
+}
+
+@keyframes contact-panel-in {
+  from {
+    opacity: 0;
+    translate: 0 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero__links line,
+  .contact-hero__nodes circle,
+  .contact-panel {
+    animation: none !important;
+  }
+}
+
+/* ================================================================== PRINT */
+@media print {
+  .contact-hero__net,
+  .contact-form-card {
+    display: none;
+  }
+}

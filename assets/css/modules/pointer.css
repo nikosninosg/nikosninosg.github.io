@@ -1,0 +1,70 @@
+/**
+ * modules/pointer.css: pointer-driven effects (assets/js/modules/pointer-fx.js).
+ * Spotlight base look lives on .card in components.css; this file only adds the live states.
+ * Everything is inert unless the JS writes the custom properties (fine pointers, no reduced motion).
+ */
+@layer components {
+  /* ---- spotlight ---- */
+  .card.is-spotlit,
+  [data-spotlight].is-spotlit {
+    --spot-size: 380px;
+  }
+
+  /* ---- tilt ----
+     pointer-fx.js adds .is-tilt-on on entry and keeps it until the eased return has finished; at rest the
+     element has NO transform, so text and borders are rasterised crisply (no permanent 3D layer, no blur).
+     Reveal uses the individual translate/scale properties and floats use `translate`, so none of them fight this. */
+  [data-tilt] {
+    transition:
+      transform 650ms var(--ease-out),
+      border-color var(--dur-base) ease,
+      background-color var(--dur-base) ease,
+      box-shadow var(--dur-base) ease;
+  }
+
+  [data-tilt].is-tilt-on {
+    transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    will-change: transform;
+  }
+
+  /* While following the pointer: short, eased smoothing instead of a long spring. */
+  [data-tilt].is-tilting {
+    transition:
+      transform 140ms var(--ease-out),
+      border-color var(--dur-base) ease,
+      background-color var(--dur-base) ease,
+      box-shadow var(--dur-base) ease;
+  }
+
+  /* Interactive cards keep their hover lift while tilting (it would otherwise be overridden). */
+  .card--interactive[data-tilt].is-tilt-on {
+    transform: perspective(900px) translateY(-4px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  }
+
+  .tilt-glare {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 0%), rgba(255, 255, 255, 0.16), transparent 55%);
+    opacity: 0;
+    transition: opacity var(--dur-base) ease;
+  }
+
+  [data-tilt].is-tilting > .tilt-glare {
+    opacity: 1;
+  }
+
+  /* ---- magnetic: .btn / .icon-btn already read --magnet-x/--magnet-y; any other element opts in here ---- */
+  [data-magnetic]:not(.btn):not(.icon-btn) {
+    transform: translate(var(--magnet-x, 0px), var(--magnet-y, 0px));
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-tilt] {
+      transform: none !important;
+    }
+  }
+}

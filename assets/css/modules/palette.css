@@ -1,0 +1,270 @@
+/**
+ * modules/palette.css: command palette (<dialog class="palette">). Items are rendered by palette.js:
+ * .palette__group, .palette__item[role=option][aria-selected], .palette__item-icon/-title/-hint, <mark>.
+ */
+@layer components {
+  .palette {
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+    color: var(--text);
+  }
+
+  .palette[open] {
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    padding: clamp(3rem, 12vh, 8rem) 1rem 1rem;
+  }
+
+  .palette::backdrop {
+    background: var(--scrim);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  .palette[open]::backdrop {
+    animation: fade-in var(--dur-base) ease both;
+  }
+
+  .palette__box {
+    display: flex;
+    flex-direction: column;
+    inline-size: min(40rem, 100%);
+    max-block-size: min(34rem, 74vh);
+    max-block-size: min(34rem, 74dvh);
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--panel-bg);
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.02);
+    -webkit-backdrop-filter: blur(26px) saturate(1.6);
+    backdrop-filter: blur(26px) saturate(1.6);
+    animation: palette-in 280ms var(--ease-out) both;
+  }
+
+  @keyframes palette-in {
+    from {
+      opacity: 0;
+      transform: translateY(-14px) scale(0.97);
+    }
+  }
+
+  @keyframes palette-out {
+    to {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+    }
+  }
+
+  @keyframes palette-backdrop-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* palette.js adds .is-closing, waits for the box animation, then calls dialog.close() */
+  .palette.is-closing .palette__box {
+    animation: palette-out 170ms var(--ease-out) forwards;
+  }
+
+  .palette.is-closing::backdrop {
+    animation: palette-backdrop-out 170ms ease forwards;
+  }
+
+  /* scroll lock while open (palette.js sets --palette-sbw to avoid a layout jump) */
+  html.palette-open body {
+    overflow: hidden;
+    padding-inline-end: var(--palette-sbw, 0px);
+  }
+
+  .palette__search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0.35rem 1.1rem;
+    border-block-end: 1px solid var(--border);
+    color: var(--text-subtle);
+    transition: box-shadow var(--dur-fast) ease, color var(--dur-fast) ease;
+  }
+
+  .palette__search:focus-within {
+    color: var(--accent);
+    box-shadow: inset 0 -2px 0 var(--accent);
+  }
+
+  .palette__search svg {
+    flex: none;
+  }
+
+  .palette__input {
+    flex: 1;
+    min-inline-size: 0;
+    min-block-size: 3.25rem;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 1.05rem;
+    text-overflow: ellipsis;
+  }
+
+  /* the "esc" key cap doubles as a tap target for closing on touch screens (palette.js) */
+  .palette__search .kbd {
+    cursor: pointer;
+  }
+
+  @media (hover: none) {
+    .palette__search .kbd {
+      min-block-size: 1.75rem;
+      padding-inline: 0.6rem;
+    }
+  }
+
+  .palette__input::placeholder {
+    color: var(--text-subtle);
+  }
+
+  .palette__input:focus,
+  .palette__input:focus-visible {
+    outline: none;
+  }
+
+  .palette__list {
+    flex: 1;
+    min-block-size: 0;
+    margin: 0;
+    padding: 0.5rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    list-style: none;
+  }
+
+  /* one <li role=presentation> per group wrapping the heading and a <ul role=group> of options */
+  .palette__section,
+  .palette__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .palette__group {
+    padding: 0.85rem 0.75rem 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-mono);
+    color: var(--text-subtle);
+  }
+
+  .palette__item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    cursor: pointer;
+    scroll-margin-block: 2.5rem;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+  }
+
+  .palette__item[aria-selected="true"] {
+    background: var(--surface-strong);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--accent-line);
+  }
+
+  /* enter hint on the active row (decorative: the empty alt keeps it out of the accessible name) */
+  .palette__item[aria-selected="true"]::after {
+    content: "\21B5";
+    content: "\21B5" / "";
+    flex: none;
+    margin-inline-start: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--accent);
+  }
+
+  .palette__item-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: 2rem;
+    block-size: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text-muted);
+  }
+
+  .palette__item[aria-selected="true"] .palette__item-icon {
+    border-color: var(--accent-line);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .palette__item-title {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .palette__item-hint {
+    margin-inline-start: auto;
+    padding-inline-start: var(--space-3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-inline-size: 45%;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-subtle);
+  }
+
+  .palette mark {
+    background: transparent;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .palette__empty {
+    margin: 0;
+    padding: var(--space-7) var(--space-5);
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .palette__foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    padding: 0.7rem 1.1rem;
+    border-block-start: 1px solid var(--border);
+    background: var(--band);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-subtle);
+  }
+
+  .palette__foot .kbd {
+    margin-inline-end: 0.15rem;
+  }
+
+  @media (max-width: 599px) {
+    .palette__foot {
+      display: none;
+    }
+
+    .palette__item-hint,
+    .palette__item[aria-selected="true"]::after {
+      display: none;
+    }
+  }
+}

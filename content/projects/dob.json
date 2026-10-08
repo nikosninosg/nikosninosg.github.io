@@ -1,0 +1,48 @@
+{
+  "slug": "dob",
+  "title": "Digital Onboarding",
+  "subtitle": "Digital Onboarding for Prepaid Products and Manage SIM One Order Drop",
+  "categories": [
+    "telecom"
+  ],
+  "client": "Cosmote, Greece",
+  "organization": "Cosmote",
+  "summary": "Digital ordering, SIM activation and onboarding of Cosmote prepaid products across app and site touchpoints, plus the Manage SIM user journey in Siebel Open UI.",
+  "description": [
+    "Digital Onboarding for Prepaid Products: Cosmote intends to give its customers the opportunity to order and manage prepaid subscriptions through digital channels. The project will support the purchase of prepaid SIM cards (Cosmokarta, WU, Frog and IOTG), as well as the SIM activation and onboarding processes. The in-scope digital touchpoints are the following: MyCosmote App & Site, WU App & Site and Frog App & Site. MyCosmote App will support the flows through native implementation and the rest of the digital touchpoints will incorporate an SPA solution. Cognity will execute the project e2e regarding the systems: Digital (SPA, Common BFF microservices), OM (OSM, OSB, OM microservices) and CRM (Siebel Mobile, Siebel Fixed).",
+    "Manage SIM One Order Drop: The scope of the project is the Implementation of Manage SIM User Journey through Siebel Open UI Customers 360 View for B2B and B2C customers, using modification orders, including use cases of SIM Replacement, SIM Swap and Pre to Post with SIM Change, for all SIM card types (Physical, eSIM, Twin, Multi SIM, XSIM)."
+  ],
+  "contributions": [],
+  "technologies": [
+    "Oracle OSM",
+    "WebLogic 10.x",
+    "WebLogic Portal 10",
+    "SOAP – REST Web Services",
+    "Oracle DB"
+  ],
+  "links": [],
+  "cover": {
+    "src": "assets/img/portfolio/telecom/dob.jpeg",
+    "alt": "Isometric illustration of business figures among linked devices, a central monitor showing an order screen, map pins and network nodes."
+  },
+  "gallery": [],
+  "featured": true,
+  "order": 6,
+  "legacyPaths": [
+    "projects/dob.html"
+  ],
+  "_notes": [
+    "Old page <title> was the generic \"Projects\"; used the card title \"Digital Onboarding\" (index.html portfolio card <h4>) as the project title, since the slug \"dob\" and the card refer to Digital Onboarding.",
+    "STRUCTURE: the old page actually describes TWO projects, stacked as two blocks: (1) \"Manage SIM One Order\" and (2) \"Digital Onboarding for Prepaid Products\", both for Cosmote, Greece, with identical technologies lines. The content schema has one project per file, so both are kept in this file: each description paragraph is prefixed with its project name (\"Digital Onboarding for Prepaid Products:\" / \"Manage SIM One Order Drop:\") and the subtitle names both. Owner may want to split them into two project files later.",
+    "Order change: the old page showed Manage SIM One Order first and Digital Onboarding second. In the JSON the Digital Onboarding paragraph comes first because it is the project the card, slug and title refer to; no text was dropped.",
+    "Name discrepancy on the old page: the Manage SIM block's heading read \"Manage SIM One Order\" while its \"Project\" line read \"Manage SIM One Order Drop\". The longer \"Project\" line name is used in the paragraph prefix and subtitle; the shorter heading name is recorded here.",
+    "Old page's two \"Project:\" list items (duplicating the underlined h2 headings) were folded into the description prefixes / title; the \"Description:\" label word was dropped and replaced by the project-name prefix.",
+    "Client was \"Cosmote, Greece\" in both old blocks; organization \"Cosmote\" is the card label from index.html (<p>), kept so the card label is preserved exactly.",
+    "Typo/encoding fix: \"ΟΜ microservices\" in the old Digital Onboarding description used Greek capital letters (Omicron + Mu) instead of Latin \"OM\"; normalised to Latin \"OM\" (it is the \"OM\" = Order Management group in the same sentence).",
+    "Descriptions are otherwise verbatim apart from whitespace/line-break normalisation (old text was hard-wrapped and wrapped in a text-align: justify div, both dropped). Capitalisation such as \"Implementation of Manage SIM User Journey\" and the unexplained \"e2e\", \"SPA\", \"BFF\", \"IOTG\", \"WU\" were left as written.",
+    "Technologies: the two old blocks listed the same five items, so they were de-duplicated into one array. Capitalisation normalised only: Weblogic -> WebLogic (matches om-crs.json convention), Soap – Rest Web Services -> SOAP – REST Web Services (kept as one item, as on the old page). Note: the Digital Onboarding description mentions Siebel, OSB, SPA and BFF microservices which are NOT in the old technologies line; they were not added to technologies (no invented/inferred facts), but they remain in the description. The old technologies line is probably copied from another project; owner may want to review.",
+    "The old page lists no contributions, no links/website, no year and no role, and contains no <img> tags, so contributions, links and gallery are empty and year/role are omitted. Nothing was invented.",
+    "The only image associated with the project is the cover shown on the portfolio card (assets/img/portfolio/telecom/dob.jpeg, 1024x1024); the old detail page did not display it, so it is used as cover only and not duplicated in gallery. The old card image had empty alt text; the cover alt was written from the artwork (isometric illustration with business figures, central monitor with an order screen, phone, laptop, map pins, network nodes). The on-screen words inside the artwork are garbled and are not quoted.",
+    "summary (<=170 chars) written strictly from the descriptions: digital ordering, SIM activation and onboarding of prepaid products across app/site touchpoints, plus the Manage SIM user journey in Siebel Open UI."
+  ]
+}

@@ -1,0 +1,352 @@
+/**
+ * pages/notfound.css: the 404 page.
+ * Shared pieces (btn, chip, kbd, eyebrow) live in components.css; this file only holds what is unique here.
+ * Page css is unlayered on purpose: it overrides the shared @layer styles without specificity games.
+ *
+ * Contents: layout / giant 404 + glitch / network zero / copy / actions / jump links.
+ * Everything animated is gated by prefers-reduced-motion at the bottom (static composition).
+ */
+
+/* ================================================================== LAYOUT */
+.nf {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-block-size: 100svh;
+  margin-block-start: calc(var(--header-h) * -1);
+  padding-block: calc(var(--header-h) + clamp(2rem, 1rem + 3vw, 3.5rem)) clamp(3rem, 2rem + 5vw, 6rem);
+  overflow-x: clip;
+  text-align: center;
+}
+
+/* Soft mesh + fading grid, the same vocabulary as the CTA band, sized to the whole screen. */
+.nf__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(46rem 26rem at 50% 28%, var(--mesh-a), transparent 70%),
+    radial-gradient(34rem 22rem at 88% 70%, var(--violet-soft), transparent 70%),
+    radial-gradient(30rem 20rem at 8% 80%, var(--mesh-c), transparent 70%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 56px 56px;
+  -webkit-mask-image: radial-gradient(80% 90% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(80% 90% at 50% 40%, #000 30%, transparent 100%);
+}
+
+.nf__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+}
+
+/* ================================================================== 404 */
+.nf__code {
+  --nf-size: clamp(7.5rem, 3.5rem + 24vw, 19rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.03em;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--nf-size);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+
+.nf__digit {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.04em;
+  color: var(--accent); /* fallback when background-clip:text is unavailable */
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .nf__digit {
+    background: linear-gradient(160deg, var(--accent) 0%, var(--accent-2) 60%, var(--accent-violet) 175%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+/* Glitch layers: copies of the digit that jitter apart in short bursts. Invisible between bursts. */
+.nf__digit::before,
+.nf__digit::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  padding-block: inherit;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-text-fill-color: currentColor;
+  background: none;
+}
+
+.nf__digit::before {
+  color: var(--accent-violet);
+  animation: nf-glitch-a 5.2s steps(1, end) infinite;
+}
+
+.nf__digit::after {
+  color: var(--accent);
+  animation: nf-glitch-b 5.2s steps(1, end) infinite;
+}
+
+.nf__digit:last-of-type::before,
+.nf__digit:last-of-type::after {
+  animation-delay: -2.1s;
+}
+
+@keyframes nf-glitch-a {
+  0%, 88%, 100% { opacity: 0; transform: none; clip-path: inset(0); }
+  89% { opacity: 0.9; transform: translate(-0.04em, 0.01em); clip-path: inset(10% 0 62% 0); }
+  91% { opacity: 0.9; transform: translate(0.05em, -0.01em); clip-path: inset(54% 0 18% 0); }
+  93% { opacity: 0.9; transform: translate(-0.02em, 0); clip-path: inset(30% 0 40% 0); }
+  95% { opacity: 0; }
+}
+
+@keyframes nf-glitch-b {
+  0%, 89%, 100% { opacity: 0; transform: none; clip-path: inset(0); }
+  90% { opacity: 0.85; transform: translate(0.04em, -0.01em); clip-path: inset(66% 0 8% 0); }
+  92% { opacity: 0.85; transform: translate(-0.05em, 0.01em); clip-path: inset(14% 0 58% 0); }
+  94% { opacity: 0.85; transform: translate(0.02em, 0); clip-path: inset(42% 0 30% 0); }
+  96% { opacity: 0; }
+}
+
+/* ================================================================== NETWORK ZERO */
+.nf__zero {
+  flex: none;
+  block-size: 0.74em;
+  inline-size: auto;
+  aspect-ratio: 110 / 120;
+  overflow: visible;
+  /* the glyphs' optical centre sits a touch above the line box centre */
+  translate: 0 -0.01em;
+}
+
+.nf__links line,
+.nf__chords line {
+  stroke: url(#nf-grad);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.nf__chords line {
+  stroke-width: 1;
+  opacity: 0.4;
+}
+
+/* The broken link: a dashed stub that stops short of the lost node. */
+.nf__stub line {
+  stroke: var(--text-subtle);
+  stroke-width: 1.6;
+  stroke-dasharray: 3 5;
+  stroke-linecap: round;
+  animation: nf-stub 2.4s linear infinite;
+}
+
+.nf__nodes circle {
+  fill: var(--bg);
+  stroke: url(#nf-grad);
+  stroke-width: 2.4;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.nf__nodes .is-lost {
+  fill: var(--bg);
+  stroke: var(--danger);
+  animation: nf-lost 3.2s ease-in-out infinite;
+}
+
+/* A data packet circling the ring. offset-path is the ring's ellipse in SVG user units. */
+.nf__packet {
+  fill: var(--accent);
+  offset-path: path("M55 10 A46 50 0 1 1 54.9 10");
+  offset-rotate: 0deg;
+  animation: nf-orbit 7s linear infinite;
+  filter: drop-shadow(0 0 4px var(--accent-glow));
+}
+
+@keyframes nf-orbit {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+@keyframes nf-stub {
+  to { stroke-dashoffset: -16; }
+}
+
+@keyframes nf-lost {
+  0%, 100% { translate: 0 0; opacity: 1; }
+  50% { translate: 2px -3px; opacity: 0.55; }
+}
+
+/* ================================================================== COPY */
+.nf__title {
+  max-inline-size: 18ch;
+  font-size: var(--fs-3xl);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin-block-start: var(--space-1);
+}
+
+.nf__lede {
+  max-inline-size: 46ch;
+  font-size: var(--fs-md);
+  color: var(--text-muted);
+}
+
+/* Terminal-style echo of the failed request. */
+.nf__req {
+  max-inline-size: 100%;
+  margin-block-start: var(--space-2);
+}
+
+.nf__req code {
+  display: inline-block;
+  max-inline-size: 100%;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+  text-align: start;
+}
+
+.nf__req-method {
+  color: var(--accent);
+}
+
+.nf__req-path {
+  color: var(--text);
+}
+
+.nf__req-status {
+  color: var(--danger);
+  white-space: nowrap;
+}
+
+.nf__guess {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.nf__guess a {
+  font-weight: 600;
+}
+
+/* ================================================================== ACTIONS */
+.nf__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+@media (max-width: 479px) {
+  .nf__actions {
+    inline-size: 100%;
+    flex-direction: column;
+  }
+
+  .nf__actions .btn {
+    inline-size: 100%;
+  }
+}
+
+.nf__hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.6rem;
+  margin-block-start: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* The keyboard hint only helps people with a keyboard; touch users get the button. */
+@media (hover: none) {
+  .nf__hint > :not(.nf__search) {
+    display: none;
+  }
+}
+
+.no-js .nf__hint {
+  display: none;
+}
+
+/* ================================================================== JUMP LINKS */
+.nf__jump {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+  max-inline-size: 46rem;
+}
+
+.nf__jump-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.nf__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nf__chips .chip {
+  color: var(--text);
+}
+
+.nf__chips .chip svg {
+  color: var(--accent);
+}
+
+/* The script's best guess gets a quiet accent treatment. */
+.nf__chips .chip.is-guess {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ================================================================== MOTION */
+/* Reduced motion: a still composition. Glitch layers stay hidden, the packet rests at the top of the ring. */
+@media (prefers-reduced-motion: reduce) {
+  .nf__digit::before,
+  .nf__digit::after {
+    display: none;
+  }
+
+  .nf__stub line,
+  .nf__nodes .is-lost,
+  .nf__packet {
+    animation: none;
+  }
+}
+
+@media print {
+  .nf__bg {
+    display: none;
+  }
+}

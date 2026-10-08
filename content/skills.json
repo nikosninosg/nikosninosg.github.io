@@ -1,0 +1,81 @@
+[
+  {
+    "category": "Languages",
+    "items": [
+      {
+        "name": "Python",
+        "url": "https://www.python.org"
+      },
+      {
+        "name": "JavaScript",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+      },
+      {
+        "name": "TypeScript",
+        "url": "https://www.typescriptlang.org"
+      },
+      {
+        "name": "Java",
+        "url": "https://www.java.com"
+      }
+    ]
+  },
+  {
+    "category": "Technologies",
+    "items": [
+      {
+        "name": "MySQL",
+        "url": "https://www.mysql.com"
+      },
+      {
+        "name": "Git",
+        "url": "https://git-scm.com"
+      },
+      {
+        "name": "SVN",
+        "url": "https://subversion.apache.org"
+      },
+      {
+        "name": "Bash",
+        "url": "https://www.gnu.org/software/bash/"
+      },
+      {
+        "name": "Linux",
+        "url": "https://www.linux.org"
+      },
+      {
+        "name": "Docker",
+        "url": "https://www.docker.com"
+      },
+      {
+        "name": "AWS",
+        "url": "https://aws.amazon.com"
+      }
+    ]
+  },
+  {
+    "category": "Libraries",
+    "items": [
+      {
+        "name": "Scikit-Learn",
+        "url": "https://scikit-learn.org"
+      },
+      {
+        "name": "Oracle OSM",
+        "url": "https://docs.oracle.com/en/industries/communications/order-service-management/index.html"
+      },
+      {
+        "name": "NumPy",
+        "url": "https://numpy.org"
+      },
+      {
+        "name": "Pandas",
+        "url": "https://pandas.pydata.org"
+      },
+      {
+        "name": "Nixtla",
+        "url": "https://www.nixtla.io/"
+      }
+    ]
+  }
+]

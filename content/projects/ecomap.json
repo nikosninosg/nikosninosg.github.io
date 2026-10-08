@@ -1,0 +1,75 @@
+{
+  "slug": "ecomap",
+  "title": "Heat – Ecomap",
+  "categories": [
+    "web"
+  ],
+  "client": "University of Patras, Greece",
+  "organization": "University of Patras",
+  "summary": "Interactive heatmap visualization of real-time data, showing metrics such as population density, temperature variations or traffic patterns over a geographic area.",
+  "description": [
+    "An interactive heatmap visualization using real-time data. The heatmap dynamically represents various data metrics, such as population density, temperature variations, or traffic patterns, over a specific geographic area. By integrating live data feeds, the heatmap provides an up-to-date visual representation, allowing users to identify trends, congestion, and patterns effectively. The project leverages modern web technologies and data visualization libraries to ensure an intuitive and responsive user experience."
+  ],
+  "contributions": [],
+  "technologies": [
+    "HTML",
+    "PHP",
+    "XML",
+    "JavaScript",
+    "CSS",
+    "Angular",
+    "Node.js"
+  ],
+  "links": [
+    {
+      "label": "GitHub Repo",
+      "url": "https://github.com/nikosninosg/Ecomap"
+    },
+    {
+      "label": "Ecomap Login",
+      "url": "http://www.filios-solutions.gr/ecomap/Login"
+    }
+  ],
+  "cover": {
+    "src": "assets/img/portfolio/web/ecomap/ecomap-bg.jpeg",
+    "alt": "Abstract glowing world-map heatmap in red, yellow and cyan on a dark navy background, with bright hotspots over the continents."
+  },
+  "gallery": [
+    {
+      "src": "assets/img/portfolio/web/ecomap/ecomap-1.png",
+      "alt": "Dark dashboard with an Activities Distribution pie chart by activity type and a Month Distribution line chart peaking in December.",
+      "caption": "Activities Distribution and Month Distribution charts"
+    },
+    {
+      "src": "assets/img/portfolio/web/ecomap/ecomap-2b.png",
+      "alt": "User Distribution bar chart for four users above a Day Distribution bar chart peaking on Saturday and Sunday.",
+      "caption": "User Distribution and Day Distribution charts"
+    },
+    {
+      "src": "assets/img/portfolio/web/ecomap/ecomap-2.png",
+      "alt": "Heatmap over a street map of Patras, Greece, with red and green hotspots clustered along the waterfront and main roads.",
+      "caption": "Heatmap layer over the map of Patras"
+    },
+    {
+      "src": "assets/img/portfolio/web/ecomap/ecomap-3.png",
+      "alt": "Zoomed-in heatmap on a street map, with dense red and yellow hotspots tracing the major roads and junctions.",
+      "caption": "Zoomed-in heatmap view"
+    }
+  ],
+  "featured": false,
+  "order": 8,
+  "legacyPaths": [
+    "projects/ecomap.html"
+  ],
+  "_notes": [
+    "Old page <title> was the generic \"Projects\". The page heading read \"Heat - Ecomap\" (underlined) while the \"Project\" line and the index.html card <h4> both read just \"Ecomap\". The fuller heading was kept as the title, with the hyphen normalised to an en dash (\"Heat – Ecomap\"). Owner/orchestrator may prefer the shorter card label \"Ecomap\" for the grid card.",
+    "Client: the old page said \"University of Patras, Greece\"; the index.html card label (<p>) said \"University of Patras\". Both are preserved: client = \"University of Patras, Greece\", organization = \"University of Patras\" (same entity, no conflict).",
+    "Links: the old page labelled them \"Github: Repo\" and \"Website: Ecomap Login\". Kept as links with labels \"GitHub Repo\" (capitalisation fixed) and \"Ecomap Login\". The website URL is plain http:// on the old page and was left unchanged (not upgraded to https), since the target host's HTTPS support is unknown.",
+    "The old page had no contributions list, so contributions is empty. No role and no year were stated on the old page, so both fields are omitted.",
+    "Description kept verbatim as a single paragraph; only the hard line breaks/whitespace and the text-align: justify wrapper were dropped. The old \"Description:\" label was removed (it is a UI label, not content).",
+    "Technologies split from one comma-separated line into an array; only \"NodeJS\" was normalised to its official spelling \"Node.js\". The other items are unchanged.",
+    "Summary is distilled from the first two sentences of the description (the examples \"population density, temperature variations, or traffic patterns\" are from the old text).",
+    "Gallery: the four screenshots were listed in the old slider order (ecomap-1.png, ecomap-2b.png, ecomap-2.png, ecomap-3.png); the old <img> tags had empty alt text, so alt text and captions are new and describe only what is visible. The map in ecomap-2.png carries Greek street labels and the label \"Πάτρα\", hence \"Patras\" in its alt/caption; the place shown in ecomap-3.png is not named in the old page, so it is not named in the alt/caption.",
+    "The cover (ecomap-bg.jpeg, card artwork) was not shown on the old detail page, so it is not duplicated in the gallery. Cover alt describes the artwork (glowing world-map heatmap)."
+  ]
+}
