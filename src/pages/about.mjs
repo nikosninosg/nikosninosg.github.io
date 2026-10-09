@@ -8,9 +8,9 @@
  */
 import { existsSync, openSync, readSync, closeSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import { html } from '../lib/html.mjs';
+import { html, raw } from '../lib/html.mjs';
 import { icon } from '../lib/icons.mjs';
-import { SHARED_CSS, cvCard, softLine, quoteRole } from './_shared.mjs';
+import { SHARED_CSS, cvCard, softPills, quoteRole } from './_shared.mjs';
 
 /** UI labels only. Everything else is content. */
 const LABELS = {
@@ -31,8 +31,19 @@ const CATEGORY_STYLE = {
   Languages: { icon: 'code', accent: 'teal' },
   Technologies: { icon: 'terminal', accent: 'green' },
   Libraries: { icon: 'layers', accent: 'violet' },
+  'Workflow & testing': { icon: 'workflow', accent: 'teal' },
 };
 const ACCENTS = ['teal', 'green', 'violet'];
+
+/** Categories that are always shown in full (no "Show more"). */
+const SHOW_ALL = new Set(['Technologies']);
+
+/** Skill cards: Technologies top-left, Libraries top-right, then the remaining groups in content order. */
+const SKILL_CARD_ORDER = ['Technologies', 'Libraries'];
+const orderSkillGroups = (groups) => [
+  ...SKILL_CARD_ORDER.map((n) => groups.find((g) => g.category === n)).filter(Boolean),
+  ...groups.filter((g) => !SKILL_CARD_ORDER.includes(g.category)),
+];
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -184,7 +195,7 @@ function profile(ctx) {
 }
 
 function skills(ctx) {
-  const { skills: groups } = ctx;
+  const groups = orderSkillGroups(ctx.skills);
   const total = groups.reduce((n, g) => n + g.items.length, 0);
   return html`
 <section class="section section--alt about-skills" id="skills" aria-labelledby="skills-title">
@@ -207,7 +218,7 @@ function skills(ctx) {
             <h3 class="skill-card__title" id="skill-${slug}">${g.category}</h3>
           </div>
         </header>
-        <ul class="skill-list" role="list">
+        <ul class="skill-list" role="list" data-skill-list${SHOW_ALL.has(g.category) ? raw(' data-skill-all') : ''}>
           ${g.items.map((s) => {
             const label = html`<span class="skill__mono" aria-hidden="true">${monogram(s.name)}</span><span class="skill__name">${s.name}</span>`;
             return s.url
@@ -231,9 +242,7 @@ function softSkills(ctx) {
       <h2 class="section-title" id="soft-title">${LABELS.soft.title}</h2>
       <p class="section-lede">${LABELS.soft.lede}</p>
     </header>
-    <div class="soft-line" data-reveal>
-      ${softLine(ctx, { label: LABELS.soft.title })}
-    </div>
+    ${softPills(ctx, { label: LABELS.soft.title })}
   </div>
 </section>`;
 }
@@ -317,7 +326,7 @@ export default function render(ctx) {
     title: 'About',
     description: site.about.paragraphs[0],
     css: [SHARED_CSS, 'assets/css/pages/about.css'],
-    js: [],
+    js: ['assets/js/pages/skills.js'],
     breadcrumbs: [{ name: 'About', path: 'about.html' }],
     body: html`
 ${hero(ctx)}

@@ -624,3 +624,44 @@
     animation: none;
   }
 }
+
+
+/* ---- long skill-category lists collapse to 8 chips (assets/js/pages/skills.js) ---- */
+.skill-chips.is-collapsed > [data-extra] {
+  display: none;
+}
+
+.skill-cat .skill-more {
+  justify-self: start;
+  padding: 0.35rem 0.85rem;
+  border: 1px dashed var(--accent-line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) ease;
+}
+
+.skill-cat .skill-more:hover {
+  background: var(--accent-soft);
+}
+
+.skill-cat .skill-more:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media print {
+  .skill-chips.is-collapsed > [data-extra] {
+    display: revert;
+  }
+
+  .skill-cat .skill-more {
+    display: none;
+  }
+}

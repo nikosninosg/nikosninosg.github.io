@@ -100,12 +100,18 @@
 }
 
 /* ================================================================== SOFT SKILLS: one line */
+.softline-wrap {
+  overflow: hidden;
+}
+
 .softline {
+  --softline-indent: 1.6em;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.35rem 0;
   margin: 0;
+  margin-inline-start: calc(-1 * var(--softline-indent));
   padding: 0;
   list-style: none;
   font-family: var(--font-display);
@@ -117,26 +123,26 @@
 }
 
 .softline__item {
+  position: relative;
   display: inline-flex;
   align-items: baseline;
+  padding-inline-start: var(--softline-indent);
   color: var(--text);
 }
 
-/* the separator belongs to the item before it, so it never starts a wrapped line */
-.softline__item:not(:last-child)::after {
+/* the separator sits left of every item; the one that starts a line falls into the clipped gutter */
+.softline__item::before {
   content: "·";
-  margin-inline: 0.65em;
+  position: absolute;
+  inset-inline-start: calc(var(--softline-indent) / 2 - 0.25em);
   color: var(--accent);
   font-weight: 700;
 }
 
 @media (max-width: 599px) {
   .softline {
+    --softline-indent: 1.3em;
     font-size: var(--fs-base);
-  }
-
-  .softline__item:not(:last-child)::after {
-    margin-inline: 0.5em;
   }
 }
 

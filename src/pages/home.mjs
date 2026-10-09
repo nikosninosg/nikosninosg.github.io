@@ -27,7 +27,17 @@ const LABELS = {
 };
 
 /** Icon per skill category (falls back to "code"). */
-const SKILL_ICONS = { Languages: 'code', Technologies: 'terminal', Libraries: 'layers' };
+/** Categories that are always shown in full (no "Show more"). */
+const SHOW_ALL = new Set(['Technologies']);
+
+/** Skill cards: Technologies top-left, Libraries top-right, then the remaining groups in content order. */
+const SKILL_CARD_ORDER = ['Technologies', 'Libraries'];
+const orderSkillGroups = (groups) => [
+  ...SKILL_CARD_ORDER.map((n) => groups.find((g) => g.category === n)).filter(Boolean),
+  ...groups.filter((g) => !SKILL_CARD_ORDER.includes(g.category)),
+];
+
+const SKILL_ICONS = { Languages: 'code', Technologies: 'terminal', Libraries: 'layers', 'Workflow & testing': 'workflow' };
 
 const legacyRedirect = `(function(){var h=location.hash.slice(1);if(!h)return;var m={about:'about.html',resume:'about.html',skills:'about.html',facts:'about.html',experience:'experience.html',education:'experience.html#education',certificates:'experience.html#certificates',projects:'projects.html',portfolio:'projects.html',contact:'contact.html','contact-form':'contact.html#contact-form'};if(Object.prototype.hasOwnProperty.call(m,h))location.replace(m[h]);})();`;
 
@@ -267,7 +277,8 @@ function marqueeRow(names, dir, duration, decorative = false) {
 }
 
 function skills(ctx) {
-  const { skills: groups } = ctx;
+  const { skills: all } = ctx;
+  const groups = orderSkillGroups(all);
   const names = groups.flatMap((g) => g.items.map((i) => i.name));
   return html`
 <section class="section section--alt skills" id="skills" aria-labelledby="skills-title">
@@ -283,14 +294,14 @@ function skills(ctx) {
     ${marqueeRow([...names].reverse(), 'right', 60, true)}
   </div>
   <div class="container">
-    <div class="grid grid--3 skills__cats" data-reveal-stagger>
+    <div class="grid grid--2 skills__cats" data-reveal-stagger>
       ${groups.map((g) => html`
       <article class="card skill-cat" data-reveal>
         <header class="skill-cat__head">
           <span class="skill-cat__icon">${icon(SKILL_ICONS[g.category] ?? 'code', { size: 20 })}</span>
           <h3 class="skill-cat__title">${g.category}</h3>
         </header>
-        <ul class="cluster gap-sm" role="list">
+        <ul class="cluster gap-sm skill-chips" role="list" data-skill-list${SHOW_ALL.has(g.category) ? raw(' data-skill-all') : ''}>
           ${g.items.map((i) => html`<li>${i.url
             ? html`<a class="chip chip--sm" href="${i.url}" target="_blank" rel="noopener noreferrer">${i.name}</a>`
             : html`<span class="chip chip--sm">${i.name}</span>`}</li>`)}
@@ -400,7 +411,7 @@ export default function render(ctx) {
     path: 'index.html',
     description: site.seo.description,
     css: [SHARED_CSS, 'assets/css/pages/home.css'],
-    js: [],
+    js: ['assets/js/pages/skills.js'],
     body: html`
 <script>${raw(legacyRedirect)}</script>
 ${hero(ctx)}

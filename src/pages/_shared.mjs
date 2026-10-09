@@ -42,11 +42,15 @@ export function cvCard(ctx, { cta = 'Download' } = {}) {
 </div>`;
 }
 
-/** Soft skills as ONE inline line: a real list, dot-separated, wraps gracefully. */
+/**
+ * Soft skills as ONE inline line: a real list, dot-separated, wraps gracefully. The dot belongs to the LEFT of each
+ * item and the list is pulled left inside a clipping wrapper, so a dot that lands at the start of a wrapped line is
+ * clipped and nothing ever dangles at the end of a line (see .softline in assets/css/pages/shared.css).
+ */
 export function softLine(ctx, { label = 'Soft skills', className = '' } = {}) {
   const items = ctx.softSkills ?? [];
   if (!items.length) return '';
-  return html`<ul class="softline ${className}" role="list" aria-label="${label}">${items.map((s) => html`<li class="softline__item">${s.name}</li>`)}</ul>`;
+  return html`<div class="softline-wrap"><ul class="softline ${className}" role="list" aria-label="${label}">${items.map((s) => html`<li class="softline__item">${s.name}</li>`)}</ul></div>`;
 }
 
 /** Testimonial role line: "Role" + (company as external link when t.url exists, plain text otherwise). */
@@ -57,4 +61,14 @@ export function quoteRole(t) {
       : html`<span class="quote__company">${t.company}</span>`
     : '';
   return html`<span class="quote__role">${t.role}${company ? html`<span class="quote__sep" aria-hidden="true"> · </span>` : ''}${company}</span>`;
+}
+
+/**
+ * Soft skills as icon pills (About page): same list semantics as softLine(), but each item is a rounded pill with
+ * its content icon. Wraps naturally; no separators needed.
+ */
+export function softPills(ctx, { label = 'Soft skills' } = {}) {
+  const items = ctx.softSkills ?? [];
+  if (!items.length) return '';
+  return html`<ul class="softpills" role="list" aria-label="${label}" data-reveal-stagger>${items.map((s) => html`<li class="softpill" data-reveal><span class="softpill__icon" aria-hidden="true">${icon(s.icon, { size: 18 })}</span><span class="softpill__name">${s.name}</span></li>`)}</ul>`;
 }
