@@ -674,3 +674,9 @@ html.js.reveal-ready .projects-body[data-live] [data-reveal] {
   background: var(--accent);
   color: #fff;
 }
+
+/* the "Featured" badge is redundant inside the Featured block itself (heading already says it); it still
+   shows when JS drops a flagship card into its normal group while filtering */
+.projects-grid--featured .badge--featured {
+  display: none;
+}

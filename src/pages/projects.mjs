@@ -35,6 +35,12 @@ const LABELS = {
   featuredBadge: 'Featured',
 };
 
+/**
+ * Applies a saved/URL "list" view before the cards are parsed, so a returning visitor never sees the grid flash
+ * first. Mirrors the rules in assets/js/pages/projects.js (URL wins over storage; anything invalid = grid).
+ */
+const VIEW_BOOT = `(function(){try{var q=new URLSearchParams(location.search).get('view');var v=(q==='list'||q==='grid')?q:localStorage.getItem('projects-view');if(v==='list')document.currentScript.parentElement.setAttribute('data-view','list')}catch(e){}})();`;
+
 /** Own-drawn 24x24 stroke glyphs for the view toggle (icons.mjs is not ours to extend). */
 const VIEW_ICONS = {
   grid: raw('<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>'),
@@ -208,6 +214,7 @@ ${intro(ctx)}
   <div class="container">
     ${toolbar(ctx)}
     <div class="projects-body" data-projects data-view="grid">
+      <script>${raw(VIEW_BOOT)}</script>
       ${blocks}
     </div>
     ${emptyState()}

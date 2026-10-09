@@ -118,6 +118,7 @@
       <button class="projects-reset" type="button" data-reset hidden>Reset filters</button>
     </div>
     <div class="projects-body" data-projects data-view="grid">
+      <script>(function(){try{var q=new URLSearchParams(location.search).get('view');var v=(q==='list'||q==='grid')?q:localStorage.getItem('projects-view');if(v==='list')document.currentScript.parentElement.setAttribute('data-view','list')}catch(e){}})();</script>
       
     <section class="projects-group projects-group--featured" data-group-section="featured" aria-labelledby="projects-featured-title">
       <header class="section-head projects-group__head">
