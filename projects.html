@@ -106,6 +106,10 @@
             <svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
             <input type="search" data-search placeholder="Search projects…" aria-label="Search projects" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" maxlength="80">
           </label>
+          <div class="view-toggle" role="group" aria-label="View: grid / list" data-view-toggle>
+            <button class="view-toggle__btn" type="button" data-view="grid" aria-pressed="true"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span>Grid</span></button>
+            <button class="view-toggle__btn" type="button" data-view="list" aria-pressed="false"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>List</span></button>
+          </div>
         </div>
       </form>
     </div>
@@ -113,261 +117,324 @@
       <p class="projects-count" data-result-count role="status" aria-live="polite" aria-atomic="true">12 projects</p>
       <button class="projects-reset" type="button" data-reset hidden>Reset filters</button>
     </div>
-    <ul class="project-grid projects-grid" role="list" data-project-grid data-reveal-stagger>
+    <div class="projects-body" data-projects data-view="grid">
       
+    <section class="projects-group projects-group--featured" data-group-section="featured" aria-labelledby="projects-featured-title">
+      <header class="section-head projects-group__head">
+        <p class="eyebrow"><span class="eyebrow__label">Flagship</span></p>
+        <h2 class="section-title projects-group__title" id="projects-featured-title">Featured<span class="projects-group__count" data-group-count>3</span></h2>
+      </header>
+      <ul class="project-grid projects-grid projects-grid--featured" role="list" data-project-grid data-group-list="featured">
+        
       <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="ai" data-title="BI in a Box" data-tags="python 3.14|nixtla (statsforecast, neuralforecast, mlforecast)|docker|pandas|scikit-learn|bash shell" data-search-text="BI in a Box Business Intelligence in a Box INDUST Systems Ltd., Greece INDUST Systems 2024 – 2025 AI End-to-end Business Intelligence platform that turns raw data from ERP systems and databases into insights via dashboards, reporting and time-series forecasting. Python 3.14 Nixtla (StatsForecast, NeuralForecast, MLForecast) Docker Pandas Scikit-Learn Bash shell">
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="professional" data-flagship="true" data-order="1" data-categories="web iot" data-title="IoT Control" data-tags="typescript|nestjs|angular|timescaledb|mqtt|keycloak|grafana|docker" data-search-text="IoT Control INDUST Systems, Greece INDUST Systems Web IoT INDUST Systems&#39; monitoring and notification platform for industrial environments: live SCADA-style dashboards, charts, scenarios and alerts built on device data. TypeScript NestJS Angular TimescaleDB MQTT Keycloak Grafana Docker">
+          <div class="project-card__media">
+            <img src="assets/img/portfolio/web/iot-control/iot-control.jpeg" width="1024" height="1024" alt="Illustration of an IoT dashboard: a glowing central IoT hub linked to panels showing air temperature, a humidity gauge, an energy bar chart and a pump switch, with a temperature alert." decoding="async">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">Web</span>
+                <span class="badge projects-card__badge-more">IoT</span>
+                <span class="badge badge--featured"><svg class="icon icon-sparkles" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/><path d="M5 3.5l.5 1.3 1.3.5-1.3.5L5 7l-.5-1.2-1.3-.5 1.3-.5z"/></svg>Featured</span>
+              </span>
+              
+            </div>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/iot-control.html">IoT Control</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>INDUST Systems, Greece</span></p>
+            <p class="project-card__summary">INDUST Systems&#39; monitoring and notification platform for industrial environments: live SCADA-style dashboards, charts, scenarios and alerts built on device data.</p>
+            <ul class="tag-list project-card__tags" aria-label="Technologies">
+              <li class="tag">TypeScript</li><li class="tag">NestJS</li><li class="tag">Angular</li>
+            </ul>
+            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
+          </div>
+        </article>
+      </li>
+      <li data-reveal>
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="professional" data-flagship="true" data-order="2" data-categories="ai" data-title="BI in a Box" data-tags="python 3.14|nixtla (statsforecast, neuralforecast, mlforecast)|docker|pandas|scikit-learn|bash shell" data-search-text="BI in a Box Business Intelligence in a Box INDUST Systems Ltd., Greece INDUST Systems 2024 – 2025 AI End-to-end Business Intelligence platform that turns raw data from ERP systems and databases into insights via dashboards, reporting and time-series forecasting. Python 3.14 Nixtla (StatsForecast, NeuralForecast, MLForecast) Docker Pandas Scikit-Learn Bash shell">
           <div class="project-card__media">
             <img src="assets/img/portfolio/ai-pics/bi-in-a-box-bg-2.jpeg" width="1024" height="1024" alt="Illustration of a glowing black box labelled &quot;AI Business Intelligence&quot; projecting holographic charts, graphs and data panels into the air" decoding="async">
           </div>
           <div class="project-card__body">
             <div class="project-card__meta">
-              <span class="badge badge--accent">AI</span>
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">AI</span>
+                
+                <span class="badge badge--featured"><svg class="icon icon-sparkles" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/><path d="M5 3.5l.5 1.3 1.3.5-1.3.5L5 7l-.5-1.2-1.3-.5 1.3-.5z"/></svg>Featured</span>
+              </span>
               <span class="project-card__year">2024 – 2025</span>
             </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/bi-in-a-box.html">BI in a Box</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>INDUST Systems Ltd., Greece</span></p>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/bi-in-a-box.html">BI in a Box</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>INDUST Systems Ltd., Greece<span class="projects-card__when"> · 2024 – 2025</span></span></p>
             <p class="project-card__summary">End-to-end Business Intelligence platform that turns raw data from ERP systems and databases into insights via dashboards, reporting and time-series forecasting.</p>
             <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Python 3.14</li><li class="tag">Nixtla (StatsForecast, NeuralForecast, MLForecast)</li><li class="tag">Docker</li><li class="tag">Pandas</li>
-              <li class="tag" title="Scikit-Learn, Bash shell">+2</li>
+              <li class="tag">Python 3.14</li><li class="tag">Nixtla (StatsForecast, NeuralForecast, MLForecast)</li><li class="tag">Docker</li>
             </ul>
             <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
           </div>
         </article>
       </li>
       <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="ai" data-title="Data Mining" data-tags="scikit-learn|svm|python3|ml|neural networks|nltk" data-search-text="Data Mining University of Patras, Greece University of Patras AI Model evaluation on a 75%-25% training-test split using f1 score, precision and recall, parameter tuning, SVM training and the use of neural networks. Scikit-Learn SVM Python3 ML Neural Networks NLTK">
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="professional" data-flagship="true" data-order="3" data-categories="telecom" data-title="Integration &amp; Order Management CRs" data-tags="java 1.8|weblogic 10.x|javascript|reactjs|angularjs|redis|microservices|weblogic portal 10|soap – rest web services|websockets|maven|svn|git|oracle db|oracle soa suite 12c|oracle osm|weblogic integration (wli)|java ee" data-search-text="Integration &amp; Order Management CRs OTE, Greece Cosmote 2022 – 2026 Telecom New Order Management and Integration functionalities enabling BSS–OSS communication, built on Oracle SOA Suite 12c, Oracle OSM, WebLogic Integration (WLI) and Java EE. Java 1.8 WebLogic 10.x JavaScript ReactJS AngularJS Redis Microservices WebLogic Portal 10 SOAP – REST Web Services WebSockets Maven SVN Git Oracle DB Oracle SOA Suite 12c Oracle OSM WebLogic Integration (WLI) Java EE">
           <div class="project-card__media">
-            <img src="assets/img/portfolio/ai-pics/data-mining-bg.jpeg" width="1024" height="1024" alt="Robot miner with headlamp and pickaxe kneeling on a hillside of binary digits, holding a bucket of gold nuggets" decoding="async">
+            <img src="assets/img/portfolio/telecom/crs.jpeg" width="1024" height="1024" alt="Dark isometric illustration of suited figures at workstations linked by glowing circuit lines beneath floating screens showing icons." decoding="async">
           </div>
           <div class="project-card__body">
             <div class="project-card__meta">
-              <span class="badge badge--accent">AI</span>
-              
-            </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/data-mining.html">Data Mining</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
-            <p class="project-card__summary">Model evaluation on a 75%-25% training-test split using f1 score, precision and recall, parameter tuning, SVM training and the use of neural networks.</p>
-            <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Scikit-Learn</li><li class="tag">SVM</li><li class="tag">Python3</li><li class="tag">ML</li>
-              <li class="tag" title="Neural Networks, NLTK">+2</li>
-            </ul>
-            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
-          </div>
-        </article>
-      </li>
-      <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="ai" data-title="Multi-dimensional Data Structures" data-tags="k-d trees|quad trees|2d range trees" data-search-text="Multi-dimensional Data Structures 2D kNN Queries Implementation University of Patras, Greece University of Patras AI 2D kNN query implementation using K-D Trees, Quad Trees and 2D Range Trees over a dataset of check-in events with x/y coordinates, accuracy, timestamps and place ids. K-D Trees Quad Trees 2D Range Trees">
-          <div class="project-card__media">
-            <img src="assets/img/portfolio/web/mdds/mdds.jpeg" width="1024" height="1024" alt="Abstract artwork of a transparent multi-dimensional grid holding colorful cubes and spheres above a glowing network of points." decoding="async">
-          </div>
-          <div class="project-card__body">
-            <div class="project-card__meta">
-              <span class="badge badge--accent">AI</span>
-              
-            </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/mdds.html">Multi-dimensional Data Structures</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
-            <p class="project-card__summary">2D kNN query implementation using K-D Trees, Quad Trees and 2D Range Trees over a dataset of check-in events with x/y coordinates, accuracy, timestamps and place ids.</p>
-            <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">K-D Trees</li><li class="tag">Quad Trees</li><li class="tag">2D Range Trees</li>
-              
-            </ul>
-            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
-          </div>
-        </article>
-      </li>
-      <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="telecom" data-title="Integration &amp; Order Management CRs" data-tags="java 1.8|weblogic 10.x|javascript|reactjs|angularjs|redis|microservices|weblogic portal 10|soap – rest web services|websockets|maven|svn|git|oracle db|oracle soa suite 12c|oracle osm|weblogic integration (wli)|java ee" data-search-text="Integration &amp; Order Management CRs OTE, Greece Cosmote 2022 – 2026 Telecom New Order Management and Integration functionalities enabling BSS–OSS communication, built on Oracle SOA Suite 12c, Oracle OSM, WebLogic Integration (WLI) and Java EE. Java 1.8 WebLogic 10.x JavaScript ReactJS AngularJS Redis Microservices WebLogic Portal 10 SOAP – REST Web Services WebSockets Maven SVN Git Oracle DB Oracle SOA Suite 12c Oracle OSM WebLogic Integration (WLI) Java EE">
-          <div class="project-card__media">
-            <img src="assets/img/portfolio/telecom/crs.jpeg" width="1024" height="1024" alt="Dark isometric illustration of suited figures at workstations linked by glowing circuit lines beneath floating screens showing icons." decoding="async" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <div class="project-card__meta">
-              <span class="badge badge--accent">Telecom</span>
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">Telecom</span>
+                
+                <span class="badge badge--featured"><svg class="icon icon-sparkles" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/><path d="M5 3.5l.5 1.3 1.3.5-1.3.5L5 7l-.5-1.2-1.3-.5 1.3-.5z"/></svg>Featured</span>
+              </span>
               <span class="project-card__year">2022 – 2026</span>
             </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/om-crs.html">Integration &amp; Order Management CRs</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>OTE, Greece</span></p>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/om-crs.html">Integration &amp; Order Management CRs</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>OTE, Greece<span class="projects-card__when"> · 2022 – 2026</span></span></p>
             <p class="project-card__summary">New Order Management and Integration functionalities enabling BSS–OSS communication, built on Oracle SOA Suite 12c, Oracle OSM, WebLogic Integration (WLI) and Java EE.</p>
             <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Java 1.8</li><li class="tag">WebLogic 10.x</li><li class="tag">JavaScript</li><li class="tag">ReactJS</li>
-              <li class="tag" title="AngularJS, Redis, Microservices, WebLogic Portal 10, SOAP – REST Web Services, WebSockets, Maven, SVN, Git, Oracle DB, Oracle SOA Suite 12c, Oracle OSM, WebLogic Integration (WLI), Java EE">+14</li>
+              <li class="tag">Java 1.8</li><li class="tag">WebLogic 10.x</li><li class="tag">JavaScript</li>
             </ul>
             <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
           </div>
         </article>
       </li>
+      </ul>
+    </section>
+    <section class="projects-group projects-group--professional" data-group-section="professional" aria-labelledby="projects-professional-title">
+      <header class="section-head projects-group__head">
+        <p class="eyebrow"><span class="eyebrow__label">Projects</span></p>
+        <h2 class="section-title projects-group__title" id="projects-professional-title">Professional work<span class="projects-group__count" data-group-count>4</span></h2>
+      </header>
+      <ul class="project-grid projects-grid projects-grid--professional" role="list" data-project-grid data-group-list="professional">
+        
       <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="telecom" data-title="New Premium Internet Access" data-tags="oracle osm|xquery|xml|xpath|oracle sql developer|oracle siebel crm|oracle uim|soa" data-search-text="New Premium Internet Access OTE, Greece OTE 08/2022 – 03/2023 Telecom Order to Bill and Fault to Repair solution for OTE&#39;s Premium Internet Access, a symmetric internet product, built on Oracle Siebel CRM, OSM and UIM. Oracle OSM XQuery XML XPath Oracle SQL Developer Oracle Siebel CRM Oracle UIM SOA">
-          <div class="project-card__media">
-            <img src="assets/img/portfolio/telecom/pia.jpeg" width="1024" height="1024" alt="Illustration of a glowing network globe with connectivity icons above a night street, a red bus and business people." decoding="async" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <div class="project-card__meta">
-              <span class="badge badge--accent">Telecom</span>
-              <span class="project-card__year">08/2022 – 03/2023</span>
-            </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/ote-pia.html">New Premium Internet Access</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>OTE, Greece</span></p>
-            <p class="project-card__summary">Order to Bill and Fault to Repair solution for OTE&#39;s Premium Internet Access, a symmetric internet product, built on Oracle Siebel CRM, OSM and UIM.</p>
-            <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Oracle OSM</li><li class="tag">XQuery</li><li class="tag">XML</li><li class="tag">XPath</li>
-              <li class="tag" title="Oracle SQL Developer, Oracle Siebel CRM, Oracle UIM, SOA">+4</li>
-            </ul>
-            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
-          </div>
-        </article>
-      </li>
-      <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="telecom" data-title="Digital Onboarding" data-tags="oracle osm|weblogic 10.x|weblogic portal 10|soap – rest web services|oracle db|siebel mobile|siebel fixed|siebel open ui|osb" data-search-text="Digital Onboarding Digital Onboarding for Prepaid Products and Manage SIM One Order Drop Cosmote, Greece Cosmote 06/2023 – 02/2024 Telecom Digital ordering, SIM activation and onboarding of Cosmote prepaid products across app and site touchpoints, plus the Manage SIM user journey in Siebel Open UI. Oracle OSM WebLogic 10.x WebLogic Portal 10 SOAP – REST Web Services Oracle DB Siebel Mobile Siebel Fixed Siebel Open UI OSB">
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="professional" data-flagship="false" data-order="4" data-categories="telecom" data-title="Digital Onboarding" data-tags="oracle osm|weblogic 10.x|weblogic portal 10|soap – rest web services|oracle db|siebel mobile|siebel fixed|siebel open ui|osb" data-search-text="Digital Onboarding Digital Onboarding for Prepaid Products and Manage SIM One Order Drop Cosmote, Greece Cosmote 06/2023 – 02/2024 Telecom Digital ordering, SIM activation and onboarding of Cosmote prepaid products across app and site touchpoints, plus the Manage SIM user journey in Siebel Open UI. Oracle OSM WebLogic 10.x WebLogic Portal 10 SOAP – REST Web Services Oracle DB Siebel Mobile Siebel Fixed Siebel Open UI OSB">
           <div class="project-card__media">
             <img src="assets/img/portfolio/telecom/dob.jpeg" width="1024" height="1024" alt="Isometric illustration of business figures among linked devices, a central monitor showing an order screen, map pins and network nodes." decoding="async" loading="lazy">
           </div>
           <div class="project-card__body">
             <div class="project-card__meta">
-              <span class="badge badge--accent">Telecom</span>
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">Telecom</span>
+                
+                
+              </span>
               <span class="project-card__year">06/2023 – 02/2024</span>
             </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/dob.html">Digital Onboarding</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>Cosmote, Greece</span></p>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/dob.html">Digital Onboarding</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>Cosmote, Greece<span class="projects-card__when"> · 06/2023 – 02/2024</span></span></p>
             <p class="project-card__summary">Digital ordering, SIM activation and onboarding of Cosmote prepaid products across app and site touchpoints, plus the Manage SIM user journey in Siebel Open UI.</p>
             <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Oracle OSM</li><li class="tag">WebLogic 10.x</li><li class="tag">WebLogic Portal 10</li><li class="tag">SOAP – REST Web Services</li>
-              <li class="tag" title="Oracle DB, Siebel Mobile, Siebel Fixed, Siebel Open UI, OSB">+5</li>
+              <li class="tag">Oracle OSM</li><li class="tag">WebLogic 10.x</li><li class="tag">WebLogic Portal 10</li>
             </ul>
             <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
           </div>
         </article>
       </li>
       <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="web iot" data-title="IoT Control" data-tags="typescript|nestjs|angular|timescaledb|mqtt|keycloak|grafana|docker" data-search-text="IoT Control INDUST Systems, Greece INDUST Systems Web IoT INDUST Systems&#39; monitoring and notification platform for industrial environments: live SCADA-style dashboards, charts, scenarios and alerts built on device data. TypeScript NestJS Angular TimescaleDB MQTT Keycloak Grafana Docker">
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="professional" data-flagship="false" data-order="5" data-categories="telecom" data-title="New Premium Internet Access" data-tags="oracle osm|xquery|xml|xpath|oracle sql developer|oracle siebel crm|oracle uim|soa" data-search-text="New Premium Internet Access OTE, Greece OTE 08/2022 – 03/2023 Telecom Order to Bill and Fault to Repair solution for OTE&#39;s Premium Internet Access, a symmetric internet product, built on Oracle Siebel CRM, OSM and UIM. Oracle OSM XQuery XML XPath Oracle SQL Developer Oracle Siebel CRM Oracle UIM SOA">
           <div class="project-card__media">
-            <img src="assets/img/portfolio/web/iot-control/iot-control.jpeg" width="1024" height="1024" alt="Illustration of an IoT dashboard: a glowing central IoT hub linked to panels showing air temperature, a humidity gauge, an energy bar chart and a pump switch, with a temperature alert." decoding="async" loading="lazy">
+            <img src="assets/img/portfolio/telecom/pia.jpeg" width="1024" height="1024" alt="Illustration of a glowing network globe with connectivity icons above a night street, a red bus and business people." decoding="async" loading="lazy">
           </div>
           <div class="project-card__body">
             <div class="project-card__meta">
-              <span class="badge badge--accent">Web</span><span class="badge">IoT</span>
-              
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">Telecom</span>
+                
+                
+              </span>
+              <span class="project-card__year">08/2022 – 03/2023</span>
             </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/iot-control.html">IoT Control</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>INDUST Systems, Greece</span></p>
-            <p class="project-card__summary">INDUST Systems&#39; monitoring and notification platform for industrial environments: live SCADA-style dashboards, charts, scenarios and alerts built on device data.</p>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/ote-pia.html">New Premium Internet Access</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>OTE, Greece<span class="projects-card__when"> · 08/2022 – 03/2023</span></span></p>
+            <p class="project-card__summary">Order to Bill and Fault to Repair solution for OTE&#39;s Premium Internet Access, a symmetric internet product, built on Oracle Siebel CRM, OSM and UIM.</p>
             <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">TypeScript</li><li class="tag">NestJS</li><li class="tag">Angular</li><li class="tag">TimescaleDB</li>
-              <li class="tag" title="MQTT, Keycloak, Grafana, Docker">+4</li>
+              <li class="tag">Oracle OSM</li><li class="tag">XQuery</li><li class="tag">XML</li>
             </ul>
             <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
           </div>
         </article>
       </li>
       <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="web iot" data-title="ThingsBoard Dashboards" data-tags="thingsboard cloud platform|javascript|dashboard|mqtt|data converters|rule chain" data-search-text="ThingsBoard Dashboards INDUST Systems, Greece INDUST Systems Web IoT IoT platform for data collection, processing, visualization and device management, using MQTT, CoAP and HTTP, with scalability, fault-tolerance and performance. ThingsBoard Cloud Platform JavaScript Dashboard MQTT Data Converters Rule Chain">
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="professional" data-flagship="false" data-order="6" data-categories="web iot" data-title="ThingsBoard Dashboards" data-tags="thingsboard cloud platform|javascript|dashboard|mqtt|data converters|rule chain" data-search-text="ThingsBoard Dashboards INDUST Systems, Greece INDUST Systems Web IoT IoT platform for data collection, processing, visualization and device management, using MQTT, CoAP and HTTP, with scalability, fault-tolerance and performance. ThingsBoard Cloud Platform JavaScript Dashboard MQTT Data Converters Rule Chain">
           <div class="project-card__media">
             <img src="assets/img/portfolio/web/thingsboard/thingsboard.jpeg" width="1024" height="1024" alt="Illustration of glowing dashboard widgets on a dark panel: gauges, bar and line charts, a world map, a large dial." decoding="async" loading="lazy">
           </div>
           <div class="project-card__body">
             <div class="project-card__meta">
-              <span class="badge badge--accent">Web</span><span class="badge">IoT</span>
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">Web</span>
+                <span class="badge projects-card__badge-more">IoT</span>
+                
+              </span>
               
             </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/thingsboard.html">ThingsBoard Dashboards</a></h2>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/thingsboard.html">ThingsBoard Dashboards</a></h3>
             <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>INDUST Systems, Greece</span></p>
             <p class="project-card__summary">IoT platform for data collection, processing, visualization and device management, using MQTT, CoAP and HTTP, with scalability, fault-tolerance and performance.</p>
             <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">ThingsBoard Cloud Platform</li><li class="tag">JavaScript</li><li class="tag">Dashboard</li><li class="tag">MQTT</li>
-              <li class="tag" title="Data Converters, Rule Chain">+2</li>
+              <li class="tag">ThingsBoard Cloud Platform</li><li class="tag">JavaScript</li><li class="tag">Dashboard</li>
             </ul>
             <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
           </div>
         </article>
       </li>
       <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="web" data-title="Heat – Ecomap" data-tags="html|php|xml|javascript|css|angular|node.js" data-search-text="Heat – Ecomap University of Patras, Greece University of Patras Web Interactive heatmap visualization of real-time data, showing metrics such as population density, temperature variations or traffic patterns over a geographic area. HTML PHP XML JavaScript CSS Angular Node.js">
-          <div class="project-card__media">
-            <img src="assets/img/portfolio/web/ecomap/ecomap-bg.jpeg" width="1024" height="1024" alt="Abstract glowing world-map heatmap in red, yellow and cyan on a dark navy background, with bright hotspots over the continents." decoding="async" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <div class="project-card__meta">
-              <span class="badge badge--accent">Web</span>
-              
-            </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/ecomap.html">Heat – Ecomap</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
-            <p class="project-card__summary">Interactive heatmap visualization of real-time data, showing metrics such as population density, temperature variations or traffic patterns over a geographic area.</p>
-            <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">HTML</li><li class="tag">PHP</li><li class="tag">XML</li><li class="tag">JavaScript</li>
-              <li class="tag" title="CSS, Angular, Node.js">+3</li>
-            </ul>
-            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
-          </div>
-        </article>
-      </li>
-      <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="simulation" data-title="Production Line Simulator" data-tags="python3|simpy|pandas|threading|tkinter|matplotlib|mysql" data-search-text="Production Line Simulator Thesis University of Patras, Greece Simulation Simulation of a production line that tracks machine stops across RUN, STANDBY and STOP states to identify problems and optimize production performance indicators. Python3 SimPy Pandas Threading Tkinter Matplotlib MySQL">
-          <div class="project-card__media">
-            <img src="assets/img/portfolio/simulation/sim-bg.jpeg" width="1024" height="1024" alt="Dark isometric illustration of a factory with glowing conveyor belts and machines beside floating dashboard panels showing charts and gears." decoding="async" loading="lazy">
-          </div>
-          <div class="project-card__body">
-            <div class="project-card__meta">
-              <span class="badge badge--accent">Simulation</span>
-              
-            </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/simulation-software.html">Production Line Simulator</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
-            <p class="project-card__summary">Simulation of a production line that tracks machine stops across RUN, STANDBY and STOP states to identify problems and optimize production performance indicators.</p>
-            <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Python3</li><li class="tag">SimPy</li><li class="tag">Pandas</li><li class="tag">Threading</li>
-              <li class="tag" title="Tkinter, Matplotlib, MySQL">+3</li>
-            </ul>
-            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
-          </div>
-        </article>
-      </li>
-      <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="iot" data-title="Industrial IoT controllers (zPasteurAIzer)" data-tags="python|redis|mqtt|mysql|shell scripts|raspberrypi" data-search-text="Industrial IoT controllers (zPasteurAIzer) Athenian Brewery, Greece INDUST Systems 2021 – 2022 IoT RaspberryPi-based industrial IoT controllers for digitizing production lines: reading process signals, pre-processing data, sending it to the cloud, executing commands. Python Redis MQTT MySQL Shell Scripts RaspberryPi">
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="professional" data-flagship="false" data-order="7" data-categories="iot" data-title="Industrial IoT controllers (zPasteurAIzer)" data-tags="python|redis|mqtt|mysql|shell scripts|raspberrypi" data-search-text="Industrial IoT controllers (zPasteurAIzer) Athenian Brewery, Greece INDUST Systems 2021 – 2022 IoT RaspberryPi-based industrial IoT controllers for digitizing production lines: reading process signals, pre-processing data, sending it to the cloud, executing commands. Python Redis MQTT MySQL Shell Scripts RaspberryPi">
           <div class="project-card__media">
             <img src="assets/img/portfolio/iot/zpasteuraizer-controllers.jpeg" width="1024" height="1024" alt="Illustration of a RaspberryPi-style controller board wired through signal lines to a tank and pipe schematic, with a link to a cloud" decoding="async" loading="lazy">
           </div>
           <div class="project-card__body">
             <div class="project-card__meta">
-              <span class="badge badge--accent">IoT</span>
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">IoT</span>
+                
+                
+              </span>
               <span class="project-card__year">2021 – 2022</span>
             </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/zpasteuraizer-controllers.html">Industrial IoT controllers (zPasteurAIzer)</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>Athenian Brewery, Greece</span></p>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/zpasteuraizer-controllers.html">Industrial IoT controllers (zPasteurAIzer)</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>Athenian Brewery, Greece<span class="projects-card__when"> · 2021 – 2022</span></span></p>
             <p class="project-card__summary">RaspberryPi-based industrial IoT controllers for digitizing production lines: reading process signals, pre-processing data, sending it to the cloud, executing commands.</p>
             <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Python</li><li class="tag">Redis</li><li class="tag">MQTT</li><li class="tag">MySQL</li>
-              <li class="tag" title="Shell Scripts, RaspberryPi">+2</li>
+              <li class="tag">Python</li><li class="tag">Redis</li><li class="tag">MQTT</li>
+            </ul>
+            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
+          </div>
+        </article>
+      </li>
+      </ul>
+    </section>
+    <section class="projects-group projects-group--academic" data-group-section="academic" aria-labelledby="projects-academic-title">
+      <header class="section-head projects-group__head">
+        <p class="eyebrow"><span class="eyebrow__label">Projects</span></p>
+        <h2 class="section-title projects-group__title" id="projects-academic-title">Academic &amp; personal<span class="projects-group__count" data-group-count>5</span></h2>
+      </header>
+      <ul class="project-grid projects-grid projects-grid--academic" role="list" data-project-grid data-group-list="academic">
+        
+      <li data-reveal>
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="academic" data-flagship="false" data-order="8" data-categories="simulation" data-title="Production Line Simulator" data-tags="python3|simpy|pandas|threading|tkinter|matplotlib|mysql" data-search-text="Production Line Simulator Thesis University of Patras, Greece Simulation Simulation of a production line that tracks machine stops across RUN, STANDBY and STOP states to identify problems and optimize production performance indicators. Python3 SimPy Pandas Threading Tkinter Matplotlib MySQL">
+          <div class="project-card__media">
+            <img src="assets/img/portfolio/simulation/sim-bg.jpeg" width="1024" height="1024" alt="Dark isometric illustration of a factory with glowing conveyor belts and machines beside floating dashboard panels showing charts and gears." decoding="async" loading="lazy">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">Simulation</span>
+                
+                
+              </span>
+              
+            </div>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/simulation-software.html">Production Line Simulator</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
+            <p class="project-card__summary">Simulation of a production line that tracks machine stops across RUN, STANDBY and STOP states to identify problems and optimize production performance indicators.</p>
+            <ul class="tag-list project-card__tags" aria-label="Technologies">
+              <li class="tag">Python3</li><li class="tag">SimPy</li><li class="tag">Pandas</li>
             </ul>
             <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
           </div>
         </article>
       </li>
       <li data-reveal>
-        <article class="project-card card projects-card" data-tilt data-project-card data-categories="iot" data-title="IoT application for energy meters" data-tags="python|modbus rtu|linux|rs-485|raspberrypi" data-search-text="IoT application for energy meters Athenian Brewery (Heineken), Patras, Greece IoT-Lab 2017 – 2018 IoT RaspberryPi-based IoT application that reads electricity, water and steam energy meters over RS-485 (Modbus RTU), piloted at the Athenian Brewery factory in Patras. Python Modbus RTU Linux RS-485 RaspberryPi">
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="academic" data-flagship="false" data-order="9" data-categories="web" data-title="Heat – Ecomap" data-tags="html|php|xml|javascript|css|angular|node.js" data-search-text="Heat – Ecomap University of Patras, Greece University of Patras Web Interactive heatmap visualization of real-time data, showing metrics such as population density, temperature variations or traffic patterns over a geographic area. HTML PHP XML JavaScript CSS Angular Node.js">
           <div class="project-card__media">
-            <img src="assets/img/portfolio/iot/energy-meters-iot.jpeg" width="1024" height="1024" alt="Illustration of electricity, water and steam meter dials connected over an RS-485 bus to a small controller board" decoding="async" loading="lazy">
+            <img src="assets/img/portfolio/web/ecomap/ecomap-bg.jpeg" width="1024" height="1024" alt="Abstract glowing world-map heatmap in red, yellow and cyan on a dark navy background, with bright hotspots over the continents." decoding="async" loading="lazy">
           </div>
           <div class="project-card__body">
             <div class="project-card__meta">
-              <span class="badge badge--accent">IoT</span>
-              <span class="project-card__year">2017 – 2018</span>
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">Web</span>
+                
+                
+              </span>
+              
             </div>
-            <h2 class="project-card__title"><a class="project-card__link" href="projects/energy-meters-iot.html">IoT application for energy meters</a></h2>
-            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>Athenian Brewery (Heineken), Patras, Greece</span></p>
-            <p class="project-card__summary">RaspberryPi-based IoT application that reads electricity, water and steam energy meters over RS-485 (Modbus RTU), piloted at the Athenian Brewery factory in Patras.</p>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/ecomap.html">Heat – Ecomap</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
+            <p class="project-card__summary">Interactive heatmap visualization of real-time data, showing metrics such as population density, temperature variations or traffic patterns over a geographic area.</p>
             <ul class="tag-list project-card__tags" aria-label="Technologies">
-              <li class="tag">Python</li><li class="tag">Modbus RTU</li><li class="tag">Linux</li><li class="tag">RS-485</li>
-              <li class="tag" title="RaspberryPi">+1</li>
+              <li class="tag">HTML</li><li class="tag">PHP</li><li class="tag">XML</li>
             </ul>
             <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
           </div>
         </article>
       </li>
-    </ul>
+      <li data-reveal>
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="academic" data-flagship="false" data-order="10" data-categories="ai" data-title="Data Mining" data-tags="scikit-learn|svm|python3|ml|neural networks|nltk" data-search-text="Data Mining University of Patras, Greece University of Patras AI Model evaluation on a 75%-25% training-test split using f1 score, precision and recall, parameter tuning, SVM training and the use of neural networks. Scikit-Learn SVM Python3 ML Neural Networks NLTK">
+          <div class="project-card__media">
+            <img src="assets/img/portfolio/ai-pics/data-mining-bg.jpeg" width="1024" height="1024" alt="Robot miner with headlamp and pickaxe kneeling on a hillside of binary digits, holding a bucket of gold nuggets" decoding="async" loading="lazy">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">AI</span>
+                
+                
+              </span>
+              
+            </div>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/data-mining.html">Data Mining</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
+            <p class="project-card__summary">Model evaluation on a 75%-25% training-test split using f1 score, precision and recall, parameter tuning, SVM training and the use of neural networks.</p>
+            <ul class="tag-list project-card__tags" aria-label="Technologies">
+              <li class="tag">Scikit-Learn</li><li class="tag">SVM</li><li class="tag">Python3</li>
+            </ul>
+            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
+          </div>
+        </article>
+      </li>
+      <li data-reveal>
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="academic" data-flagship="false" data-order="11" data-categories="ai" data-title="Multi-dimensional Data Structures" data-tags="k-d trees|quad trees|2d range trees" data-search-text="Multi-dimensional Data Structures 2D kNN Queries Implementation University of Patras, Greece University of Patras AI 2D kNN query implementation using K-D Trees, Quad Trees and 2D Range Trees over a dataset of check-in events with x/y coordinates, accuracy, timestamps and place ids. K-D Trees Quad Trees 2D Range Trees">
+          <div class="project-card__media">
+            <img src="assets/img/portfolio/web/mdds/mdds.jpeg" width="1024" height="1024" alt="Abstract artwork of a transparent multi-dimensional grid holding colorful cubes and spheres above a glowing network of points." decoding="async" loading="lazy">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">AI</span>
+                
+                
+              </span>
+              
+            </div>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/mdds.html">Multi-dimensional Data Structures</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>University of Patras, Greece</span></p>
+            <p class="project-card__summary">2D kNN query implementation using K-D Trees, Quad Trees and 2D Range Trees over a dataset of check-in events with x/y coordinates, accuracy, timestamps and place ids.</p>
+            <ul class="tag-list project-card__tags" aria-label="Technologies">
+              <li class="tag">K-D Trees</li><li class="tag">Quad Trees</li><li class="tag">2D Range Trees</li>
+            </ul>
+            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
+          </div>
+        </article>
+      </li>
+      <li data-reveal>
+        <article class="project-card card projects-card" data-tilt data-project-card data-group="academic" data-flagship="false" data-order="12" data-categories="iot" data-title="IoT application for energy meters" data-tags="python|modbus rtu|linux|rs-485|raspberrypi" data-search-text="IoT application for energy meters Athenian Brewery (Heineken), Patras, Greece IoT-Lab 2017 – 2018 IoT RaspberryPi-based IoT application that reads electricity, water and steam energy meters over RS-485 (Modbus RTU), piloted at the Athenian Brewery factory in Patras. Python Modbus RTU Linux RS-485 RaspberryPi">
+          <div class="project-card__media">
+            <img src="assets/img/portfolio/iot/energy-meters-iot.jpeg" width="1024" height="1024" alt="Illustration of electricity, water and steam meter dials connected over an RS-485 bus to a small controller board" decoding="async" loading="lazy">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="projects-card__badges">
+                <span class="badge badge--accent">IoT</span>
+                
+                
+              </span>
+              <span class="project-card__year">2017 – 2018</span>
+            </div>
+            <h3 class="project-card__title"><a class="project-card__link" href="projects/energy-meters-iot.html">IoT application for energy meters</a></h3>
+            <p class="project-card__client"><svg class="icon icon-briefcase" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/><path d="M11 13v1.5h2V13"/></svg><span>Athenian Brewery (Heineken), Patras, Greece<span class="projects-card__when"> · 2017 – 2018</span></span></p>
+            <p class="project-card__summary">RaspberryPi-based IoT application that reads electricity, water and steam energy meters over RS-485 (Modbus RTU), piloted at the Athenian Brewery factory in Patras.</p>
+            <ul class="tag-list project-card__tags" aria-label="Technologies">
+              <li class="tag">Python</li><li class="tag">Modbus RTU</li><li class="tag">Linux</li>
+            </ul>
+            <span class="project-card__cta link-arrow" aria-hidden="true">View project</span>
+          </div>
+        </article>
+      </li>
+      </ul>
+    </section>
+    </div>
     
     <div class="empty-state projects-empty" data-empty hidden>
       <span class="projects-empty__icon" aria-hidden="true"><svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>
@@ -443,7 +510,7 @@
     <button class="btn btn-ghost btn-sm" type="button" data-consent-choice="granted">Accept</button>
   </div>
 </section>
-<script type="application/json" id="palette-data">{"current":"projects","pages":[{"id":"home","title":"Home","url":"index.html","icon":"rocket","hint":"Page"},{"id":"about","title":"About","url":"about.html","icon":"user-check","hint":"Page"},{"id":"experience","title":"Experience","url":"experience.html","icon":"briefcase","hint":"Page"},{"id":"projects","title":"Projects","url":"projects.html","icon":"folder","hint":"Page"},{"id":"contact","title":"Contact","url":"contact.html","icon":"mail","hint":"Page"}],"projects":[{"id":"bi-in-a-box","title":"BI in a Box","url":"projects/bi-in-a-box.html","icon":"folder","hint":"AI","keywords":"INDUST Systems Ltd., Greece INDUST Systems Python 3.14 Nixtla (StatsForecast, NeuralForecast, MLForecast) Docker Pandas Scikit-Learn Bash shell"},{"id":"data-mining","title":"Data Mining","url":"projects/data-mining.html","icon":"folder","hint":"AI","keywords":"University of Patras, Greece University of Patras Scikit-Learn SVM Python3 ML Neural Networks NLTK"},{"id":"mdds","title":"Multi-dimensional Data Structures","url":"projects/mdds.html","icon":"folder","hint":"AI","keywords":"University of Patras, Greece University of Patras K-D Trees Quad Trees 2D Range Trees"},{"id":"om-crs","title":"Integration \u0026 Order Management CRs","url":"projects/om-crs.html","icon":"folder","hint":"Telecom","keywords":"OTE, Greece Cosmote Java 1.8 WebLogic 10.x JavaScript ReactJS AngularJS Redis Microservices WebLogic Portal 10 SOAP – REST Web Services WebSockets Maven SVN Git Oracle DB Oracle SOA Suite 12c Oracle OSM WebLogic Integration (WLI) Java EE"},{"id":"ote-pia","title":"New Premium Internet Access","url":"projects/ote-pia.html","icon":"folder","hint":"Telecom","keywords":"OTE, Greece OTE Oracle OSM XQuery XML XPath Oracle SQL Developer Oracle Siebel CRM Oracle UIM SOA"},{"id":"dob","title":"Digital Onboarding","url":"projects/dob.html","icon":"folder","hint":"Telecom","keywords":"Cosmote, Greece Cosmote Oracle OSM WebLogic 10.x WebLogic Portal 10 SOAP – REST Web Services Oracle DB Siebel Mobile Siebel Fixed Siebel Open UI OSB"},{"id":"iot-control","title":"IoT Control","url":"projects/iot-control.html","icon":"folder","hint":"Web · IoT","keywords":"INDUST Systems, Greece INDUST Systems TypeScript NestJS Angular TimescaleDB MQTT Keycloak Grafana Docker"},{"id":"thingsboard","title":"ThingsBoard Dashboards","url":"projects/thingsboard.html","icon":"folder","hint":"Web · IoT","keywords":"INDUST Systems, Greece INDUST Systems ThingsBoard Cloud Platform JavaScript Dashboard MQTT Data Converters Rule Chain"},{"id":"ecomap","title":"Heat – Ecomap","url":"projects/ecomap.html","icon":"folder","hint":"Web","keywords":"University of Patras, Greece University of Patras HTML PHP XML JavaScript CSS Angular Node.js"},{"id":"simulation-software","title":"Production Line Simulator","url":"projects/simulation-software.html","icon":"folder","hint":"Simulation","keywords":"University of Patras, Greece Python3 SimPy Pandas Threading Tkinter Matplotlib MySQL"},{"id":"zpasteuraizer-controllers","title":"Industrial IoT controllers (zPasteurAIzer)","url":"projects/zpasteuraizer-controllers.html","icon":"folder","hint":"IoT","keywords":"Athenian Brewery, Greece INDUST Systems Python Redis MQTT MySQL Shell Scripts RaspberryPi"},{"id":"energy-meters-iot","title":"IoT application for energy meters","url":"projects/energy-meters-iot.html","icon":"folder","hint":"IoT","keywords":"Athenian Brewery (Heineken), Patras, Greece IoT-Lab Python Modbus RTU Linux RS-485 RaspberryPi"}],"actions":[{"id":"toggle-theme","title":"Toggle theme","icon":"moon","action":"toggle-theme","keywords":"dark light mode appearance"},{"id":"copy-email","title":"Copy email address","icon":"copy","action":"copy","value":"nikosninosg@gmail.com","hint":"nikosninosg@gmail.com","keywords":"mail contact"},{"id":"send-email","title":"Send an email","icon":"mail","action":"open","url":"mailto:nikosninosg@gmail.com","hint":"nikosninosg@gmail.com","keywords":"write contact"},{"id":"open-github","title":"Open GitHub","icon":"github","action":"open","url":"https://github.com/nikosninosg","external":true,"keywords":"social profile"},{"id":"open-linkedin","title":"Open LinkedIn","icon":"linkedin","action":"open","url":"https://www.linkedin.com/in/nikos-georgopoulos-ninos","external":true,"keywords":"social profile"},{"id":"download-cv","title":"Download CV (PDF)","icon":"download","action":"open","url":"assets/cv/Nikos-Georgopoulos-Ninos-CV.pdf","download":true,"hint":"PDF · 351 KB","keywords":"resume cv pdf download"},{"id":"print-cv","title":"Print / Save CV as PDF","icon":"print","action":"print","url":"experience.html?print=1","keywords":"resume download pdf"}]}</script>
+<script type="application/json" id="palette-data">{"current":"projects","pages":[{"id":"home","title":"Home","url":"index.html","icon":"rocket","hint":"Page"},{"id":"about","title":"About","url":"about.html","icon":"user-check","hint":"Page"},{"id":"experience","title":"Experience","url":"experience.html","icon":"briefcase","hint":"Page"},{"id":"projects","title":"Projects","url":"projects.html","icon":"folder","hint":"Page"},{"id":"contact","title":"Contact","url":"contact.html","icon":"mail","hint":"Page"}],"projects":[{"id":"iot-control","title":"IoT Control","url":"projects/iot-control.html","icon":"folder","hint":"Web · IoT","keywords":"INDUST Systems, Greece INDUST Systems TypeScript NestJS Angular TimescaleDB MQTT Keycloak Grafana Docker"},{"id":"bi-in-a-box","title":"BI in a Box","url":"projects/bi-in-a-box.html","icon":"folder","hint":"AI","keywords":"INDUST Systems Ltd., Greece INDUST Systems Python 3.14 Nixtla (StatsForecast, NeuralForecast, MLForecast) Docker Pandas Scikit-Learn Bash shell"},{"id":"om-crs","title":"Integration \u0026 Order Management CRs","url":"projects/om-crs.html","icon":"folder","hint":"Telecom","keywords":"OTE, Greece Cosmote Java 1.8 WebLogic 10.x JavaScript ReactJS AngularJS Redis Microservices WebLogic Portal 10 SOAP – REST Web Services WebSockets Maven SVN Git Oracle DB Oracle SOA Suite 12c Oracle OSM WebLogic Integration (WLI) Java EE"},{"id":"dob","title":"Digital Onboarding","url":"projects/dob.html","icon":"folder","hint":"Telecom","keywords":"Cosmote, Greece Cosmote Oracle OSM WebLogic 10.x WebLogic Portal 10 SOAP – REST Web Services Oracle DB Siebel Mobile Siebel Fixed Siebel Open UI OSB"},{"id":"ote-pia","title":"New Premium Internet Access","url":"projects/ote-pia.html","icon":"folder","hint":"Telecom","keywords":"OTE, Greece OTE Oracle OSM XQuery XML XPath Oracle SQL Developer Oracle Siebel CRM Oracle UIM SOA"},{"id":"thingsboard","title":"ThingsBoard Dashboards","url":"projects/thingsboard.html","icon":"folder","hint":"Web · IoT","keywords":"INDUST Systems, Greece INDUST Systems ThingsBoard Cloud Platform JavaScript Dashboard MQTT Data Converters Rule Chain"},{"id":"zpasteuraizer-controllers","title":"Industrial IoT controllers (zPasteurAIzer)","url":"projects/zpasteuraizer-controllers.html","icon":"folder","hint":"IoT","keywords":"Athenian Brewery, Greece INDUST Systems Python Redis MQTT MySQL Shell Scripts RaspberryPi"},{"id":"simulation-software","title":"Production Line Simulator","url":"projects/simulation-software.html","icon":"folder","hint":"Simulation","keywords":"University of Patras, Greece Python3 SimPy Pandas Threading Tkinter Matplotlib MySQL"},{"id":"ecomap","title":"Heat – Ecomap","url":"projects/ecomap.html","icon":"folder","hint":"Web","keywords":"University of Patras, Greece University of Patras HTML PHP XML JavaScript CSS Angular Node.js"},{"id":"data-mining","title":"Data Mining","url":"projects/data-mining.html","icon":"folder","hint":"AI","keywords":"University of Patras, Greece University of Patras Scikit-Learn SVM Python3 ML Neural Networks NLTK"},{"id":"mdds","title":"Multi-dimensional Data Structures","url":"projects/mdds.html","icon":"folder","hint":"AI","keywords":"University of Patras, Greece University of Patras K-D Trees Quad Trees 2D Range Trees"},{"id":"energy-meters-iot","title":"IoT application for energy meters","url":"projects/energy-meters-iot.html","icon":"folder","hint":"IoT","keywords":"Athenian Brewery (Heineken), Patras, Greece IoT-Lab Python Modbus RTU Linux RS-485 RaspberryPi"}],"actions":[{"id":"toggle-theme","title":"Toggle theme","icon":"moon","action":"toggle-theme","keywords":"dark light mode appearance"},{"id":"copy-email","title":"Copy email address","icon":"copy","action":"copy","value":"nikosninosg@gmail.com","hint":"nikosninosg@gmail.com","keywords":"mail contact"},{"id":"send-email","title":"Send an email","icon":"mail","action":"open","url":"mailto:nikosninosg@gmail.com","hint":"nikosninosg@gmail.com","keywords":"write contact"},{"id":"open-github","title":"Open GitHub","icon":"github","action":"open","url":"https://github.com/nikosninosg","external":true,"keywords":"social profile"},{"id":"open-linkedin","title":"Open LinkedIn","icon":"linkedin","action":"open","url":"https://www.linkedin.com/in/nikos-georgopoulos-ninos","external":true,"keywords":"social profile"},{"id":"download-cv","title":"Download CV (PDF)","icon":"download","action":"open","url":"assets/cv/Nikos-Georgopoulos-Ninos-CV.pdf","download":true,"hint":"PDF · 351 KB","keywords":"resume cv pdf download"},{"id":"print-cv","title":"Print / Save CV as PDF","icon":"print","action":"print","url":"experience.html?print=1","keywords":"resume download pdf"}]}</script>
 <script type="module" src="assets/js/main.js"></script>
 <script type="module" src="assets/js/pages/projects.js"></script>
 </body>

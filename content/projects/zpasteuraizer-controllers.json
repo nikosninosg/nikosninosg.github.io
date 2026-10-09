@@ -28,8 +28,9 @@
     "alt": "Illustration of a RaspberryPi-style controller board wired through signal lines to a tank and pipe schematic, with a link to a cloud"
   },
   "gallery": [],
+  "group": "professional",
   "featured": false,
-  "order": 11,
+  "order": 7,
   "legacyPaths": [],
   "_notes": [
     "Source: PDF CV, Projects section ('Industrial IoT controllers for digitization of production lines by Athenian Brewery', 2021 - 2022); the long CV gives the same description under the INDUST Systems zPasteurAIzer entry (02/2022 - 06/2022). The two periods differ: owner to verify.",

@@ -39,8 +39,10 @@
     "alt": "Dark isometric illustration of suited figures at workstations linked by glowing circuit lines beneath floating screens showing icons."
   },
   "gallery": [],
-  "featured": false,
-  "order": 4,
+  "group": "professional",
+  "flagship": true,
+  "featured": true,
+  "order": 3,
   "legacyPaths": [
     "projects/om-crs.html"
   ],

@@ -56,8 +56,9 @@
       "caption": "Depall efficiency analysis with root cause analysis (RCA) of non-productive time and stoppage logs."
     }
   ],
-  "featured": true,
-  "order": 10,
+  "group": "academic",
+  "featured": false,
+  "order": 8,
   "legacyPaths": [
     "projects/simulation-software.html"
   ],

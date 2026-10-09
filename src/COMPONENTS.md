@@ -203,18 +203,32 @@ Arrow keys / Esc / swipe, focus trap + return focus to the trigger.
 
 ```html
 <div class="filter-bar" data-filter-bar role="group" aria-label="Filter projects">
-  <button class="chip" type="button" data-filter="all" aria-pressed="true">All <span class="chip__count">9</span></button>
+  <button class="chip" type="button" data-filter="all" aria-pressed="true">All <span class="chip__count">12</span></button>
   <button class="chip" type="button" data-filter="ai" aria-pressed="false">AI <span class="chip__count">3</span></button>
   <label class="search-field">svg<input type="search" data-search placeholder="Search projects…" aria-label="Search projects"></label>
+  <div class="view-toggle" role="group" aria-label="View: grid / list" data-view-toggle>
+    <button class="view-toggle__btn" type="button" data-view="grid" aria-pressed="true">svg<span>Grid</span></button>
+    <button class="view-toggle__btn" type="button" data-view="list" aria-pressed="false">svg<span>List</span></button>
+  </div>
 </div>
-<p data-result-count aria-live="polite">9 projects</p>
-<ul class="project-grid" data-project-grid>
-  <li><article class="project-card card" data-project-card data-categories="ai web" data-title="BI in a Box" data-tags="python|docker|pandas">…</article></li>
-</ul>
+<p data-result-count aria-live="polite">12 projects</p>
+<div data-projects data-view="grid">                      <!-- JS sets data-view; CSS keys the list layout on it -->
+  <section data-group-section="featured|professional|academic" hidden-when-empty>
+    <header class="section-head">…<h2>Featured <span data-group-count>3</span></h2></header>
+    <ul class="project-grid" data-project-grid data-group-list="featured|professional|academic">
+      <li data-reveal><article class="project-card card" data-project-card data-group="professional" data-flagship="true|false" data-order="3"
+           data-categories="ai web" data-title="BI in a Box" data-tags="python|docker|pandas">…</article></li>
+    </ul>
+  </section>
+</div>
 <div class="empty-state" data-empty hidden>No projects match.</div>
 ```
-`data-categories` = space-separated category ids, `data-title` = title, `data-tags` = lower-case technologies joined by `|`.
-Filtering sets `hidden` on the card's `<li>`; state in the URL via `?filter=ai&q=…`. `.chip[aria-pressed="true"]` is the active style.
+`data-categories` = space-separated category ids, `data-title` = title, `data-tags` = lower-case technologies joined by `|`,
+`data-group` = `professional|academic`, `data-flagship` = `true|false`, `data-order` = content `order`.
+Filtering sets `hidden` on the card's `<li>`; state in the URL via `?filter=ai&q=…&view=list` (view also in localStorage `projects-view`, URL wins).
+The script moves each `<li>` between lists: flagship cards live in the `featured` list while at least two of them match, otherwise they drop
+into their own group as ordinary cards. Sections with no visible card get `hidden`; `[data-group-count]` shows the visible count.
+Without JS: all cards visible, grouped, Featured block on top, toolbar and toggle hidden. `.chip[aria-pressed="true"]` is the active style.
 
 ### 2.11 Forms (`pages/contact.js`)
 
@@ -479,6 +493,8 @@ New/extended `ctx` fields (see README "Content schema"):
 | `ctx.certificates[i].hours` | optional string |
 | `ctx.testimonials[i].company / .url` | optional |
 | `ctx.projects[i].period` | optional string |
+| `ctx.projects[i].group` / `.flagship` | `group` required: `'professional'` or `'academic'`; `flagship` optional boolean |
+| `ctx.flagshipProjects`, `ctx.projectGroups` | flagship projects by `order`; `[{id,label,projects}]` for professional / academic |
 | `ctx.skills` | 4 groups now (Languages, Technologies, Libraries, Workflow & testing) |
 | `ctx.categories` | includes `iot` (label "IoT") |
 

@@ -32,8 +32,9 @@
     "alt": "Isometric illustration of business figures among linked devices, a central monitor showing an order screen, map pins and network nodes."
   },
   "gallery": [],
+  "group": "professional",
   "featured": true,
-  "order": 6,
+  "order": 4,
   "legacyPaths": [
     "projects/dob.html"
   ],

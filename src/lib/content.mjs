@@ -15,7 +15,9 @@
  *   languages,           // content/languages.json: [{language,level,details?}]
  *   cv,                  // {href,label,format,sizeKB (computed from the real file),updated}
  *   projects,            // sorted by `order`
- *   featuredProjects,    // projects with featured:true (sorted by `order`)
+ *   featuredProjects,    // projects with featured:true (sorted by `order`); used by the home page
+ *   flagshipProjects,    // projects with flagship:true (sorted by `order`); the Featured block on /projects
+ *   projectGroups,       // [{id:'professional',label,projects},{id:'academic',label,projects}] (sorted by `order`)
  *   categories,          // [{id,label,count}] real categories only, fixed order
  *   categoriesWithAll,   // same, with {id:'all', label:'All', count} first
  *   projectBySlug,       // plain object: slug -> project
@@ -46,6 +48,12 @@ export const NAV = [
 ];
 
 // Any subset is fine (the site currently lists only github + linkedin); the id selects the icon.
+/** Project groups on the Projects page (display order). */
+export const PROJECT_GROUPS = [
+  { id: 'professional', label: 'Professional work' },
+  { id: 'academic', label: 'Academic & personal' },
+];
+const GROUP_IDS = PROJECT_GROUPS.map((g) => g.id);
 const SOCIAL_IDS = ['github', 'linkedin', 'fiverr', 'upwork'];
 const SUMMARY_MAX = 170;
 
@@ -317,6 +325,8 @@ function validateProject(p, c, fileSlug) {
     });
   }
   c.bool(p.featured, 'featured');
+  if (c.str(p.group, 'group') && !GROUP_IDS.includes(p.group)) c.fail('group', `"${p.group}" must be one of ${GROUP_IDS.join('|')}`);
+  if (p.flagship !== undefined) c.bool(p.flagship, 'flagship');
   c.num(p.order, 'order');
   c.strArr(p.legacyPaths, 'legacyPaths');
 }
@@ -370,6 +380,8 @@ export function loadContent() {
   // ---- derive ----------------------------------------------------------
   const projects = [...projectsRaw].sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
   const featuredProjects = projects.filter((p) => p.featured);
+  const flagshipProjects = projects.filter((p) => p.flagship);
+  const projectGroups = PROJECT_GROUPS.map((g) => ({ ...g, projects: projects.filter((p) => p.group === g.id) }));
 
   const categories = CATEGORY_ORDER.map((id) => ({
     id,
@@ -419,6 +431,8 @@ export function loadContent() {
     cv,
     projects,
     featuredProjects,
+    flagshipProjects,
+    projectGroups,
     categories,
     categoriesWithAll,
     projectBySlug,

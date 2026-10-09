@@ -58,8 +58,9 @@
       "caption": "Energy meter, HVAC, smart sensor and water meter overview"
     }
   ],
-  "featured": true,
-  "order": 8,
+  "group": "professional",
+  "featured": false,
+  "order": 6,
   "legacyPaths": [
     "projects/thingsboard.html"
   ],

@@ -52,8 +52,10 @@
       "caption": "Page editor: compose tiles, charts and SCADA views"
     }
   ],
-  "featured": false,
-  "order": 7,
+  "group": "professional",
+  "flagship": true,
+  "featured": true,
+  "order": 1,
   "legacyPaths": [],
   "_notes": [
     "New project added after the migration. Description written from the iot-control repository README/structure, the owner's screenshots and the CV (INDUST Systems, Full-Stack Developer 02/2022-06/2022). No role stated, per the owner.",

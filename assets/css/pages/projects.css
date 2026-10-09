@@ -3,7 +3,7 @@
  * Shared pieces (page-hero, chip, search-field, project-card, empty-state ...) live in components.css;
  * this file is unlayered on purpose so it wins over the shared @layer rules without specificity games.
  *
- * Contents: hero / sticky filter toolbar / status row / grid + cards / empty state / no-JS + motion.
+ * Contents: hero / sticky filter toolbar / status row / view toggle / groups / grid + cards / featured block / list view / empty state / no-JS + motion.
  */
 
 /* ================================================================== HERO */
@@ -181,9 +181,104 @@
   display: none;
 }
 
+/* ================================================================== VIEW TOGGLE */
+.view-toggle {
+  display: inline-flex;
+  flex: none;
+  padding: 0.2rem;
+  gap: 0.15rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--input-bg);
+}
+
+.view-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-block-size: 2.1rem;
+  padding: 0.3rem 0.85rem 0.3rem 0.7rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.view-toggle__btn:hover {
+  color: var(--text);
+}
+
+.view-toggle__btn[aria-pressed="true"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+}
+
+.view-toggle__btn:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (max-width: 599px) {
+  /* phone: search takes the whole first row, so the toggle sits at the end of the chip row */
+  .view-toggle {
+    margin-inline-start: auto;
+  }
+}
+
+/* ================================================================== GROUPS */
+.projects-body {
+  display: grid;
+  gap: clamp(2.75rem, 2rem + 3vw, 4.5rem);
+}
+
+.projects-group[hidden] {
+  display: none;
+}
+
+.projects-group__head {
+  gap: var(--space-2);
+  margin-block-end: clamp(1.1rem, 0.8rem + 1vw, 1.6rem);
+}
+
+.projects-group__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-inline-size: none;
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.025em;
+}
+
+.projects-group__count {
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: 1.9rem;
+  block-size: 1.9rem;
+  padding-inline: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
 /* ================================================================== GRID + CARDS */
 .projects-grid {
   gap: clamp(1rem, 0.6rem + 1.4vw, 1.75rem);
+}
+
+.projects-grid > li {
+  display: flex;
 }
 
 .projects-grid > li[hidden] {
@@ -192,7 +287,7 @@
 
 /* Once the filter has animated something, scroll-reveal must stop interfering (the FLIP code owns
    opacity/transform from then on); neutralise its hidden state and transitions. */
-html.js.reveal-ready .projects-grid[data-live] > [data-reveal] {
+html.js.reveal-ready .projects-body[data-live] [data-reveal] {
   opacity: 1;
   translate: none;
   scale: none;
@@ -201,6 +296,7 @@ html.js.reveal-ready .projects-grid[data-live] > [data-reveal] {
 
 .projects-card {
   /* the tilt, hover and cursor-spotlight come from shared components; just make the card a clean column */
+  inline-size: 100%;
   min-block-size: 100%;
 }
 
@@ -215,11 +311,41 @@ html.js.reveal-ready .projects-grid[data-live] > [data-reveal] {
 
 .projects-card .project-card__year {
   margin-inline-start: auto;
+  white-space: nowrap;
 }
 
 .projects-card .project-card__title {
   font-size: var(--fs-xl);
   letter-spacing: -0.02em;
+}
+
+.projects-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+/* regular cards show the primary category only; the full list is on the detail page */
+.projects-card__badge-more {
+  display: none;
+}
+
+.badge--featured {
+  gap: 0.3rem;
+  padding-inline: 0.5rem 0.6rem;
+  border-color: var(--violet-line);
+  background: var(--violet-soft);
+  color: var(--text);
+}
+
+.badge--featured svg {
+  color: var(--accent-violet);
+}
+
+.projects-card__when {
+  display: none;
 }
 
 .project-card__client {
@@ -247,17 +373,244 @@ html.js.reveal-ready .projects-grid[data-live] > [data-reveal] {
   text-overflow: ellipsis;
 }
 
-/* equal-ish heights: summaries are capped at four lines, tags and CTA stick to the bottom */
+/* calm cards: two-line summaries, tags and CTA stick to the bottom */
 .projects-card .project-card__summary {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 
 .projects-card .project-card__tags {
   min-block-size: 1.75rem;
+  flex-wrap: nowrap;
+}
+
+/* ---------------------------------------------------------------- Featured block (grid view) */
+.projects-grid--featured {
+  gap: clamp(1rem, 0.5rem + 2vw, 2rem);
+}
+
+.projects-grid--featured .projects-card .project-card__title {
+  font-size: var(--fs-2xl);
+  line-height: 1.1;
+}
+
+.projects-grid--featured .projects-card .project-card__summary {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  font-size: 1rem;
+}
+
+.projects-grid--featured .projects-card {
+  --card-pad: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+}
+
+@media (min-width: 700px) {
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* the featured block always has at most two columns; the 3-column rule below applies to regular lists only */
+@media (min-width: 1100px) {
+  .projects-body[data-view="grid"] .projects-grid--featured {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 700px) and (max-width: 999px) {
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .project-card__media {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+/* wide hero card: cover on one side, text on the other */
+@media (min-width: 1000px) {
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .projects-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .project-card__media {
+    aspect-ratio: auto;
+    min-block-size: 22rem;
+    border-radius: calc(var(--radius-lg) - 1px) 0 0 calc(var(--radius-lg) - 1px);
+  }
+
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .project-card__media img {
+    position: absolute;
+    inset: 0;
+  }
+
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .project-card__body {
+    justify-content: center;
+    gap: var(--space-4);
+    padding: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+  }
+
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .project-card__title {
+    font-size: var(--fs-3xl);
+  }
+
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .project-card__summary {
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    font-size: 1.05rem;
+  }
+
+  .projects-body[data-view="grid"] .projects-grid--featured > li:first-child .project-card__tags {
+    margin-block-start: var(--space-2);
+  }
+}
+
+/* medium cards (the other two): bigger covers than regular cards */
+.projects-grid--featured > li:not(:first-child) .project-card__media {
+  aspect-ratio: 16 / 9;
+}
+
+/* ---------------------------------------------------------------- List view */
+.projects-body[data-view="list"] .projects-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.6rem;
+}
+
+.projects-body[data-view="list"] .projects-card {
+  --row-thumb: 4.5rem;
+  display: grid;
+  grid-template-columns: var(--row-thumb) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.9rem;
+  min-block-size: 0;
+  padding: 0.6rem 0.9rem 0.6rem 0.6rem;
+  transform: none;
+}
+
+.projects-body[data-view="list"] .projects-card .project-card__media {
+  inline-size: var(--row-thumb);
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+}
+
+.projects-body[data-view="list"] .projects-card .project-card__media::after {
+  display: none;
+}
+
+.projects-body[data-view="list"] .projects-card:hover .project-card__media img {
+  transform: scale(1.08);
+}
+
+.projects-body[data-view="list"] .projects-card .project-card__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title cta"
+    "client cta"
+    "badges cta";
+  align-items: center;
+  gap: 0.15rem 1rem;
+  padding: 0;
+}
+
+.projects-body[data-view="list"] .project-card__meta {
+  display: contents;
+}
+
+.projects-body[data-view="list"] .projects-card__badges {
+  grid-area: badges;
+  margin-block-start: 0.3rem;
+}
+
+.projects-body[data-view="list"] .project-card__year,
+.projects-body[data-view="list"] .project-card__summary {
+  display: none;
+}
+
+.projects-body[data-view="list"] .projects-card__when {
+  display: inline;
+}
+
+.projects-body[data-view="list"] .project-card__title {
+  grid-area: title;
+  font-size: var(--fs-md);
+  line-height: 1.25;
+}
+
+.projects-body[data-view="list"] .project-card__client {
+  grid-area: client;
+  margin: 0;
+}
+
+.projects-body[data-view="list"] .project-card__tags {
+  display: none;
+  grid-area: tags;
+  min-block-size: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.projects-body[data-view="list"] .project-card__cta {
+  grid-area: cta;
+  padding: 0;
+  gap: 0;
+  font-size: 0;
+}
+
+.projects-body[data-view="list"] .project-card__cta::after {
+  inline-size: 1.3rem;
+  block-size: 1.3rem;
+}
+
+@media (min-width: 700px) {
+  .projects-body[data-view="list"] .projects-card {
+    --row-thumb: 5.5rem;
+    gap: 1.25rem;
+    padding-inline-end: 1.25rem;
+  }
+
+  .projects-body[data-view="list"] .projects-card .project-card__body {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "title badges cta"
+      "client badges cta"
+      "tags badges cta";
+    column-gap: 1.5rem;
+  }
+
+  .projects-body[data-view="list"] .projects-card__badges {
+    margin: 0;
+    justify-content: flex-end;
+  }
+
+  .projects-body[data-view="list"] .project-card__tags {
+    display: flex;
+    margin-block-start: 0.3rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .projects-body[data-view="list"] .projects-card .project-card__body {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "title tags badges cta"
+      "client tags badges cta";
+  }
+
+  .projects-body[data-view="list"] .project-card__tags {
+    margin: 0;
+    justify-content: flex-start;
+  }
+
+  .projects-body[data-view="list"] .projects-card__badges {
+    min-inline-size: 12.5rem;
+  }
+
+  .projects-body[data-view="list"] .projects-card .tag {
+    flex: 0 1 auto;
+    min-inline-size: 0;
+    max-inline-size: 10rem;
+  }
 }
 
 /* ================================================================== EMPTY STATE */
@@ -305,7 +658,8 @@ html.js.reveal-ready .projects-grid[data-live] > [data-reveal] {
 /* ================================================================== NO JS / MOTION */
 /* The filter UI needs JS; without it every project simply stays listed. */
 .no-js .projects-toolbar,
-.no-js .projects-status {
+.no-js .projects-status,
+.no-js .view-toggle {
   display: none;
 }
 

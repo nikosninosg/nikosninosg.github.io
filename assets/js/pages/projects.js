@@ -11,15 +11,27 @@
  *  - Keyboard: Left/Right/Home/End move between chips, Esc clears the search. ("/" opens the command
  *    palette, so it is deliberately not bound here.)
  *
- * Without JS every card is visible and the filter UI is hidden by `.no-js` rules in projects.css.
+ * Structure: a Featured block (flagship cards) + one list per group (professional, academic). Every card
+ * is one <li> that this script moves between lists: while at least two flagship projects match, they live
+ * in the Featured block; otherwise they drop into their own group as ordinary cards. Empty sections hide and
+ * the counts in the headings follow the visible cards.
+ *
+ *  - View toggle (grid / list): [data-view-toggle] buttons set [data-projects][data-view]; persisted in
+ *    localStorage ('projects-view') and ?view=list (URL wins over storage). Switching crossfades.
+ *
+ * Without JS every card is visible, grouped, and the filter/toggle UI is hidden by `.no-js` rules in projects.css.
  */
 import { $, $$, on, debounce, prefersReducedMotion } from '../modules/core.js';
 
-const grid = $('[data-project-grid]');
+const VIEW_KEY = 'projects-view';
+/** Flagship cards stay in the Featured block only while at least this many of them match. */
+const MIN_FEATURED = 2;
+
+const root = $('[data-projects]');
 const bar = $('[data-filter-bar]');
 const input = $('[data-search]');
 
-if (grid && bar && input) init();
+if (root && bar && input) init();
 
 function init() {
   const form = input.closest('form');
@@ -28,28 +40,58 @@ function init() {
   const emptyEl = $('[data-empty]');
   const emptyTitle = $('[data-empty-title]');
   const chips = $$('[data-filter]', bar);
+  const viewBtns = $$('[data-view]', bar);
   const labels = new Map(chips.map((c) => [c.dataset.filter, c.firstChild.textContent.trim()]));
 
   /** Lower-case, accent-free, trimmed: the same normalisation for haystacks and queries. */
   const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
 
-  const items = $$('[data-project-card]', grid).map((el) => ({
+  // Sections: "featured" + one per group, each with its own list and live count.
+  const sections = $$('[data-group-section]', root).map((el) => ({
+    id: el.dataset.groupSection,
+    el,
+    list: $('[data-group-list]', el),
+    count: $('[data-group-count]', el),
+  }));
+  const listOf = Object.fromEntries(sections.map((sec) => [sec.id, sec.list]));
+
+  const items = $$('[data-project-card]', root).map((el) => ({
     el,
     li: el.closest('li'),
     cats: (el.dataset.categories ?? '').split(/\s+/).filter(Boolean),
+    group: el.dataset.group,
+    flagship: el.dataset.flagship === 'true',
+    order: Number(el.dataset.order) || 0,
     hay: norm(`${el.dataset.searchText ?? ''} ${el.dataset.title ?? ''} ${(el.dataset.tags ?? '').replaceAll('|', ' ')}`),
   }));
   const total = items.length;
 
-  const state = { filter: 'all', q: '' };
+  const state = { filter: 'all', q: '', view: 'grid' };
   const tokens = () => norm(state.q).split(/\s+/).filter(Boolean);
   const isFiltered = () => state.filter !== 'all' || tokens().length > 0;
 
   const matches = (item, filter, words) =>
     (filter === 'all' || item.cats.includes(filter)) && words.every((w) => item.hay.includes(w));
 
+  // ------------------------------------------------------------------ view (persisted)
+  const readStoredView = () => {
+    try {
+      return localStorage.getItem(VIEW_KEY);
+    } catch {
+      return null;
+    }
+  };
+  const storeView = (view) => {
+    try {
+      localStorage.setItem(VIEW_KEY, view);
+    } catch {
+      /* private mode: the choice just will not stick */
+    }
+  };
+  const validView = (v) => (v === 'list' || v === 'grid' ? v : null);
+
   // ------------------------------------------------------------------ URL
-  /** Read ?filter / ?q, falling back to legacy hashes (#ai, #filter-ai, #portfolio-ai). */
+  /** Read ?filter / ?q / ?view, falling back to legacy hashes (#ai, #filter-ai, #portfolio-ai). */
   function readUrl() {
     const params = new URLSearchParams(location.search);
     let filter = (params.get('filter') ?? '').toLowerCase();
@@ -59,7 +101,7 @@ function init() {
       filter = labels.has(hash) ? hash : 'all';
       fromHash = filter !== 'all';
     }
-    return { filter, q: (params.get('q') ?? '').trim().slice(0, 80), fromHash };
+    return { filter, q: (params.get('q') ?? '').trim().slice(0, 80), view: validView(params.get('view')), fromHash };
   }
 
   function writeUrl({ clearHash = false } = {}) {
@@ -69,6 +111,8 @@ function init() {
       else url.searchParams.set('filter', state.filter);
       if (tokens().length) url.searchParams.set('q', state.q.trim());
       else url.searchParams.delete('q');
+      if (state.view === 'list') url.searchParams.set('view', 'list');
+      else url.searchParams.delete('view');
       if (clearHash) url.hash = '';
       history.replaceState(history.state, '', url);
     } catch {
@@ -101,6 +145,38 @@ function init() {
     }
   }
 
+  function paintView() {
+    root.dataset.view = state.view;
+    viewBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === state.view)));
+  }
+
+  /**
+   * Put every card in its list (Featured block or own group), ordered by `order`, and hide what does not
+   * match. Counts and section visibility follow. Moving a node keeps it alive (focus, image, listeners).
+   */
+  function place(keep) {
+    const featuredOn = items.filter((it) => it.flagship && keep.has(it.li)).length >= MIN_FEATURED && !!listOf.featured;
+    const buckets = new Map(sections.map((sec) => [sec.id, []]));
+    for (const it of items) {
+      const target = featuredOn && it.flagship ? 'featured' : it.group;
+      (buckets.get(target) ?? buckets.get(it.group)).push(it);
+    }
+    for (const sec of sections) {
+      const list = buckets.get(sec.id).sort((a, b) => a.order - b.order);
+      list.forEach((it, i) => {
+        if (sec.list.children[i] !== it.li) sec.list.insertBefore(it.li, sec.list.children[i] ?? null);
+      });
+      let visible = 0;
+      for (const it of list) {
+        it.li.hidden = !keep.has(it.li);
+        if (!it.li.hidden) visible++;
+      }
+      sec.el.hidden = visible === 0;
+      if (sec.count) sec.count.textContent = String(visible);
+    }
+    if (emptyEl) emptyEl.hidden = keep.size > 0;
+  }
+
   // ------------------------------------------------------------------ applying a change
   let runId = 0;
   let running = [];
@@ -115,12 +191,11 @@ function init() {
   };
   const settled = (anims) => Promise.allSettled(anims.map((a) => a.finished));
 
-  /** The grid just got shorter: if the reader had scrolled into it, bring the first result back under the sticky bar. */
+  /** The page just got shorter: if the reader had scrolled into it, bring the first result back under the sticky bar. */
   function keepResultsInView() {
-    const bar = $('[data-toolbar]');
-    if (!bar) return;
-    const barBottom = bar.getBoundingClientRect().bottom;
-    const gap = grid.getBoundingClientRect().top - barBottom;
+    const toolbar = $('[data-toolbar]');
+    if (!toolbar) return;
+    const gap = root.getBoundingClientRect().top - toolbar.getBoundingClientRect().bottom;
     if (gap < 0) window.scrollBy({ top: gap - 16, behavior: 'smooth' });
   }
 
@@ -138,23 +213,17 @@ function init() {
     const first = new Map(shown.map((li) => [li, li.getBoundingClientRect()]));
     cancelRunning();
 
-    const setVisibility = () => {
-      lis.forEach((li) => { li.hidden = !keep.has(li); });
-      if (emptyEl) emptyEl.hidden = keep.size > 0;
-    };
-
     if (instant) {
-      setVisibility();
+      place(keep);
       return;
     }
 
     // From here on the grid is "live": the scroll-reveal styles must not fight the animations below.
-    grid.dataset.live = '';
+    root.dataset.live = '';
 
     const leaving = shown.filter((li) => !keep.has(li));
     const staying = shown.filter((li) => keep.has(li));
     const entering = lis.filter((li) => keep.has(li) && li.hidden);
-    if (!leaving.length && !entering.length) return; // same set: nothing moves
 
     // 1) leaving cards fade out while the layout is still intact
     if (leaving.length) {
@@ -162,22 +231,28 @@ function init() {
       if (id !== runId) return; // superseded: the newer run cancels these animations
     }
 
-    // 2) change the layout, then glide the survivors from their old cell and fade the newcomers in
-    setVisibility();
+    // 2) change the layout, then glide the survivors from their old cell and fade the newcomers in.
+    //    A card that changed size (Featured <-> regular) cannot glide cleanly: it fades in instead.
+    place(keep);
     cancelRunning();
     const slide = { duration: 520, easing: 'cubic-bezier(.2,.8,.2,1)' };
+    const fadeIn = (li, i) =>
+      play(li, [{ opacity: 0, transform: 'translateY(16px) scale(.96)' }, { opacity: 1, transform: 'none' }], {
+        duration: 420, delay: Math.min(i, 8) * 40, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards',
+      });
+    let n = 0;
     for (const li of staying) {
       const a = first.get(li);
       const b = li.getBoundingClientRect();
+      if (Math.abs(a.width - b.width) > 8) {
+        fadeIn(li, n++);
+        continue;
+      }
       const dx = a.left - b.left;
       const dy = a.top - b.top;
       if (Math.abs(dx) > 1 || Math.abs(dy) > 1) play(li, [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'none' }], slide);
     }
-    entering.forEach((li, i) => {
-      play(li, [{ opacity: 0, transform: 'translateY(16px) scale(.96)' }, { opacity: 1, transform: 'none' }], {
-        duration: 420, delay: Math.min(i, 8) * 40, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards',
-      });
-    });
+    entering.forEach((li) => fadeIn(li, n++));
     keepResultsInView();
     if (!keep.size && emptyEl) {
       // `fill: backwards` keeps the first frame during the delay
@@ -193,10 +268,26 @@ function init() {
     return apply({ animate });
   }
 
+  /** Grid <-> list: the cards change shape completely, so crossfade the whole body instead of gliding each card. */
+  function setView(view, { animate = true, persist = true } = {}) {
+    if (view === state.view) return;
+    state.view = view;
+    if (persist) storeView(view);
+    writeUrl();
+    cancelRunning();
+    paintView();
+    if (!animate || prefersReducedMotion() || document.hidden) return;
+    root.dataset.live = '';
+    play(root, [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  }
+
   // ------------------------------------------------------------------ events
   on(bar, 'click', (event) => {
-    const chip = event.target instanceof Element ? event.target.closest('[data-filter]') : null;
+    const target = event.target instanceof Element ? event.target : null;
+    const chip = target?.closest('[data-filter]');
     if (chip && chip.dataset.filter !== state.filter) setState({ filter: chip.dataset.filter });
+    const view = target?.closest('[data-view]');
+    if (view && validView(view.dataset.view)) setView(view.dataset.view);
   });
 
   // Left/Right/Home/End move focus between the chips (they stay individually tabbable: they are toggles).
@@ -246,7 +337,9 @@ function init() {
   const initial = readUrl();
   state.filter = initial.filter;
   state.q = initial.q;
+  state.view = initial.view ?? validView(readStoredView()) ?? 'grid';
   input.value = state.q;
+  paintView();
   apply({ animate: false });
   // Normalise the address bar once: drop a legacy hash / invalid params, keep valid ones.
   if (initial.fromHash || location.search) writeUrl({ clearHash: initial.fromHash });

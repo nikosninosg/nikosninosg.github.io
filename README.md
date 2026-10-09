@@ -123,6 +123,7 @@ contact form endpoint (formsubmit.co). Theme preference is stored in `localStora
 * `testimonials.json`: optional `company` and `url` (absolute).
 * `skills.json`: four groups (Languages, Technologies, Libraries, Workflow & testing); items `{name, url?}`.
 * `projects/<slug>.json`: optional `period` string (e.g. `"2024 – 2025"`); new category `iot` (label "IoT", after `web`).
+* `projects/<slug>.json`: required `group` (`"professional"` or `"academic"`, shown as "Professional work" / "Academic & personal" on the Projects page); optional `flagship: true` for the 3 main projects (the large Featured block, in `order`). `order` sets the sequence everywhere (also prev/next); `featured` only drives the home page. Current set: flagship = iot-control, bi-in-a-box, om-crs; featured (home) = those plus dob. The Projects page also supports a Grid/List view (`?view=list`, remembered in localStorage).
 * Command palette: action `download-cv` `{action:'open', url:<cv href>, download:true, hint:'PDF · NN KB'}`.
 
 `ctx` exposes: `cv`, `engagements`, `languages`, `experience` (each entry has `kind`), plus the existing fields.

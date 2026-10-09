@@ -1,7 +1,9 @@
 {
   "slug": "data-mining",
   "title": "Data Mining",
-  "categories": ["ai"],
+  "categories": [
+    "ai"
+  ],
   "client": "University of Patras, Greece",
   "organization": "University of Patras",
   "summary": "Model evaluation on a 75%-25% training-test split using f1 score, precision and recall, parameter tuning, SVM training and the use of neural networks.",
@@ -11,7 +13,14 @@
     "Use of neural networks."
   ],
   "contributions": [],
-  "technologies": ["Scikit-Learn", "SVM", "Python3", "ML", "Neural Networks", "NLTK"],
+  "technologies": [
+    "Scikit-Learn",
+    "SVM",
+    "Python3",
+    "ML",
+    "Neural Networks",
+    "NLTK"
+  ],
   "links": [
     {
       "label": "GitHub",
@@ -23,9 +32,12 @@
     "alt": "Robot miner with headlamp and pickaxe kneeling on a hillside of binary digits, holding a bucket of gold nuggets"
   },
   "gallery": [],
+  "group": "academic",
   "featured": false,
-  "order": 2,
-  "legacyPaths": ["projects/data-mining.html"],
+  "order": 10,
+  "legacyPaths": [
+    "projects/data-mining.html"
+  ],
   "_notes": [
     "Old page title was the generic heading \"Projects\" (<title>); the visible heading, the \"Project\" list item and the portfolio card all say \"Data Mining\", so that is used as the title.",
     "The old description was one <div> with blank-line-separated chunks that browsers collapse into a single run of text; it is split here into its 3 evident paragraphs (text unchanged, no typos found).",

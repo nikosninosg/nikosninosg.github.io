@@ -41,8 +41,10 @@
     "alt": "Illustration of a glowing black box labelled \"AI Business Intelligence\" projecting holographic charts, graphs and data panels into the air"
   },
   "gallery": [],
+  "group": "professional",
+  "flagship": true,
   "featured": true,
-  "order": 1,
+  "order": 2,
   "legacyPaths": [
     "projects/ai/bi-in-a-box.html"
   ],
