@@ -1,6 +1,7 @@
 [
   {
     "id": "cognity-software-engineer",
+    "kind": "work",
     "role": "Software Engineer",
     "company": "Cognity",
     "location": "Athens, Greece",
@@ -8,35 +9,46 @@
     "end": "present",
     "period": "07/2022 – present",
     "bullets": [
-      "Analysis of client's projects and requirements",
-      "Developer with Oracle Order & Service Management (Oracle OSM)",
-      "Tester (SIT, UAT)",
-      "Support Engineer for the projects",
-      "Camunda"
+      "Analysis, design, development, testing, deployment and customization of enterprise Order & Service Management (OSM) solutions on Oracle Communications OSM and WebLogic, including specialised testing.",
+      "Development and customization of complex telecommunications service orchestration and fulfillment flows: order decomposition, provisioning, resource reservation, shipping and service activation.",
+      "Design and implementation of XQuery/XML-based business logic, integrations, data transformations and OSM workflows.",
+      "Automated integration and end-to-end testing with Citrus: test scenarios, XML message validation, database validation, test reporting and test automation tooling.",
+      "Camunda/Zeebe-based orchestration: BPMN workflows, workers, message events, correlation, multi-instance activities, error handling and external service integrations.",
+      "Development of Java/Spring Boot microservices and executors for workflow automation, service provisioning, callbacks and integration with external systems.",
+      "Co-developer and contributor on BOB, an AI tool and Spring Boot web application for intelligent workflow/service orchestration and automation.",
+      "Development of telecommunications demonstration environments and service emulators for automated testing, integration validation and customer demonstrations.",
+      "Integration with external APIs and enterprise systems: REST APIs, XML/JSON interfaces, databases and asynchronous messaging.",
+      "Investigation and resolution of complex integration, deployment, workflow, authentication and runtime issues across development, test and customer environments.",
+      "Technical documentation, implementation manuals, test documentation and solution specifications.",
+      "Projects SPOC: feasibility, analysis, design, development and deployment."
     ],
     "technologies": [
       "Oracle OSM",
-      "Java 1.8",
-      "Weblogic 10.x",
-      "Weblogic Portal 10",
-      "Soap – Rest Web Services",
-      "Maven",
-      "Bizagi Modeler",
-      "SVN",
-      "Oracle DB",
       "XQuery",
       "XML",
+      "Java",
+      "Spring Boot",
+      "Camunda",
+      "Zeebe",
+      "BPMN",
+      "Citrus",
+      "Python",
       "MySQL",
-      "Design Studio",
-      "Camunda 8",
+      "SVN",
       "Git",
-      "Gitlab",
+      "Keycloak",
+      "Oracle SOA Suite 12c",
+      "WebLogic",
+      "REST",
+      "Emulator",
+      "Maven",
       "Docker"
     ]
   },
   {
-    "id": "indust-full-stack-developer",
-    "role": "Full-Stack Developer",
+    "id": "indust-back-end-developer",
+    "kind": "work",
+    "role": "Back-End Developer",
     "company": "INDUST Systems",
     "location": "Patras, Greece",
     "start": "2022-02",
@@ -44,21 +56,40 @@
     "period": "02/2022 – 06/2022",
     "bullets": [
       "Cloud development services on the IoT platform IoTControl, to improve efficiency and reduce energy consumption on production lines.",
-      "AI development - enabled App for product quality control during the pasteurization process, in the European research project zPasteurAIzer"
+      "AI-enabled app for product quality control during the pasteurization process, in the European research project zPasteurAIzer.",
+      "Industrial IoT controllers based on RaspberryPi for the zPasteurAIzer project: receiving production process signals, data pre-processing, sending data to the cloud server, receiving commands from the web services and executing orders in industrial automation."
     ],
     "technologies": [
+      "Python",
+      "TypeScript",
       "JavaScript",
       "NestJS",
-      "AngularJS",
+      "TypeORM",
       "Docker",
-      "TypeScript",
       "TimescaleDB",
+      "MySQL",
       "Grafana",
-      "WebStorm",
+      "Keycloak",
       "Git",
-      "GitHub",
-      "Keycloak"
+      "GitHub"
     ]
+  },
+  {
+    "id": "mindspace-iot-lab-team-leader",
+    "kind": "volunteering",
+    "role": "Team Leader, IoT LAB",
+    "company": "Mindspace NGO",
+    "location": "Patras, Greece",
+    "start": "2021-03",
+    "end": "2022-02",
+    "period": "03/2021 – 02/2022",
+    "summary": "Leading a team for designing, creating and operating an IoT laboratory in Patras. Mindspace's objective is to foster entrepreneurship and creativity in startups through mentorship and the provision of essential tools.",
+    "bullets": [
+      "Laboratory organization and management.",
+      "Coordination and supervision of innovative idea development teams.",
+      "Transfer of know-how to students and promotion of entrepreneurship."
+    ],
+    "technologies": []
   },
   {
     "id": "pobuca-customer-support-internship",
@@ -80,6 +111,7 @@
       "RDP",
       "Support",
       "Problem Solving"
-    ]
+    ],
+    "kind": "work"
   }
 ]

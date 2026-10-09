@@ -7,6 +7,10 @@
  *    once, after web fonts are ready; the parameter is then removed so reloads do not re-trigger it.
  *
  * Everything else on the page works without JS, so the buttons are hidden under html.no-js.
+ *
+ *  - Client engagements: the chip filter (data-eng-filter) hides the entries of other clients, hides year
+ *    groups that end up empty and keeps the live count in sync. Without JS everything stays visible.
+ *  - "Show more" <details> are opened while printing (and restored afterwards) so the printed CV is complete.
  */
 const print = () => window.print();
 
@@ -28,3 +32,39 @@ if (params.get('print') === '1') {
     requestAnimationFrame(() => requestAnimationFrame(print));
   });
 }
+
+// ---------------------------------------------------------------- client engagements filter
+const root = document.querySelector('[data-engagements]');
+if (root) {
+  const chips = [...root.querySelectorAll('[data-eng-filter]')];
+  const entries = [...root.querySelectorAll('[data-eng]')];
+  const years = [...root.querySelectorAll('[data-eng-year]')];
+  const count = root.querySelector('[data-eng-count]');
+  const empty = root.querySelector('[data-eng-empty]');
+
+  const apply = (client) => {
+    let shown = 0;
+    for (const entry of entries) {
+      const match = client === 'all' || entry.dataset.client === client;
+      entry.hidden = !match;
+      if (match) shown += 1;
+    }
+    for (const year of years) year.hidden = !year.querySelector('[data-eng]:not([hidden])');
+    for (const chip of chips) chip.setAttribute('aria-pressed', String(chip.dataset.engFilter === client));
+    if (count) count.textContent = shown === entries.length ? `${entries.length} engagements` : `${shown} of ${entries.length} engagements`;
+    if (empty) empty.hidden = shown > 0;
+  };
+
+  for (const chip of chips) chip.addEventListener('click', () => apply(chip.dataset.engFilter));
+}
+
+// ---------------------------------------------------------------- print: open every disclosure
+let reopened = [];
+window.addEventListener('beforeprint', () => {
+  reopened = [...document.querySelectorAll('details:not([open])')];
+  for (const d of reopened) d.open = true;
+});
+window.addEventListener('afterprint', () => {
+  for (const d of reopened) d.open = false;
+  reopened = [];
+});

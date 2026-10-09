@@ -112,3 +112,49 @@ The class names and `data-*` hooks that tie markup, CSS and JS together are docu
 
 The only third-party requests are Google Fonts, Google Tag Manager / GA4 (ids in `content/site.json`) and the
 contact form endpoint (formsubmit.co). Theme preference is stored in `localStorage` under the key `theme`.
+
+## Content schema (additions, October 2026 CV update)
+
+* `site.json`: `cv` block `{href, label, format, updated}` (the build fails if `href` does not exist; `ctx.cv.sizeKB` is computed from the real file). The Birthday fact, the Customers stat and the Fiverr/Upwork socials were removed. Do not add phone numbers or birth dates anywhere.
+* `experience.json`: optional `kind` (`"work"` default, or `"volunteering"`).
+* `engagements.json` (new): `[{id, title, client, country?, period, start:"YYYY-MM", end:"YYYY-MM"|"present", summary, technologies?}]`, newest first by `start` (validated).
+* `languages.json` (new): `[{language, level, details?:[string]}]`.
+* `certificates.json`: optional `hours` string (e.g. `"80 hours"`).
+* `testimonials.json`: optional `company` and `url` (absolute).
+* `skills.json`: four groups (Languages, Technologies, Libraries, Workflow & testing); items `{name, url?}`.
+* `projects/<slug>.json`: optional `period` string (e.g. `"2024 – 2025"`); new category `iot` (label "IoT", after `web`).
+* Command palette: action `download-cv` `{action:'open', url:<cv href>, download:true, hint:'PDF · NN KB'}`.
+
+`ctx` exposes: `cv`, `engagements`, `languages`, `experience` (each entry has `kind`), plus the existing fields.
+
+## Analytics consent
+
+Google Tag Manager / GA4 (IDs in `content/site.json` -> `analytics`) load **only after the visitor accepts**.
+`src/lib/layout.mjs` (`analyticsHead`) emits a tiny inline loader: it sets Google Consent Mode v2 defaults to
+`denied` and defines `window.loadAnalytics()`, which sends `consent update -> granted` and then injects `gtm.js` and
+`gtag.js`. It runs at page load only when `localStorage.consent === 'granted'`. The GTM `<noscript><iframe>` is
+deliberately not emitted (it would load GTM without consent).
+`assets/js/modules/consent.js` + `assets/css/modules/consent.css` render the non-modal banner (Accept and Decline have
+equal weight; privacy details and data controller in a `<details>`). The choice is stored in `localStorage.consent`
+(`granted` / `denied`). The footer "Cookie settings" button and the command-palette action reopen the banner;
+Decline sends `consent update -> denied`, sets `ga-disable-<id>` and best-effort expires `_ga*` cookies.
+The copy lives in `renderConsent()` in `layout.mjs`.
+
+## Favicon and icons
+
+`assets/img/icon.svg` is the brand mark (rounded square, teal-to-green gradient, "N" as a four-node graph, heavier than
+the header version so it stays crisp at 16 px). `icon-32/192/512.png`, `apple-touch-icon-180.png` (opaque, padded) and
+`favicon.ico` (32 px PNG inside an ICO) are rendered from it with headless Chrome; to change the design edit the SVG
+and re-render at those sizes.
+
+## CV download
+
+The header "CV" pill, the mobile-menu item, the footer link, the About/Home buttons and the palette action all read
+`ctx.cv` (from `content/site.json` -> `cv`). To replace the CV, overwrite the PDF at `cv.href`, update `cv.updated`
+and run `node src/build.mjs` (the size shown is computed from the file).
+
+## CI
+
+`.github/workflows/ci.yml` runs on push and pull requests to `main`: `node src/lib/html.test.mjs`,
+`node src/build.mjs --check` (fails when generated HTML is stale) and `node src/check-links.mjs` (zero-dependency
+checker: local href/src/srcset/meta-refresh targets and `#fragment` ids must exist). `npm run check` runs the last two locally.

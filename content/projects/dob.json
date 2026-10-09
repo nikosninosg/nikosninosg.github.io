@@ -9,8 +9,10 @@
   "organization": "Cosmote",
   "summary": "Digital ordering, SIM activation and onboarding of Cosmote prepaid products across app and site touchpoints, plus the Manage SIM user journey in Siebel Open UI.",
   "description": [
-    "Digital Onboarding for Prepaid Products: Cosmote intends to give its customers the opportunity to order and manage prepaid subscriptions through digital channels. The project will support the purchase of prepaid SIM cards (Cosmokarta, WU, Frog and IOTG), as well as the SIM activation and onboarding processes. The in-scope digital touchpoints are the following: MyCosmote App & Site, WU App & Site and Frog App & Site. MyCosmote App will support the flows through native implementation and the rest of the digital touchpoints will incorporate an SPA solution. Cognity will execute the project e2e regarding the systems: Digital (SPA, Common BFF microservices), OM (OSM, OSB, OM microservices) and CRM (Siebel Mobile, Siebel Fixed).",
-    "Manage SIM One Order Drop: The scope of the project is the Implementation of Manage SIM User Journey through Siebel Open UI Customers 360 View for B2B and B2C customers, using modification orders, including use cases of SIM Replacement, SIM Swap and Pre to Post with SIM Change, for all SIM card types (Physical, eSIM, Twin, Multi SIM, XSIM)."
+    "Two related Cosmote programmes delivered end to end by Cognity between June 2023 and February 2024: Digital Onboarding for Prepaid products and Manage SIM One Order Drop.",
+    "Digital Onboarding for Prepaid Products: Cosmote intends to give its customers the opportunity to order and manage prepaid subscriptions through digital channels. The project supports the purchase of prepaid SIM cards (Cosmokarta, WU, Frog and IOTG), as well as the SIM activation and onboarding processes.",
+    "The in-scope digital touchpoints are the MyCosmote App & Site, the WU App & Site and the Frog App & Site. The MyCosmote App supports the flows through native implementation and the other touchpoints incorporate an SPA solution. Cognity executes the project end to end across Digital (SPA, Common BFF microservices), OM (OSM, OSB, OM microservices) and CRM (Siebel Mobile, Siebel Fixed).",
+    "Manage SIM One Order Drop: the scope is the implementation of the Manage SIM user journey through the Siebel Open UI Customer 360 View for B2B and B2C customers, using modification orders. Use cases include SIM Replacement, SIM Swap and Pre to Post with SIM Change, for all SIM card types (Physical, eSIM, Twin, Multi SIM, XSIM)."
   ],
   "contributions": [],
   "technologies": [
@@ -18,7 +20,11 @@
     "WebLogic 10.x",
     "WebLogic Portal 10",
     "SOAP – REST Web Services",
-    "Oracle DB"
+    "Oracle DB",
+    "Siebel Mobile",
+    "Siebel Fixed",
+    "Siebel Open UI",
+    "OSB"
   ],
   "links": [],
   "cover": {
@@ -43,6 +49,8 @@
     "Technologies: the two old blocks listed the same five items, so they were de-duplicated into one array. Capitalisation normalised only: Weblogic -> WebLogic (matches om-crs.json convention), Soap – Rest Web Services -> SOAP – REST Web Services (kept as one item, as on the old page). Note: the Digital Onboarding description mentions Siebel, OSB, SPA and BFF microservices which are NOT in the old technologies line; they were not added to technologies (no invented/inferred facts), but they remain in the description. The old technologies line is probably copied from another project; owner may want to review.",
     "The old page lists no contributions, no links/website, no year and no role, and contains no <img> tags, so contributions, links and gallery are empty and year/role are omitted. Nothing was invented.",
     "The only image associated with the project is the cover shown on the portfolio card (assets/img/portfolio/telecom/dob.jpeg, 1024x1024); the old detail page did not display it, so it is used as cover only and not duplicated in gallery. The old card image had empty alt text; the cover alt was written from the artwork (isometric illustration with business figures, central monitor with an order screen, phone, laptop, map pins, network nodes). The on-screen words inside the artwork are garbled and are not quoted.",
-    "summary (<=170 chars) written strictly from the descriptions: digital ordering, SIM activation and onboarding of prepaid products across app/site touchpoints, plus the Manage SIM user journey in Siebel Open UI."
-  ]
+    "summary (<=170 chars) written strictly from the descriptions: digital ordering, SIM activation and onboarding of prepaid products across app/site touchpoints, plus the Manage SIM user journey in Siebel Open UI.",
+    "CV update (Oct 2026): period added (both engagements ran 06/2023 – 02/2024 in the long CV). Description restructured into a short context paragraph plus the two original descriptions (touchpoints split into their own paragraph); 'end to end' replaces 'e2e'. Siebel (Mobile, Fixed, Open UI) and OSB were added to technologies because the long CV names them for these engagements."
+  ],
+  "period": "06/2023 – 02/2024"
 }

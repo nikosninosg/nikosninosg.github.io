@@ -1,0 +1,193 @@
+[
+  {
+    "id": "yettel-presales",
+    "title": "Yettel Presales",
+    "client": "Yettel",
+    "country": "Bulgaria",
+    "period": "02/2026 – 05/2026",
+    "start": "2026-02",
+    "end": "2026-05",
+    "summary": "Presales engagement for Yettel in Bulgaria, February – May 2026 (Cognity, Consultant)."
+  },
+  {
+    "id": "integration-om-crs-2026",
+    "title": "Integration & Order Management CRs 2026",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "01/2026 – present",
+    "start": "2026-01",
+    "end": "present",
+    "summary": "Implementation of new functionalities in Order Management and Integration systems to enable communication between BSS and OSS systems, for Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas. The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE.",
+    "technologies": [
+      "Oracle SOA Suite 12c",
+      "Oracle OSM",
+      "WebLogic Integration (WLI)",
+      "Java EE"
+    ]
+  },
+  {
+    "id": "mcv-prepaid-one-order-drop",
+    "title": "MCV Prepaid One Order Drop",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "10/2025 – present",
+    "start": "2025-10",
+    "end": "present",
+    "summary": "Implementation of a full digital new subscription based prepaid product. The part of the project managed and implemented by Cognity includes the order capture flow (Cosmote One app BFF application) and the order management flow. The solution integrates with various IT systems, such as the One app client, Siebel, Billing, Payment Gateway, SAP, ELTA Courier, the LOGICA prepaid platform, a Contract Management platform and OSM. It is the second full digital product that COSMOTE implements after Prepaid to Postpaid Order.",
+    "technologies": [
+      "OSM",
+      "Siebel",
+      "SAP"
+    ]
+  },
+  {
+    "id": "mobile-octs",
+    "title": "Mobile OCTs",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "01/2025 – present",
+    "start": "2025-01",
+    "end": "present",
+    "summary": "Project focused on identifying and resolving IT issues impacting mobile telco orders across order capture, order management and provisioning. Key objectives included backlog reduction, root cause analysis, PBI resolution and process automation, with flow redesigns proposed to enhance system reliability and improve the overall customer experience."
+  },
+  {
+    "id": "integration-om-crs-2025",
+    "title": "Integration & Order Management CRs 2025",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "01/2025 – 02/2026",
+    "start": "2025-01",
+    "end": "2026-02",
+    "summary": "Implementation of new functionalities in Order Management and Integration systems to enable communication between BSS and OSS systems, for Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas. The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE.",
+    "technologies": [
+      "Oracle SOA Suite 12c",
+      "Oracle OSM",
+      "WebLogic Integration (WLI)",
+      "Java EE"
+    ]
+  },
+  {
+    "id": "integration-om-crs-2024",
+    "title": "Integration & Order Management CRs 2024",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "06/2023 – 02/2024",
+    "start": "2023-06",
+    "end": "2024-02",
+    "summary": "Implementation of new functionalities in Order Management and Integration systems to enable communication between BSS and OSS systems, for Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas. The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE.",
+    "technologies": [
+      "Oracle SOA Suite 12c",
+      "Oracle OSM",
+      "WebLogic Integration (WLI)",
+      "Java EE"
+    ]
+  },
+  {
+    "id": "manage-sim-one-order-drop",
+    "title": "Manage SIM One Order Drop",
+    "client": "Cosmote",
+    "country": "Greece",
+    "period": "06/2023 – 02/2024",
+    "start": "2023-06",
+    "end": "2024-02",
+    "summary": "Implementation of the Manage SIM user journey through the Siebel Open UI Customer 360 View for B2B and B2C customers, using modification orders. Use cases include SIM Replacement, SIM Swap and Pre to Post with SIM Change, for all SIM card types (Physical, eSIM, Twin, Multi SIM, XSIM).",
+    "technologies": [
+      "Siebel Open UI"
+    ]
+  },
+  {
+    "id": "digital-onboarding-prepaid",
+    "title": "Digital Onboarding for Prepaid products",
+    "client": "Cosmote",
+    "country": "Greece",
+    "period": "06/2023 – 02/2024",
+    "start": "2023-06",
+    "end": "2024-02",
+    "summary": "Cosmote intends to give its customers the opportunity to order and manage prepaid subscriptions through digital channels. The project supports the purchase of prepaid SIM cards (Cosmokarta, WU, Frog and IOTG), as well as SIM activation and onboarding. The in-scope digital touchpoints are the MyCosmote App & Site, the WU App & Site and the Frog App & Site: the MyCosmote App supports the flows through native implementation and the other touchpoints incorporate an SPA solution. Cognity executes the project end to end across Digital (SPA, Common BFF microservices), OM (OSM, OSB, OM microservices) and CRM (Siebel Mobile, Siebel Fixed).",
+    "technologies": [
+      "OSM",
+      "OSB",
+      "Siebel Mobile",
+      "Siebel Fixed",
+      "SPA",
+      "BFF microservices"
+    ]
+  },
+  {
+    "id": "integration-om-crs-2023",
+    "title": "Integration & Order Management CRs 2023",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "03/2023 – 06/2023",
+    "start": "2023-03",
+    "end": "2023-06",
+    "summary": "Implementation of new functionalities in Order Management and Integration systems to enable communication between BSS and OSS systems, for Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas. The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE.",
+    "technologies": [
+      "Oracle SOA Suite 12c",
+      "Oracle OSM",
+      "WebLogic Integration (WLI)",
+      "Java EE"
+    ]
+  },
+  {
+    "id": "o2b-microservices-crs",
+    "title": "O2B Microservices CRs 2025",
+    "client": "Cosmote",
+    "country": "Greece",
+    "period": "01/2023 – 06/2023",
+    "start": "2023-01",
+    "end": "2023-06",
+    "summary": "O2B Microservices change requests for Cosmote (Cognity, Consultant), January – June 2023.",
+    "technologies": [
+      "Microservices"
+    ]
+  },
+  {
+    "id": "om-microservices-crs-2023",
+    "title": "OM Microservices CRs 2023",
+    "client": "Cosmote",
+    "country": "Greece",
+    "period": "01/2023 – 06/2023",
+    "start": "2023-01",
+    "end": "2023-06",
+    "summary": "Implementation of various mini and mid size projects in the area of Order Management. The main applications are the Number Portability Platform, the Communication Hub Platform and the Distributed Order Management (DOM) Platform. All applications are implemented in Java Spring Boot and hosted in the COSMOTE Kubernetes environment. One major addition in this year's projects and technologies was the introduction of the Camunda 8.0 BPM platform, used for the implementation of the Cosmote One (C1) project in the area of Order Management and considered a Target Architecture solution component in Cosmote.",
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Kubernetes",
+      "Camunda 8"
+    ]
+  },
+  {
+    "id": "new-premium-internet-access",
+    "title": "New Premium Internet Access",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "08/2022 – 03/2023",
+    "start": "2022-08",
+    "end": "2023-03",
+    "summary": "Premium Internet Access is a product that extends the OTE Business Product portfolio, providing a Symmetric Internet Solution. Cognity delivers the Order to Bill and Fault to Repair solution, including Order Capture with Oracle Siebel CRM, Central Order Management, Service Order Management and Technical Order Management with the Oracle OSM platform, and service modeling with Oracle UIM. The solution conforms to the RSDOD architecture and integrates with existing OTE systems such as WFM Wrapper, Promitheas, NRI, ASAP and Super Repo through the SOA platform. It tackles the challenges of ordering a Business Product through the processes of the Residential products, without affecting their ordering or fulfillment.",
+    "technologies": [
+      "Oracle Siebel CRM",
+      "Oracle OSM",
+      "Oracle UIM",
+      "SOA"
+    ]
+  },
+  {
+    "id": "integration-om-crs-2022",
+    "title": "Integration & Order Management CRs 2022",
+    "client": "OTE",
+    "country": "Greece",
+    "period": "07/2022 – 02/2023",
+    "start": "2022-07",
+    "end": "2023-02",
+    "summary": "Implementation of new functionalities in Order Management and Integration systems to enable communication between BSS and OSS systems, for Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas. The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE.",
+    "technologies": [
+      "Oracle SOA Suite 12c",
+      "Oracle OSM",
+      "WebLogic Integration (WLI)",
+      "Java EE"
+    ]
+  }
+]

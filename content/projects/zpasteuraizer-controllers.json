@@ -1,0 +1,39 @@
+{
+  "slug": "zpasteuraizer-controllers",
+  "title": "Industrial IoT controllers (zPasteurAIzer)",
+  "categories": [
+    "iot"
+  ],
+  "client": "Athenian Brewery, Greece",
+  "organization": "INDUST Systems",
+  "summary": "RaspberryPi-based industrial IoT controllers for digitizing production lines: reading process signals, pre-processing data, sending it to the cloud, executing commands.",
+  "description": [
+    "Industrial IoT controllers for the digitization of production lines at the Athenian Brewery, developed in the context of the European research project zPasteurAIzer.",
+    "The controllers are industrial planning IoT devices built on the RaspberryPi platform. They receive production process signals, pre-process the data, send it to the cloud server, receive commands from the web services and execute orders in industrial automation.",
+    "The software stack is Python, Redis, MQTT, MySQL and shell scripts."
+  ],
+  "contributions": [],
+  "technologies": [
+    "Python",
+    "Redis",
+    "MQTT",
+    "MySQL",
+    "Shell Scripts",
+    "RaspberryPi"
+  ],
+  "links": [],
+  "period": "2021 – 2022",
+  "cover": {
+    "src": "assets/img/portfolio/iot/zpasteuraizer-controllers.jpeg",
+    "alt": "Illustration of a RaspberryPi-style controller board wired through signal lines to a tank and pipe schematic, with a link to a cloud"
+  },
+  "gallery": [],
+  "featured": false,
+  "order": 11,
+  "legacyPaths": [],
+  "_notes": [
+    "Source: PDF CV, Projects section ('Industrial IoT controllers for digitization of production lines by Athenian Brewery', 2021 - 2022); the long CV gives the same description under the INDUST Systems zPasteurAIzer entry (02/2022 - 06/2022). The two periods differ: owner to verify.",
+    "The cover is an original illustration made for this site with generic data (no real client data).",
+    "The project's AI product-quality-control app for the pasteurization process is part of the INDUST Systems role (see experience) and is not described further here because the CVs give no more detail."
+  ]
+}

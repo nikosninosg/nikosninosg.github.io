@@ -1,15 +1,28 @@
 {
   "slug": "ote-pia",
   "title": "New Premium Internet Access",
-  "categories": ["telecom"],
+  "categories": [
+    "telecom"
+  ],
   "client": "OTE, Greece",
   "organization": "OTE",
   "summary": "Order to Bill and Fault to Repair solution for OTE's Premium Internet Access, a symmetric internet product, built on Oracle Siebel CRM, OSM and UIM.",
   "description": [
-    "Premium Internet Access is a product that extends the OTE Business Product portfolio providing a Symmetric Internet Solution. Cognity delivers in the context of the OTE project the Order to Bill and Fault to Repair solution including Order Capture with Oracle Siebel CRM, Central Order Management, Service Order Management and Technical Order Management with Oracle OSM platform and Service modeling with Oracle UIM. The solution conforms to RSDOD architecture and will integrate with various OTE existing systems, such as WFM Wrapper, Promitheas, NRI, ASAP, Super Repo through SOA platform. The solution tackles the challenges of ordering a Business Product through the processes of the Residential products, without affecting their ordering or fulfillment."
+    "Premium Internet Access is a product that extends the OTE Business Product portfolio, providing a Symmetric Internet Solution. Cognity delivers, in the context of the OTE project, the Order to Bill and Fault to Repair solution.",
+    "The solution includes Order Capture with Oracle Siebel CRM, Central Order Management, Service Order Management and Technical Order Management on the Oracle OSM platform, and service modeling with Oracle UIM. It conforms to the RSDOD architecture and integrates with existing OTE systems, such as WFM Wrapper, Promitheas, NRI, ASAP and Super Repo, through the SOA platform.",
+    "It tackles the challenges of ordering a Business Product through the processes of the Residential products, without affecting their ordering or fulfillment."
   ],
   "contributions": [],
-  "technologies": ["Oracle OSM", "XQuery", "XML", "XPath", "Oracle SQL Developer"],
+  "technologies": [
+    "Oracle OSM",
+    "XQuery",
+    "XML",
+    "XPath",
+    "Oracle SQL Developer",
+    "Oracle Siebel CRM",
+    "Oracle UIM",
+    "SOA"
+  ],
   "links": [],
   "cover": {
     "src": "assets/img/portfolio/telecom/pia.jpeg",
@@ -18,7 +31,9 @@
   "gallery": [],
   "featured": false,
   "order": 5,
-  "legacyPaths": ["projects/ote-pia.html"],
+  "legacyPaths": [
+    "projects/ote-pia.html"
+  ],
   "_notes": [
     "Page title in the old HTML was the generic heading \"Projects\"; used the on-page project title / card title \"New Premium Internet Access\" instead.",
     "Old page showed the title twice (underlined centred h2 and a \"Project:\" list item); stored once as title. Dropped the redundant \"Project\" label.",
@@ -28,6 +43,8 @@
     "The old page lists no contributions, no links/website, no year, no role and contains no <img> tags, so contributions, links and gallery are empty and year/role are omitted. Nothing was invented.",
     "The only image associated with the project is the cover shown on the portfolio card (assets/img/portfolio/telecom/pia.jpeg, 1024x1024), used as cover only; the old detail page did not display it, so it is not duplicated in gallery.",
     "The old card image had empty alt text; cover alt text was written from the artwork (illustration of a network globe with connectivity icons, night street, red bus, business people with tablets).",
-    "summary (<=170 chars) written strictly from the description: Order to Bill and Fault to Repair, symmetric internet product, Oracle Siebel CRM / OSM / UIM."
-  ]
+    "summary (<=170 chars) written strictly from the description: Order to Bill and Fault to Repair, symmetric internet product, Oracle Siebel CRM / OSM / UIM.",
+    "CV update (Oct 2026): period 08/2022 – 03/2023 from the long CV (PDF: 2022 – 2023). Description restructured into 3 paragraphs with the same facts ('will integrate' became 'integrates'); Oracle Siebel CRM, Oracle UIM and SOA added to technologies from the description."
+  ],
+  "period": "08/2022 – 03/2023"
 }

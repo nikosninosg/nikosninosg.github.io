@@ -27,6 +27,7 @@ const LABELS = {
   role: 'Role',
   year: 'Year',
   years: 'Years',
+  period: 'Period',
   category: 'Category',
   categories: 'Categories',
   links: 'Links',
@@ -37,6 +38,8 @@ const LABELS = {
   copied: 'Copied!',
   viewShots: 'View screenshots',
   overview: { eyebrow: 'Overview', title: 'About the project' },
+  technologiesSection: { eyebrow: 'Tech stack', title: 'Technologies', lede: 'What it was built with.' },
+  related: { eyebrow: 'Related', title: 'More in', lead: 'Other projects in the same area.' },
   contributions: { eyebrow: 'Contributions', title: 'What I contributed' },
   gallery: { eyebrow: 'Screenshots', title: 'Screenshots', lede: 'Select an image to view it larger.' },
   expand: 'View larger',
@@ -97,6 +100,9 @@ function imageSize(root, rel) {
 const EXPAND_ICON = raw(
   '<svg class="icon icon-expand" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 4h5v5M9 20H4v-5M20 4l-6.5 6.5M4 20l6.5-6.5"/></svg>',
 );
+
+/** The project's time span: `period` (new) or the legacy `year`. */
+const when = (p) => p.period ?? p.year ?? '';
 
 function eyebrow(index, label) {
   return html`<p class="eyebrow"><span class="eyebrow__index">${index}</span><span class="eyebrow__label">${label}</span></p>`;
@@ -224,7 +230,9 @@ function hero(ctx, project) {
         <p class="project-hero__client">
           <span class="project-hero__client-label">${LABELS.client}</span>
           <span class="project-hero__client-value">${project.client}</span>
+          ${when(project) ? html`<span class="project-hero__period" title="${LABELS.period}">${icon('calendar', { size: 14 })}<span class="sr-only">${LABELS.period}: </span>${when(project)}</span>` : ''}
         </p>
+        ${project.technologies.length ? html`<ul class="tag-list project-hero__tags" role="list" aria-label="${LABELS.technologies}">${project.technologies.slice(0, 6).map((t) => html`<li class="tag">${t}</li>`)}${project.technologies.length > 6 ? html`<li class="tag"><a href="#technologies" aria-label="All ${project.technologies.length} technologies">+${project.technologies.length - 6}</a></li>` : ''}</ul>` : ''}
         ${firstLink || hasGallery
           ? html`
         <div class="project-hero__actions">
@@ -249,12 +257,13 @@ function hero(ctx, project) {
 /** Sticky meta panel: short facts as a definition list, then links (buttons) and technologies (tags). */
 function metaPanel(ctx, project) {
   const orgIsNew = project.organization && !project.client.toLowerCase().includes(project.organization.toLowerCase());
-  const multiYear = project.year && /[,–-]/.test(project.year);
+  const span = when(project);
+  const multiYear = span && /[,–\-]/.test(span);
   const facts = [
     [LABELS.client, project.client],
     orgIsNew ? [LABELS.organisation, project.organization] : null,
     project.role ? [LABELS.role, project.role] : null,
-    project.year ? [multiYear ? LABELS.years : LABELS.year, project.year] : null,
+    span ? [project.period ? LABELS.period : multiYear ? LABELS.years : LABELS.year, span] : null,
   ].filter(Boolean);
   return html`
 <aside class="project-meta card card--flat" aria-labelledby="meta-title">
@@ -271,13 +280,6 @@ function metaPanel(ctx, project) {
     <ul class="project-meta__links" role="list">
       ${project.links.map((l) => html`<li><a class="btn btn-ghost btn-sm project-meta__link" href="${l.url}" target="_blank" rel="noopener noreferrer">${icon(linkIcon(l.url))}<span>${l.label}<span class="sr-only"> ${LABELS.newTab}</span></span></a></li>`)}
     </ul>
-  </div>`
-    : ''}
-  ${project.technologies.length
-    ? html`
-  <div class="project-meta__block">
-    <h3 class="project-meta__label">${LABELS.technologies}</h3>
-    <ul class="tag-list" role="list">${project.technologies.map((t) => html`<li class="tag">${t}</li>`)}</ul>
   </div>`
     : ''}
   <div class="project-meta__block project-meta__share">
@@ -311,6 +313,68 @@ function gallery(ctx, project, index) {
           ${g.caption ? html`<figcaption class="project-gallery__caption"><span class="project-gallery__no">${String(i + 1).padStart(2, '0')}</span>${g.caption}</figcaption>` : ''}
         </figure>
       </li>`)}
+    </ul>
+  </div>
+</section>`;
+}
+
+function techSection(project, index) {
+  if (!project.technologies.length) return '';
+  return html`
+      <section class="project-section project-tech" id="technologies" aria-labelledby="tech-title" data-reveal>
+        <header class="section-head">
+          ${eyebrow(index, LABELS.technologiesSection.eyebrow)}
+          <h2 class="section-title" id="tech-title">${LABELS.technologiesSection.title}</h2>
+        </header>
+        <ul class="tag-list project-tech__list" role="list">${project.technologies.map((t) => html`<li class="tag">${t}</li>`)}</ul>
+      </section>`;
+}
+
+/** Up to three other projects sharing a category (most shared categories first, then the site order). */
+function relatedProjects(ctx, project) {
+  return ctx.projects
+    .filter((p) => p.slug !== project.slug)
+    .map((p) => ({ p, shared: p.categories.filter((c) => project.categories.includes(c)).length, primary: p.categories[0] === project.categories[0] ? 1 : 0 }))
+    .filter((x) => x.shared > 0)
+    .sort((a, b) => b.shared - a.shared || b.primary - a.primary)
+    .slice(0, 3)
+    .map((x) => x.p);
+}
+
+function relatedCard(ctx, p) {
+  const { url, root } = ctx;
+  const catLabel = Object.fromEntries(ctx.categories.map((c) => [c.id, c.label]));
+  const { width, height } = imageSize(root, p.cover.src);
+  return html`
+      <li data-reveal>
+        <article class="project-card card project-related__card">
+          <div class="project-card__media"><img src="${url(p.cover.src)}" width="${width}" height="${height}" alt="${p.cover.alt}" loading="lazy" decoding="async"></div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              ${p.categories.map((c, i) => html`<span class="badge${i === 0 ? ' badge--accent' : ''}">${catLabel[c] ?? c}</span>`)}
+              ${when(p) ? html`<span>${when(p)}</span>` : ''}
+            </div>
+            <h3 class="project-card__title"><a class="project-card__link" href="${url(`projects/${p.slug}.html`)}">${p.title}</a></h3>
+            <p class="project-card__summary">${p.summary}</p>
+          </div>
+        </article>
+      </li>`;
+}
+
+function related(ctx, project) {
+  const items = relatedProjects(ctx, project);
+  if (!items.length) return '';
+  const catLabel = Object.fromEntries(ctx.categories.map((c) => [c.id, c.label]));
+  const label = catLabel[project.categories[0]] ?? project.categories[0];
+  return html`
+<section class="section section--tight project-related" aria-labelledby="related-title">
+  <div class="container">
+    <header class="project-more__head" data-reveal>
+      <p class="eyebrow"><span class="eyebrow__label">${LABELS.related.eyebrow}</span></p>
+      <h2 class="project-more__title" id="related-title">${LABELS.related.title} ${label}</h2>
+    </header>
+    <ul class="grid project-related__grid" role="list" data-reveal-stagger>
+      ${items.map((p) => relatedCard(ctx, p))}
     </ul>
   </div>
 </section>`;
@@ -425,6 +489,7 @@ ${hero(ctx, project)}
         </header>
         <div class="prose project-prose">${prose(project.description)}</div>
       </section>
+      ${techSection(project, idx())}
       ${hasContrib
         ? html`
       <section class="project-section" aria-labelledby="contrib-title" data-reveal>
@@ -442,6 +507,7 @@ ${hero(ctx, project)}
   </div>
 </div>
 ${hasGallery ? gallery(ctx, project, idx()) : ''}
+${related(ctx, project)}
 ${pager(ctx, project)}
 ${closingCta(ctx)}
 </article>`,

@@ -9,9 +9,11 @@
   },
   "scripts": {
     "build": "node src/build.mjs",
-    "check": "node src/build.mjs --check",
+    "check": "node src/build.mjs --check && node src/check-links.mjs",
     "watch": "node src/build.mjs --watch",
     "dev": "node src/build.mjs --serve",
+    "serve": "node src/build.mjs --serve",
+    "links": "node src/check-links.mjs",
     "stale": "node src/build.mjs --clean-stale",
     "test": "node --test src/lib/html.test.mjs"
   },

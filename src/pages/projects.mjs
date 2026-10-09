@@ -118,7 +118,7 @@ function card(ctx, p, index) {
   const eager = index < EAGER_COUNT;
   // Haystack for the live search (lower-cased by the script): title, client, organisation, category
   // labels, summary and every technology (not only the four shown).
-  const haystack = [p.title, p.subtitle, p.client, p.organization, ...categoryLabels, p.summary, ...p.technologies].filter(Boolean).join(' ');
+  const haystack = [p.title, p.subtitle, p.client, p.organization, p.period, ...categoryLabels, p.summary, ...p.technologies].filter(Boolean).join(' ');
   return html`
       <li data-reveal>
         <article class="project-card card projects-card" data-tilt data-project-card data-categories="${p.categories.join(' ')}" data-title="${p.title}" data-tags="${p.technologies.map((t) => t.toLowerCase()).join('|')}" data-search-text="${haystack}">
@@ -128,7 +128,7 @@ function card(ctx, p, index) {
           <div class="project-card__body">
             <div class="project-card__meta">
               ${categoryLabels.map((label, i) => html`<span class="badge${i === 0 ? ' badge--accent' : ''}">${label}</span>`)}
-              ${p.year ? html`<span class="project-card__year">${p.year}</span>` : ''}
+              ${p.period ?? p.year ? html`<span class="project-card__year">${p.period ?? p.year}</span>` : ''}
             </div>
             <h2 class="project-card__title"><a class="project-card__link" href="${url(`projects/${p.slug}.html`)}">${p.title}</a></h2>
             <p class="project-card__client">${icon('briefcase', { size: 15 })}<span>${p.client}</span></p>

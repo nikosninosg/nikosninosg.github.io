@@ -10,7 +10,10 @@
  *   experience, education, certificates,
  *   skills,              // [{category, items:[{name,url?}]}]
  *   softSkills,          // = site.softSkills
- *   testimonials,
+ *   testimonials,        // [{quote,name,role,company?,url?,image?}]
+ *   engagements,         // content/engagements.json, newest first: [{id,title,client,country?,period,start,end,summary,technologies?}]
+ *   languages,           // content/languages.json: [{language,level,details?}]
+ *   cv,                  // {href,label,format,sizeKB (computed from the real file),updated}
  *   projects,            // sorted by `order`
  *   featuredProjects,    // projects with featured:true (sorted by `order`)
  *   categories,          // [{id,label,count}] real categories only, fixed order
@@ -21,7 +24,7 @@
  *   paletteData,         // {pages, projects, actions}; urls are repo-root-relative (layout rebases them)
  * }
  */
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, basename } from 'node:path';
 import { hasIcon } from './icons.mjs';
@@ -30,7 +33,7 @@ export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const CONTENT_DIR = join(ROOT, 'content');
 
 /** Fixed category vocabulary + display order (same grouping as the old index filters). */
-export const CATEGORY_LABELS = { ai: 'AI', telecom: 'Telecom', web: 'Web', simulation: 'Simulation' };
+export const CATEGORY_LABELS = { ai: 'AI', telecom: 'Telecom', web: 'Web', iot: 'IoT', simulation: 'Simulation' };
 export const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS);
 
 /** Primary navigation. `path` is repo-root-relative. */
@@ -42,6 +45,7 @@ export const NAV = [
   { id: 'contact', label: 'Contact', path: 'contact.html', icon: 'mail' },
 ];
 
+// Any subset is fine (the site currently lists only github + linkedin); the id selects the icon.
 const SOCIAL_IDS = ['github', 'linkedin', 'fiverr', 'upwork'];
 const SUMMARY_MAX = 170;
 
@@ -137,6 +141,10 @@ function validateSite(s, c) {
   c.url(s.formEndpoint, 'formEndpoint');
   c.url(s.formAjaxEndpoint, 'formAjaxEndpoint');
   c.strArr(s.roles, 'roles', { min: 1 });
+  if (c.obj(s.cv, 'cv')) {
+    ['href', 'label', 'format', 'updated'].forEach((k) => c.str(s.cv[k], `cv.${k}`));
+    if (typeof s.cv.href === 'string' && !existsSync(join(ROOT, s.cv.href))) c.fail('cv.href', `file "${s.cv.href}" does not exist in the repo`);
+  }
   if (c.arr(s.socials, 'socials', { min: 1 })) {
     s.socials.forEach((x, i) => {
       if (!c.obj(x, `socials[${i}]`)) return;
@@ -200,6 +208,34 @@ function validateExperience(list, c) {
     c.strArr(x.bullets, `${at}.bullets`);
     c.strArr(x.technologies, `${at}.technologies`);
     c.str(x.summary, `${at}.summary`, { optional: true });
+    if (x.kind !== undefined && !['work', 'volunteering'].includes(x.kind)) c.fail(`${at}.kind`, 'must be "work" or "volunteering"');
+  });
+}
+
+const PERIOD_END = /^(\d{4}-(0[1-9]|1[0-2])|present)$/;
+
+function validateEngagements(list, c) {
+  if (!c.arr(list, '$', { min: 1 })) return;
+  let prev = '';
+  list.forEach((x, i) => {
+    const at = `[${i}]`;
+    if (!c.obj(x, at)) return;
+    ['id', 'title', 'client', 'period', 'summary'].forEach((k) => c.str(x[k], `${at}.${k}`));
+    c.str(x.country, `${at}.country`, { optional: true });
+    c.str(x.start, `${at}.start`, { pattern: YM });
+    c.str(x.end, `${at}.end`, { pattern: PERIOD_END });
+    c.strArr(x.technologies, `${at}.technologies`, { optional: true });
+    if (typeof x.start === 'string' && prev && x.start > prev) c.fail(`${at}.start`, `list must be newest first (by start); "${x.start}" comes after "${prev}"`);
+    if (typeof x.start === 'string') prev = x.start;
+  });
+}
+
+function validateLanguages(list, c) {
+  if (!c.arr(list, '$', { min: 1 })) return;
+  list.forEach((x, i) => {
+    if (!c.obj(x, `[${i}]`)) return;
+    ['language', 'level'].forEach((k) => c.str(x[k], `[${i}].${k}`));
+    c.strArr(x.details, `[${i}].details`, { optional: true });
   });
 }
 
@@ -222,6 +258,7 @@ function validateCertificates(list, c) {
     ['id', 'title', 'issuer', 'description'].forEach((k) => c.str(x[k], `${at}.${k}`));
     c.str(x.date, `${at}.date`, { pattern: /^(0[1-9]|1[0-2])\/\d{4}$/ });
     c.icon(x.icon, `${at}.icon`);
+    c.str(x.hours, `${at}.hours`, { optional: true });
   });
 }
 
@@ -244,6 +281,8 @@ function validateTestimonials(list, c) {
   list.forEach((x, i) => {
     if (!c.obj(x, `[${i}]`)) return;
     ['quote', 'name', 'role'].forEach((k) => c.str(x[k], `[${i}].${k}`));
+    c.str(x.company, `[${i}].company`, { optional: true });
+    c.url(x.url, `[${i}].url`, { optional: true });
     if (x.image !== undefined) c.image(x.image, `[${i}].image`); // optional extension
   });
 }
@@ -254,7 +293,7 @@ function validateProject(p, c, fileSlug) {
     c.fail('slug', `"${p.slug}" must equal the file name "${fileSlug}"`);
   }
   ['title', 'client'].forEach((k) => c.str(p[k], k));
-  ['subtitle', 'organization', 'year', 'role'].forEach((k) => c.str(p[k] === undefined ? p[k] : String(p[k]), k, { optional: true }));
+  ['subtitle', 'organization', 'year', 'period', 'role'].forEach((k) => c.str(p[k] === undefined ? p[k] : String(p[k]), k, { optional: true }));
   c.str(p.summary, 'summary', { max: SUMMARY_MAX });
   if (c.strArr(p.categories, 'categories', { min: 1 })) {
     p.categories.forEach((x, i) => {
@@ -300,6 +339,8 @@ export function loadContent() {
   const certificates = run('content/certificates.json', validateCertificates);
   const skills = run('content/skills.json', validateSkills);
   const testimonials = run('content/testimonials.json', validateTestimonials);
+  const engagements = run('content/engagements.json', validateEngagements);
+  const languages = run('content/languages.json', validateLanguages);
 
   const projectFiles = existsSync(join(CONTENT_DIR, 'projects'))
     ? readdirSync(join(CONTENT_DIR, 'projects')).filter((f) => f.endsWith('.json')).sort()
@@ -315,7 +356,7 @@ export function loadContent() {
       slugs.add(p.slug);
     }
   });
-  for (const [file, list] of [['experience', experience], ['education', education], ['certificates', certificates]]) {
+  for (const [file, list] of [['experience', experience], ['education', education], ['certificates', certificates], ['engagements', engagements]]) {
     if (!Array.isArray(list)) continue;
     const seen = new Set();
     list.forEach((x, i) => {
@@ -345,6 +386,8 @@ export function loadContent() {
     value: typeof s.value === 'number' ? s.value : auto[s.value.slice('auto:'.length)],
   }));
   const resolvedSite = { ...site, stats };
+  const cvFile = join(ROOT, site.cv.href);
+  const cv = { ...site.cv, sizeKB: Math.max(1, Math.round(statSync(cvFile).size / 1024)) };
 
   const projectBySlug = Object.fromEntries(projects.map((p) => [p.slug, p]));
   const getProject = (slug) => {
@@ -365,12 +408,15 @@ export function loadContent() {
     warnings,
     site: resolvedSite,
     nav: NAV,
-    experience,
+    experience: experience.map((x) => ({ kind: 'work', ...x })), // kind defaults to 'work'
     education,
     certificates,
     skills,
     softSkills: site.softSkills,
     testimonials,
+    engagements,
+    languages,
+    cv,
     projects,
     featuredProjects,
     categories,
@@ -378,12 +424,12 @@ export function loadContent() {
     projectBySlug,
     getProject,
     prevNext,
-    paletteData: buildPaletteData(resolvedSite, projects),
+    paletteData: buildPaletteData(resolvedSite, projects, cv),
   };
 }
 
 /** Command-palette data. URLs are repo-root-relative or absolute; layout.mjs rebases them per page. */
-function buildPaletteData(site, projects) {
+function buildPaletteData(site, projects, cv) {
   const pages = NAV.map((n) => ({ id: n.id, title: n.label, url: n.path, icon: n.icon, hint: 'Page' }));
   const projectItems = projects.map((p) => ({
     id: p.slug,
@@ -398,6 +444,7 @@ function buildPaletteData(site, projects) {
     { id: 'copy-email', title: 'Copy email address', icon: 'copy', action: 'copy', value: site.email, hint: site.email, keywords: 'mail contact' },
     { id: 'send-email', title: 'Send an email', icon: 'mail', action: 'open', url: `mailto:${site.email}`, hint: site.email, keywords: 'write contact' },
     ...site.socials.map((s) => ({ id: `open-${s.id}`, title: `Open ${s.label}`, icon: s.id, action: 'open', url: s.url, external: true, keywords: 'social profile' })),
+    { id: 'download-cv', title: `${cv.label} (${cv.format})`, icon: 'download', action: 'open', url: cv.href, download: true, hint: `${cv.format} · ${cv.sizeKB} KB`, keywords: 'resume cv pdf download' },
     { id: 'print-cv', title: 'Print / Save CV as PDF', icon: 'print', action: 'print', url: 'experience.html?print=1', keywords: 'resume download pdf' },
   ];
   return { pages, projects: projectItems, actions };

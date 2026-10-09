@@ -23,7 +23,7 @@ const LABELS = {
   direct: { eyebrow: 'Direct', title: 'Reach me directly' },
   email: { label: 'Email', write: 'Email me', copy: 'Copy address', copied: 'Copied!', copyMessage: 'Email address copied' },
   location: { label: 'Based in' },
-  elsewhere: { label: 'Find me elsewhere', note: 'Prefer to work through a platform? I am on Fiverr and Upwork too.' },
+  elsewhere: { label: 'Find me elsewhere' },
   form: {
     eyebrow: 'Message',
     title: 'Send a message',
@@ -53,8 +53,7 @@ const LIMITS = { nameMin: 2, nameMax: 120, subjectMax: 160, messageMin: 10, mess
 function handleOf(social) {
   const { hostname, pathname } = new URL(social.url);
   const segments = pathname.split('/').filter(Boolean);
-  // Upwork profile ids (~016c…) are opaque; show the host instead of a hash.
-  if (!segments.length || segments.some((s) => s.startsWith('~'))) return hostname.replace(/^www\./, '');
+  if (!segments.length) return hostname.replace(/^www\./, '');
   return social.id === 'github' ? `@${segments[0]}` : segments.join('/');
 }
 
@@ -113,6 +112,7 @@ function locationCard(ctx) {
 
 function socialCards(ctx) {
   const { site } = ctx;
+  if (!site.socials.length) return '';
   return html`
     <div class="contact-social" data-reveal>
       <h3 class="contact-social__title">${LABELS.elsewhere.label}</h3>
@@ -129,7 +129,6 @@ function socialCards(ctx) {
           </a>
         </li>`)}
       </ul>
-      <p class="contact-social__note">${LABELS.elsewhere.note}</p>
     </div>`;
 }
 
@@ -227,7 +226,7 @@ export default function render(ctx) {
     id: 'contact',
     path: 'contact.html',
     title: 'Contact',
-    description: `Get in touch with ${site.name}: email, GitHub, LinkedIn, Fiverr and Upwork, or send a message through the contact form.`,
+    description: `Get in touch with ${site.name}: email${site.socials.length ? `, ${site.socials.map((x) => x.label).join(' and ')}` : ''}, or send a message through the contact form.`,
     css: ['assets/css/pages/contact.css'],
     js: ['assets/js/pages/contact.js'],
     breadcrumbs: [{ name: 'Home', path: 'index.html' }, { name: 'Contact', path: 'contact.html' }],

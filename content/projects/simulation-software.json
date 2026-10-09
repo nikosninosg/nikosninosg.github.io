@@ -8,6 +8,7 @@
   "client": "University of Patras, Greece",
   "summary": "Simulation of a production line that tracks machine stops across RUN, STANDBY and STOP states to identify problems and optimize production performance indicators.",
   "description": [
+    "Developed as the BSc thesis in Computer Engineering and Informatics at the University of Patras: design and development of a simulation software system for modeling industrial production processes and implementation of performance improvement methods with real-time data.",
     "Production Line Simulator is a simulation of a production line system aimed at identifying problems to optimize production performance indicators. More specifically, the user can monitor the production process and the behavior of the line from the conditions that affect it.",
     "For the operation of the simulation, all the stops of the automatic operation of the machines due to a problem or the stops caused manually by the user are monitored so the system can draw specific conclusions. The user through the application sees which factors and to what extent influenced the operation of the line, sees the effects and what interaction there is in combination with the other machines in the production line.",
     "For the operation of the application, monitor in each machine has three statuses (RUN - STANDBY - STOP). Each machine is affected by the operating conditions of the same machine but also by the operating conditions of the downstream and upstream machine.",
@@ -72,6 +73,7 @@
     "All screenshots show a Tkinter application whose labels are largely in Greek (e.g. the title \"Προσομοίωση Γραμμής Παραγωγής\", i.e. Production Line Simulation); alt texts and captions describe them in English and only restate what is visible (machine names Depall, Filler, Pasteur; figures such as 72.72%, 261798 / 360000, 16.67 cans per second). The old page had empty alt attributes on all images.",
     "The cover (sim-bg.jpeg, 1024x1024 artwork used on the index card) was not shown on the old detail page, so it is not duplicated in the gallery. A second near-identical artwork file, simulation-bg.jpeg, exists in the same folder but is not referenced by this page or card and was left untouched.",
     "Dropped non-content markup only: <u>/align attributes on the heading, inline text-align:justify, the swiper slider wrappers and the \"Project\" meta line (merged into title/subtitle).",
-    "The same thesis is also described in index.html's education block (\"Design and development of a simulation software system ...\"); that text belongs to education.json and was not copied here."
+    "The same thesis is also described in index.html's education block (\"Design and development of a simulation software system ...\"); that text belongs to education.json and was not copied here.",
+    "CV update (Oct 2026): first paragraph added from the thesis title in the PDF CV. No period added: the CVs give no project dates (the degree ran 10/2016 – 07/2022)."
   ]
 }

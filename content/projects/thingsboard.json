@@ -1,12 +1,16 @@
 {
   "slug": "thingsboard",
   "title": "ThingsBoard Dashboards",
-  "categories": ["web"],
+  "categories": [
+    "web",
+    "iot"
+  ],
   "client": "INDUST Systems, Greece",
   "organization": "INDUST Systems",
   "summary": "IoT platform for data collection, processing, visualization and device management, using MQTT, CoAP and HTTP, with scalability, fault-tolerance and performance.",
   "description": [
-    "IoT platform designed for data collection, processing, visualization, and device management. Use of industry-standard IoT protocols such as MQTT, CoAP, and HTTP. ThingsBoard provides scalability, fault-tolerance, and performance. Provision and manage devices, collect and visualize telemetry data, define data processing rules."
+    "IoT platform designed for data collection, processing, visualization, and device management. It uses industry-standard IoT protocols such as MQTT, CoAP, and HTTP.",
+    "ThingsBoard provides scalability, fault-tolerance, and performance. Devices are provisioned and managed, telemetry data is collected and visualized, and data processing rules are defined."
   ],
   "contributions": [],
   "technologies": [
@@ -56,7 +60,9 @@
   ],
   "featured": true,
   "order": 8,
-  "legacyPaths": ["projects/thingsboard.html"],
+  "legacyPaths": [
+    "projects/thingsboard.html"
+  ],
   "_notes": [
     "Old page heading was \"Tihingsboard Dashboards\" (typo); corrected to \"ThingsBoard Dashboards\" and used as title. The portfolio card h4 and the \"Project:\" list item both said \"Thingsboard\"; the card label is covered by the title, and the redundant \"Project\" list item was dropped. (The generic <title>Projects</title> of the old HTML was ignored.)",
     "client is \"INDUST Systems, Greece\" (from the old page); organization \"INDUST Systems\" is the card label from the portfolio grid on index.html.",
@@ -66,6 +72,7 @@
     "Gallery contains all six <img> slides of the old swiper in their original order (th-01.png, th-02.png, th-2.png, th-3.png, th-4.png, th-5.png); the odd file names were left unchanged so paths stay stable. Stray <br> elements between slides were ignored. The old images had empty alt text, so alt text and captions were written from the screenshots.",
     "Screenshots contain Greek dashboard labels (e.g. greenhouse health, water consumption, irrigation system, installation plan view); captions give short English descriptions of them. Personal names visible on the map screenshot (th-4.png) were deliberately not transcribed into alt text or captions.",
     "The cover (thingsboard.jpeg) is the portfolio card image and was not shown on the old detail page, so it is used as cover only and not duplicated in gallery. Its alt text was written from the artwork.",
-    "summary (<=170 chars) written strictly from the description: IoT platform, data collection/processing/visualization, device management, MQTT/CoAP/HTTP, scalability, fault-tolerance and performance."
+    "summary (<=170 chars) written strictly from the description: IoT platform, data collection/processing/visualization, device management, MQTT/CoAP/HTTP, scalability, fault-tolerance and performance.",
+    "CV update (Oct 2026): categories now ['web','iot']; the single description paragraph was split in two and put in passive voice (same facts). The CVs say nothing more about this project."
   ]
 }

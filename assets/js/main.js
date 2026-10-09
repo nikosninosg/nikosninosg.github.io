@@ -19,6 +19,7 @@ const MODULES = [
   { name: 'pointer-fx', load: () => import('./modules/pointer-fx.js') },
   { name: 'hero', load: () => import('./modules/hero.js') },
   { name: 'palette', load: () => import('./modules/palette.js') },
+  { name: 'consent', load: () => import('./modules/consent.js') },
   // Loaded only on pages that actually contain the hook (saves bytes elsewhere).
   { name: 'carousel', when: '[data-carousel]', load: () => import('./modules/carousel.js') },
   { name: 'lightbox', when: '[data-lightbox]', load: () => import('./modules/lightbox.js') },

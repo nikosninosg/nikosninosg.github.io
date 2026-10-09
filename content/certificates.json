@@ -5,7 +5,8 @@
     "issuer": "ACTA SA Spin Off Aristotle University of Thessaloniki",
     "date": "07/2023",
     "description": "Risk assessments, identifying potential vulnerabilities, implementing effective security measures to safeguard critical data and systems. Company's resilience against cyber threats, maintaining a secure and protected environment.",
-    "icon": "shield"
+    "icon": "shield",
+    "hours": "80 hours"
   },
   {
     "id": "devsecops-academy",
@@ -13,7 +14,8 @@
     "issuer": "ReGeneration & Code.Hub",
     "date": "06/2022",
     "description": "Training program in DevSecOps Processes & Principles, Infrastructure & Configuration Management, Continuous Pipelines, Cloud Computing Building Blocks, AWS & Azure Basics, Identity & Access Management, High Availability and Scalability aspects, Storage Services & Databases, Security & Encryption, Networking, Containers & Orchestration, Monitoring.",
-    "icon": "cloud"
+    "icon": "cloud",
+    "hours": "80+ hours"
   },
   {
     "id": "industrial-iot-gcp",

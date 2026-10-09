@@ -1,0 +1,196 @@
+/**
+ * modules/consent.css: analytics consent banner + header/footer bits that belong to it and to the CV download.
+ * Markup: src/lib/layout.mjs renderConsent(). Hooks: [data-consent], .consent__actions, [data-consent-open].
+ * Both choices use the same .btn-ghost style on purpose (equal visual weight, no dark patterns).
+ */
+@layer components {
+  .consent {
+    position: fixed;
+    inset-block-end: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+    inset-inline-start: var(--space-4);
+    z-index: 150;
+    inline-size: min(24rem, calc(100vw - 2 * var(--space-4)));
+    max-block-size: calc(100dvh - 2 * var(--space-4));
+    overflow: auto;
+    padding: var(--space-4) var(--space-4) var(--space-3);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--panel-bg);
+    color: var(--text);
+    box-shadow: var(--shadow-lg);
+    -webkit-backdrop-filter: blur(18px) saturate(1.5);
+    backdrop-filter: blur(18px) saturate(1.5);
+    opacity: 0;
+    translate: 0 12px;
+    transition: opacity var(--dur-base) ease, translate var(--dur-base) var(--ease-out);
+  }
+
+  .consent[hidden] {
+    display: none;
+  }
+
+  /* wide screens: bottom-right, so the banner never covers the hero's left-hand actions */
+  @media (min-width: 1000px) {
+    .consent {
+      inset-inline-start: auto;
+      inset-inline-end: var(--space-4);
+    }
+
+    html:has(.consent:not([hidden])) .to-top {
+      inset-block-end: calc(var(--space-4) + 13rem);
+    }
+  }
+
+  .consent.is-in {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .consent__title {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .consent__text,
+  .consent__more p {
+    margin: 0;
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .consent__more {
+    margin-block-start: var(--space-2);
+    font-size: var(--fs-sm);
+  }
+
+  .consent__more summary {
+    display: inline-block;
+    cursor: pointer;
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .consent__more p {
+    margin-block-start: var(--space-2);
+  }
+
+  .consent__more a {
+    color: var(--text);
+    text-underline-offset: 3px;
+  }
+
+  .consent__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+    margin-block-start: var(--space-4);
+  }
+
+  .consent__actions .btn {
+    justify-content: center;
+    border-color: var(--border-strong);
+  }
+
+  /* footer "Cookie settings": looks like the neighbouring link */
+  .cookie-settings {
+    padding: 0;
+    margin-inline-start: var(--space-3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .cookie-settings:hover {
+    color: var(--text);
+  }
+
+  .cookie-settings[hidden] {
+    display: none;
+  }
+
+  /* ------------------------------------------------------------ CV download (header pill + mobile menu item) */
+  .cv-btn {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .cv-btn__text {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .cv-btn {
+      padding-inline: 0.9rem;
+    }
+
+    .cv-btn__text {
+      display: inline;
+    }
+  }
+
+  .nav-cv {
+    display: none;
+  }
+
+  @media (max-width: 899px) {
+    .nav-cv {
+      display: block;
+      margin-block-start: 0.35rem;
+      padding-block-start: 0.35rem;
+      border-block-start: 1px solid var(--border);
+    }
+
+    .nav-cv__link {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.95rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-cv__link:hover {
+      background: var(--surface-strong);
+    }
+
+    .nav-cv__meta {
+      margin-inline-start: auto;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .consent {
+      transition: none;
+      translate: 0 0;
+    }
+  }
+
+  @media print {
+    .consent,
+    .cookie-settings,
+    .cv-btn {
+      display: none !important;
+    }
+  }
+}

@@ -257,6 +257,91 @@
   opacity: 0.2;
 }
 
+/* hero: period chip + first technologies */
+.project-hero__period {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-inline-start: auto;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.project-hero__tags {
+  margin: 0;
+  max-inline-size: 36rem;
+}
+
+.project-hero__tags a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-hero__tags .tag {
+  font-size: 0.75rem;
+}
+
+/* technologies section: larger, more prominent chips */
+.project-tech__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-tech__list .tag {
+  padding: 0.45rem 0.9rem;
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+
+/* related projects */
+.project-related__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .project-related__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .project-related__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+}
+
+.project-related__grid > li {
+  display: flex;
+}
+
+.project-related__card {
+  inline-size: 100%;
+}
+
+.project-related + .project-more {
+  padding-block-start: 0;
+}
+
 /* ================================================================== BODY LAYOUT */
 .project-body {
   padding-block: clamp(1rem, 0.5rem + 2vw, 2.5rem) clamp(3rem, 2rem + 4vw, 6rem);
@@ -315,6 +400,22 @@
   font-size: var(--fs-lg);
   line-height: 1.65;
   color: var(--text);
+}
+
+.project-prose > p + p {
+  margin-block-start: 1.15em;
+}
+
+/* case-study feel: the lead gets an accent rule, the rest reads as regular body copy */
+.project-prose > p:first-child {
+  padding-inline-start: var(--space-4);
+  border-inline-start: 2px solid var(--accent);
+}
+
+.project-prose > p:not(:first-child) {
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  color: var(--text-muted);
 }
 
 .project-prose a {
@@ -901,6 +1002,7 @@
   .project-meta__share,
   .project-pager,
   .project-more,
+  .project-related,
   .project-cta {
     display: none !important;
   }

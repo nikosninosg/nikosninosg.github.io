@@ -17,6 +17,13 @@
       {
         "name": "Java",
         "url": "https://www.java.com"
+      },
+      {
+        "name": "XQuery",
+        "url": "https://www.w3.org/TR/xquery-31/"
+      },
+      {
+        "name": "SQL"
       }
     ]
   },
@@ -50,6 +57,38 @@
       {
         "name": "AWS",
         "url": "https://aws.amazon.com"
+      },
+      {
+        "name": "PostgreSQL",
+        "url": "https://www.postgresql.org"
+      },
+      {
+        "name": "Oracle",
+        "url": "https://www.oracle.com/database/"
+      },
+      {
+        "name": "Maven",
+        "url": "https://maven.apache.org"
+      },
+      {
+        "name": "Keycloak",
+        "url": "https://www.keycloak.org"
+      },
+      {
+        "name": "Grafana",
+        "url": "https://grafana.com"
+      },
+      {
+        "name": "MQTT",
+        "url": "https://mqtt.org"
+      },
+      {
+        "name": "Redis",
+        "url": "https://redis.io"
+      },
+      {
+        "name": "TimescaleDB",
+        "url": "https://www.timescale.com"
       }
     ]
   },
@@ -75,6 +114,39 @@
       {
         "name": "Nixtla",
         "url": "https://www.nixtla.io/"
+      },
+      {
+        "name": "Spring Boot",
+        "url": "https://spring.io/projects/spring-boot"
+      },
+      {
+        "name": "TypeORM",
+        "url": "https://typeorm.io"
+      },
+      {
+        "name": "NestJS",
+        "url": "https://nestjs.com"
+      }
+    ]
+  },
+  {
+    "category": "Workflow & testing",
+    "items": [
+      {
+        "name": "Camunda",
+        "url": "https://camunda.com"
+      },
+      {
+        "name": "Zeebe",
+        "url": "https://camunda.com/platform/zeebe/"
+      },
+      {
+        "name": "BPMN",
+        "url": "https://www.bpmn.org"
+      },
+      {
+        "name": "Citrus",
+        "url": "https://citrusframework.org"
       }
     ]
   }

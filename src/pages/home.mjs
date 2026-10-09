@@ -10,6 +10,7 @@ import { existsSync, openSync, readSync, closeSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { html, raw } from '../lib/html.mjs';
 import { icon } from '../lib/icons.mjs';
+import { SHARED_CSS, cvButton, softLine, quoteRole } from './_shared.mjs';
 
 /** UI labels only. Everything else is content. */
 const LABELS = {
@@ -17,7 +18,7 @@ const LABELS = {
   getInTouch: 'Get in touch',
   scroll: 'Scroll',
   findMe: 'Find me',
-  about: { eyebrow: 'About', title: 'A bit about me', more: 'More about me' },
+  about: { eyebrow: 'About', title: 'A bit about me', more: 'More about me', soft: 'Soft skills' },
   work: { eyebrow: 'Selected work', title: 'Featured projects', all: 'All projects', cta: 'View project' },
   skills: { eyebrow: 'Skills', title: 'Languages, tools & libraries' },
   experience: { eyebrow: 'Experience', title: 'Where I have worked', all: 'Full experience & education', present: 'Present' },
@@ -89,7 +90,7 @@ function eyebrow(index, label) {
   return html`<p class="eyebrow"><span class="eyebrow__index">${index}</span><span class="eyebrow__label">${label}</span></p>`;
 }
 
-/** The little "profile.ts" card in the hero. Decorative (aria-hidden), built from content only. */
+/** The little "profile.ts" card in the hero (decorative, aria-hidden, built from content only). */
 function codeCard(ctx) {
   const { site, skills, experience, projects, certificates } = ctx;
   const current = experience.find((e) => e.end === 'present');
@@ -110,8 +111,8 @@ function codeCard(ctx) {
     html`};`,
   ];
   return html`
-      <aside class="hero__aside" aria-hidden="true">
-        <div class="code-card card" data-tilt>
+      <aside class="hero__aside">
+        <div class="code-card card" data-tilt aria-hidden="true">
           <div class="code-card__bar">
             <span class="code-card__dots"><i></i><i></i><i></i></span>
             <span class="code-card__file">profile.ts</span>
@@ -135,7 +136,8 @@ function hero(ctx) {
       <p class="hero__role"><span class="hero__prefix">${site.heroPrefix}</span> <span data-typed="${JSON.stringify(site.roles)}">${site.roles[0]}</span></p>
       <p class="hero__intro">${site.intro}</p>
       <div class="hero__actions">
-        <a class="btn btn-primary btn-lg" href="${url('projects.html')}" data-magnetic>${LABELS.viewProjects}${icon('arrow-right')}</a>
+        <span class="hero__cv-inline">${cvButton(ctx)}</span>
+        <a class="btn btn-ghost btn-lg" href="${url('projects.html')}" data-magnetic>${LABELS.viewProjects}${icon('arrow-right')}</a>
         <a class="btn btn-ghost btn-lg" href="${url('contact.html')}" data-magnetic>${LABELS.getInTouch}</a>
       </div>
       <div class="hero__socials">
@@ -173,7 +175,7 @@ function stats(ctx) {
 }
 
 function aboutTeaser(ctx) {
-  const { site, softSkills, url } = ctx;
+  const { site, url } = ctx;
   const photo = portrait(ctx);
   const kc = site.about.keyCharacteristic;
   return html`
@@ -195,9 +197,10 @@ function aboutTeaser(ctx) {
         <p class="callout__label">${kc.label}</p>
         <p class="callout__text">${kc.text}</p>
       </aside>
-      <ul class="cluster gap-sm about-teaser__skills" role="list" aria-label="Soft skills" data-reveal>
-        ${softSkills.map((s) => html`<li class="chip chip--sm">${icon(s.icon, { size: 15 })}${s.name}</li>`)}
-      </ul>
+      <div class="about-teaser__skills" data-reveal>
+        <p class="about-teaser__skills-label">${LABELS.about.soft}</p>
+        ${softLine(ctx, { label: LABELS.about.soft })}
+      </div>
       <p data-reveal><a class="link-arrow" href="${url('about.html')}">${LABELS.about.more}</a></p>
     </div>
   </div>
@@ -219,7 +222,7 @@ function projectCard(ctx, p) {
           <div class="project-card__body">
             <div class="project-card__meta">
               ${p.categories.map((c, i) => html`<span class="badge${i === 0 ? ' badge--accent' : ''}">${catLabel[c] ?? c}</span>`)}
-              ${p.year ? html`<span>${p.year}</span>` : ''}
+              ${p.period ?? p.year ? html`<span>${p.period ?? p.year}</span>` : ''}
             </div>
             <h3 class="project-card__title"><a class="project-card__link" href="${url(`projects/${p.slug}.html`)}">${p.title}</a></h3>
             <p class="project-card__summary">${p.summary}</p>
@@ -286,7 +289,6 @@ function skills(ctx) {
         <header class="skill-cat__head">
           <span class="skill-cat__icon">${icon(SKILL_ICONS[g.category] ?? 'code', { size: 20 })}</span>
           <h3 class="skill-cat__title">${g.category}</h3>
-          <span class="skill-cat__count">${g.items.length}</span>
         </header>
         <ul class="cluster gap-sm" role="list">
           ${g.items.map((i) => html`<li>${i.url
@@ -356,7 +358,7 @@ function testimonials(ctx) {
           <figure class="quote card">
             ${icon('quote', { size: 32 })}
             <blockquote class="quote__text"><p>${t.quote}</p></blockquote>
-            <figcaption class="quote__author"><strong>${t.name}</strong><span class="quote__role">${t.role}</span></figcaption>
+            <figcaption class="quote__author"><strong>${t.name}</strong>${quoteRole(t)}</figcaption>
           </figure>
         </article>`)}
       </div>
@@ -397,7 +399,7 @@ export default function render(ctx) {
     id: 'home',
     path: 'index.html',
     description: site.seo.description,
-    css: ['assets/css/pages/home.css'],
+    css: [SHARED_CSS, 'assets/css/pages/home.css'],
     js: [],
     body: html`
 <script>${raw(legacyRedirect)}</script>

@@ -2,7 +2,9 @@
   "slug": "bi-in-a-box",
   "title": "BI in a Box",
   "subtitle": "Business Intelligence in a Box",
-  "categories": ["ai"],
+  "categories": [
+    "ai"
+  ],
   "client": "INDUST Systems Ltd., Greece",
   "organization": "INDUST Systems",
   "summary": "End-to-end Business Intelligence platform that turns raw data from ERP systems and databases into insights via dashboards, reporting and time-series forecasting.",
@@ -41,7 +43,9 @@
   "gallery": [],
   "featured": true,
   "order": 1,
-  "legacyPaths": ["projects/ai/bi-in-a-box.html"],
+  "legacyPaths": [
+    "projects/ai/bi-in-a-box.html"
+  ],
   "_notes": [
     "Title: the old page <title> is the generic \"Projects\" and its <h2> reads \"Business Intelligence in a Box\"; the page's own \"Project\" line and the index card both say \"BI in a Box\". Used \"BI in a Box\" as title and kept the long heading as subtitle, so both survive.",
     "Client: \"INDUST Systems Ltd., Greece\" kept verbatim in client; the index card label \"INDUST Systems\" is kept in organization.",
@@ -54,6 +58,8 @@
     "Cover alt text: the index card had alt=\"\"; new alt describes the artwork. The cover is a 1024x1024 PNG of about 2.4 MB (not wider than 1600 px, so not downscaled per spec; a smaller encode would help page weight).",
     "assets/img/portfolio/ai-pics/bi-in-a-box-bg.png (about 1.6 MB) is not referenced anywhere in the repository; only bi-in-a-box-bg-2.png is used. Left untouched.",
     "year and role omitted: the old page states neither.",
-    "Old meta description/keywords on the page are site-wide boilerplate (\"Nikos Georgopoulos Ninos CV\") and carry no project content, so they were not migrated."
-  ]
+    "Old meta description/keywords on the page are site-wide boilerplate (\"Nikos Georgopoulos Ninos CV\") and carry no project content, so they were not migrated.",
+    "CV update (Oct 2026): period '2024 – 2025' added from the PDF CV, which lists the same project with the same description."
+  ],
+  "period": "2024 – 2025"
 }

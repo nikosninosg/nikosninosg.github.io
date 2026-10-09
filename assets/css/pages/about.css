@@ -46,8 +46,12 @@
   }
 }
 
-.about-jump {
+.about-hero .cv-card {
   margin-block-start: var(--space-6);
+}
+
+.about-jump {
+  margin-block-start: var(--space-5);
 }
 
 .about-jump .chip::before {
@@ -337,69 +341,6 @@
   line-height: 1.1;
 }
 
-.skill-card__sub {
-  margin-block-start: 0.25rem;
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-subtle);
-}
-
-/* big outlined number, a quiet "count" badge */
-.skill-card__count {
-  margin-inline-start: auto;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 1.7rem + 1vw, 2.75rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  font-variant-numeric: tabular-nums;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--cat-line);
-  transition: color var(--dur-base) ease, -webkit-text-stroke-color var(--dur-base) ease;
-}
-
-.skill-card:hover .skill-card__count {
-  color: var(--cat-soft);
-  -webkit-text-stroke-color: var(--cat);
-}
-
-.skill-card__share {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin: 0;
-  margin-block-start: auto; /* pins the meter to the card bottom so the three cards line up */
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
-  color: var(--text-subtle);
-}
-
-.skill-card__bar {
-  flex: 1;
-  block-size: 4px;
-  border-radius: var(--radius-pill);
-  background: var(--border);
-  overflow: hidden;
-}
-
-.skill-card__bar > span {
-  display: block;
-  block-size: 100%;
-  inline-size: calc(var(--share, 0) * 100%);
-  border-radius: inherit;
-  background: var(--cat);
-  transform-origin: left;
-  transition: transform var(--dur-slow) var(--ease-out);
-}
-
-/* grows from 0 when the card scrolls into view */
-html.js.reveal-ready .skill-card:not(.is-visible) .skill-card__bar > span {
-  transform: scaleX(0);
-}
-
 .skill-list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -492,73 +433,16 @@ a.skill:focus-visible .skill__go {
 }
 
 /* ================================================================== SOFT SKILLS */
-.soft-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-3);
+.soft-line {
+  max-inline-size: 62rem;
+  padding: clamp(1.1rem, 0.8rem + 1.2vw, 1.6rem) clamp(1.1rem, 0.8rem + 2vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
 }
 
-@media (min-width: 600px) {
-  .soft-grid {
-    gap: var(--space-4);
-  }
-}
-
-@media (min-width: 900px) {
-  .soft-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-5);
-  }
-}
-
-.soft {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-6);
-  min-block-size: 9.5rem;
-  --card-pad: clamp(1rem, 0.7rem + 1.2vw, 1.5rem);
-}
-
-.soft:hover {
-  background: var(--surface-hover);
-  border-color: var(--border-strong);
-  transform: translateY(-4px);
-}
-
-.soft__index {
-  position: absolute;
-  inset-block-start: clamp(1rem, 0.7rem + 1.2vw, 1.5rem);
-  inset-inline-end: clamp(1rem, 0.7rem + 1.2vw, 1.5rem);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  color: var(--text-subtle);
-}
-
-.soft__icon {
-  display: grid;
-  place-items: center;
-  inline-size: 3rem;
-  block-size: 3rem;
-  border: 1px solid var(--accent-line);
-  border-radius: var(--radius-md);
-  background: var(--accent-soft);
-  color: var(--accent);
-  transition: background-color var(--dur-base) ease, color var(--dur-base) ease, transform var(--dur-base) var(--ease-spring);
-}
-
-.soft:hover .soft__icon {
-  background: var(--grad-accent);
-  color: var(--accent-contrast);
-  transform: rotate(-6deg) scale(1.08);
-}
-
-.soft__name {
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--text);
+.soft-line .softline {
+  font-size: clamp(1.05rem, 0.95rem + 0.6vw, 1.4rem);
 }
 
 /* ================================================================== TESTIMONIALS */
@@ -730,7 +614,6 @@ a.skill:focus-visible .skill__go {
   }
 
   .skill-card:hover .skill-card__icon,
-  .soft:hover .soft__icon,
   .next-card:hover .next-card__icon,
   a.skill:hover {
     transform: none;

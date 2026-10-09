@@ -462,3 +462,25 @@ when the pointer leaves the window, the tab blurs or hides, or a modal `<dialog>
 * `[data-magnetic]`: `--magnet-x`, `--magnet-y` (px). Active within `data-magnetic-pad` (default 28px) of the element; `data-magnetic-strength`
   (default .25) and `data-magnetic-max` (default 12px, per axis) shape it. The element's own CSS must consume the variables
   (`.btn` / `.icon-btn` already do; other elements get a transform from `pointer.css`).
+
+
+---
+
+## 7. Content schema changes (content agent, October 2026 CV update)
+
+New/extended `ctx` fields (see README "Content schema"):
+
+| ctx field | Shape |
+|---|---|
+| `ctx.cv` | `{href:'assets/cv/Nikos-Georgopoulos-Ninos-CV.pdf', label:'Download CV', format:'PDF', sizeKB:number, updated:'October 2026'}`; `href` is repo-root-relative: pass through `ctx.url()`. |
+| `ctx.engagements` | `[{id,title,client,country?,period:'01/2026 – present',start,end,summary,technologies?}]` newest first |
+| `ctx.languages` | `[{language, level, details?:[string]}]` |
+| `ctx.experience[i].kind` | `'work'` (default) or `'volunteering'` |
+| `ctx.certificates[i].hours` | optional string |
+| `ctx.testimonials[i].company / .url` | optional |
+| `ctx.projects[i].period` | optional string |
+| `ctx.skills` | 4 groups now (Languages, Technologies, Libraries, Workflow & testing) |
+| `ctx.categories` | includes `iot` (label "IoT") |
+
+`site.facts` no longer has Birthday; `site.stats` no longer has Customers; `site.socials` is github + linkedin only.
+Palette action: `{id:'download-cv', title:'Download CV (PDF)', icon:'download', action:'open', url:<cv href>, download:true, hint:'PDF · 351 KB', keywords}`.

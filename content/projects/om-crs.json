@@ -8,7 +8,9 @@
   "organization": "Cosmote",
   "summary": "New Order Management and Integration functionalities enabling BSS–OSS communication, built on Oracle SOA Suite 12c, Oracle OSM, WebLogic Integration (WLI) and Java EE.",
   "description": [
-    "Implementation of new functionalities in Order Management and Integration systems to enable communication between BSS and OSS systems, for Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas. The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE."
+    "A recurring yearly programme of change requests for OTE, delivered by Cognity (programmes 2022, 2023, 2024, 2025 and 2026). It implements new functionalities in the Order Management and Integration systems to enable communication between BSS and OSS systems.",
+    "The functionality spans Order Management, Customer Management, Trouble Ticketing, Work Force Management, SAP, Collection and other areas.",
+    "The system is built on Oracle SOA Suite 12c, Oracle Communications Order and Service Management (OSM), WebLogic Integration (WLI) and Java EE."
   ],
   "contributions": [],
   "technologies": [
@@ -25,10 +27,13 @@
     "Maven",
     "SVN",
     "Git",
-    "Oracle DB"
+    "Oracle DB",
+    "Oracle SOA Suite 12c",
+    "Oracle OSM",
+    "WebLogic Integration (WLI)",
+    "Java EE"
   ],
   "links": [],
-  "year": "2022, 2023, 2024",
   "cover": {
     "src": "assets/img/portfolio/telecom/crs.jpeg",
     "alt": "Dark isometric illustration of suited figures at workstations linked by glowing circuit lines beneath floating screens showing icons."
@@ -47,6 +52,8 @@
     "No role was stated on the old page, so role is omitted.",
     "Technologies split from one comma-separated line into an array; capitalisation normalised only: Weblogic -> WebLogic (matches the description text), Javascript -> JavaScript, MicroServices -> Microservices, Websockets -> WebSockets, Soap – Rest Web Services -> SOAP – REST Web Services (kept as a single item, as on the old page). Stray line breaks/whitespace removed.",
     "Description text kept verbatim apart from whitespace/line-break cleanup (the old page used hard line breaks inside the paragraph and a justified-text wrapper, both dropped).",
-    "Cover alt text describes the artwork (figures at desks around a central table, floating screen panels with a location pin, an envelope and network icons)."
-  ]
+    "Cover alt text describes the artwork (figures at desks around a central table, floating screen panels with a location pin, an envelope and network icons).",
+    "CV update (Oct 2026): period '2022 – 2026' replaces year '2022, 2023, 2024' (the CV lists yearly programmes 2022 to 2026, see content/engagements.json); description restructured into context / scope / stack paragraphs using the original sentences plus the 2025 and 2026 programmes; Oracle SOA Suite 12c, Oracle OSM, WLI and Java EE added to technologies (they were already in the description)."
+  ],
+  "period": "2022 – 2026"
 }

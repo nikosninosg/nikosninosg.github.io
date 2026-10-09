@@ -32,11 +32,12 @@ export const SHARED_CSS = [
   'assets/css/modules/hero.css',
   'assets/css/modules/palette.css',
   'assets/css/modules/toast.css',
+  'assets/css/modules/consent.css',
   'assets/css/modules/pointer.css',
 ];
 
 /** Shared JS modules loaded (dynamically) by assets/js/main.js; also modulepreloaded. */
-export const JS_MODULES = ['core', 'theme', 'header', 'reveal', 'pointer-fx', 'hero', 'palette'];
+export const JS_MODULES = ['core', 'theme', 'header', 'reveal', 'pointer-fx', 'hero', 'palette', 'consent'];
 
 export const THEME_COLORS = { dark: '#05080a', light: '#f6faf9' };
 
@@ -73,15 +74,32 @@ export function absUrl(siteUrl, path = '') {
 /** Runs before first paint: .js class, resolved theme, theme-color. Keep tiny and dependency-free. */
 const THEME_SCRIPT = `(function(){var d=document.documentElement;d.className=d.className.replace('no-js','js');var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system')p=s}catch(e){}var t=p;if(p==='system'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}d.setAttribute('data-theme',t);d.setAttribute('data-theme-pref',p);d.style.colorScheme=t;if(p!=='system'){var m=document.querySelectorAll('meta[name="theme-color"]');for(var i=0;i<m.length;i++){m[i].setAttribute('content',t==='light'?'${THEME_COLORS.light}':'${THEME_COLORS.dark}');m[i].removeAttribute('media')}}})();`;
 
+/**
+ * Consent-gated analytics (GDPR / ePrivacy). Nothing from googletagmanager.com or google-analytics.com is
+ * requested, and no Google cookie is set, until the visitor has accepted (localStorage 'consent' === 'granted').
+ *  1. Google Consent Mode v2 defaults are set to "denied" before any tag exists.
+ *  2. window.loadAnalytics() (called here when consent is already stored, or by modules/consent.js on Accept)
+ *     sends consent 'update' -> granted and only then injects gtm.js and gtag.js.
+ * The GTM <noscript><iframe> is intentionally NOT emitted: it would load GTM without consent.
+ */
 function analyticsHead(analytics) {
   const { gtm, ga4 } = analytics;
-  // Same snippets as the previous site (GTM + GA4), now generated from content/site.json.
+  const code = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}`
+    + `gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});`
+    + `window.analyticsIds={gtm:${jsLiteral(gtm)},ga4:${jsLiteral(ga4)}};`
+    + `window.loadAnalytics=function(){if(window.analyticsLoaded)return;window.analyticsLoaded=true;`
+    + `gtag('consent','update',{analytics_storage:'granted'});`
+    + `dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`
+    + `var d=document,f=d.getElementsByTagName('script')[0],a=d.createElement('script'),b=d.createElement('script');`
+    + `a.async=b.async=true;a.setAttribute('data-analytics','gtm');b.setAttribute('data-analytics','gtag');`
+    + `a.src='https://www.googletagmanager.com/gtm.js?id='+window.analyticsIds.gtm;`
+    + `b.src='https://www.googletagmanager.com/gtag/js?id='+window.analyticsIds.ga4;`
+    + `f.parentNode.insertBefore(a,f);f.parentNode.insertBefore(b,f);`
+    + `gtag('js',new Date());gtag('config',window.analyticsIds.ga4)};`
+    + `try{if(localStorage.getItem('consent')==='granted')window.loadAnalytics()}catch(e){}`;
   return html`
-    <!-- Google Tag Manager -->
-    <script>${raw(`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',${jsLiteral(gtm)});`)}</script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${ga4}"></script>
-    <script>${raw(`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',${jsLiteral(ga4)});`)}</script>`;
+    <!-- Analytics: consent mode defaults + loader; tags are injected only after the visitor accepts -->
+    <script>${raw(code)}</script>`;
 }
 
 function personJsonLd(pctx) {
@@ -166,6 +184,7 @@ function renderHead(pctx, page) {
   <meta name="twitter:description" content="${description}">
   <meta name="twitter:image" content="${ogImage}">
 
+  <link rel="icon" href="${url('assets/img/icon.svg')}" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="32x32" href="${url('assets/img/icon-32.png')}">
   <link rel="icon" type="image/png" sizes="192x192" href="${url('assets/img/icon-192.png')}">
   <link rel="apple-touch-icon" sizes="180x180" href="${url('assets/img/apple-touch-icon-180.png')}">
@@ -185,8 +204,13 @@ function renderHead(pctx, page) {
 // Header / footer / palette
 // ---------------------------------------------------------------------------
 
+/** Accessible name for the CV download controls, e.g. 'Download CV, PDF, 351 KB'. */
+function cvLabel(cv) {
+  return `Download CV, ${cv.format}, ${cv.sizeKB} KB`;
+}
+
 function renderHeader(pctx, page) {
-  const { site, nav, url } = pctx;
+  const { site, nav, url, cv } = pctx;
   const current = page.nav ?? page.id;
   return html`
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -203,6 +227,7 @@ function renderHeader(pctx, page) {
           const state = n.id === page.id ? raw(' aria-current="page"') : n.id === current ? raw(' aria-current="true"') : '';
           return html`<li><a class="nav-link" href="${url(n.path)}"${state}>${n.label}</a></li>`;
         })}
+        ${cv ? html`<li class="nav-cv"><a class="nav-cv__link" href="${url(cv.href)}" download aria-label="${cvLabel(cv)}" data-cv-download>${icon('download', { size: 18 })}<span>Download CV</span><span class="nav-cv__meta">${cv.format} · ${cv.sizeKB} KB</span></a></li>` : ''}
       </ul>
       <span class="nav-pill" data-nav-pill aria-hidden="true"></span>
     </nav>
@@ -215,6 +240,7 @@ function renderHeader(pctx, page) {
         <span class="theme-toggle__icon theme-toggle__icon--sun">${icon('sun', { size: 18 })}</span>
         <span class="theme-toggle__icon theme-toggle__icon--moon">${icon('moon', { size: 18 })}</span>
       </button>
+      ${cv ? html`<a class="icon-btn cv-btn" href="${url(cv.href)}" download aria-label="${cvLabel(cv)}" title="${cvLabel(cv)}" data-cv-download>${icon('download', { size: 18 })}<span class="cv-btn__text">CV</span></a>` : ''}
       <a class="btn btn-primary btn-sm header-cta" href="${url('contact.html')}">Let's talk</a>
       <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <span class="nav-toggle__icon nav-toggle__icon--open">${icon('menu', { size: 20 })}</span>
@@ -226,7 +252,7 @@ function renderHeader(pctx, page) {
 }
 
 function renderFooter(pctx) {
-  const { site, nav, url, year } = pctx;
+  const { site, nav, url, year, cv } = pctx;
   return html`
 <footer class="site-footer">
   <div class="container">
@@ -242,6 +268,7 @@ function renderFooter(pctx) {
         <h2 class="site-footer__heading">Sitemap</h2>
         <ul class="site-footer__list">
           ${nav.map((n) => html`<li><a class="link-arrow" href="${url(n.path)}">${n.label}</a></li>`)}
+          ${cv ? html`<li><a class="link-arrow" href="${url(cv.href)}" download aria-label="${cvLabel(cv)}" data-cv-download>Download CV (${cv.format})</a></li>` : ''}
         </ul>
       </nav>
       <div class="site-footer__col">
@@ -252,7 +279,7 @@ function renderFooter(pctx) {
       </div>
     </div>
     <div class="site-footer__bottom">
-      <p>&copy; ${year} ${site.name}</p>
+      <p>&copy; ${year} ${site.name} <button class="cookie-settings" type="button" data-consent-open hidden>Cookie settings</button></p>
       <p class="site-footer__note">Hand-built with plain HTML, CSS and JS. <a class="link-arrow" href="${REPO_URL}" target="_blank" rel="noopener noreferrer">View the source</a></p>
     </div>
   </div>
@@ -281,6 +308,26 @@ function renderPalette() {
 </dialog>`;
 }
 
+/**
+ * Analytics consent banner (non-modal dialog). Hidden until assets/js/modules/consent.js decides to show it;
+ * without JS it never shows, and without JS analytics never load either.
+ */
+function renderConsent({ site }) {
+  return html`
+<section class="consent" data-consent role="dialog" aria-modal="false" aria-labelledby="consent-title" aria-describedby="consent-text" hidden>
+  <h2 class="consent__title" id="consent-title">Analytics &amp; cookies</h2>
+  <p class="consent__text" id="consent-text">This site uses Google Analytics to understand how it is used. It only runs if you accept.</p>
+  <details class="consent__more">
+    <summary>Privacy details</summary>
+    <p>If you accept, Google Analytics and Google Tag Manager set cookies and receive your IP address, page views and device information. If you decline, nothing is sent to Google and no analytics cookies are set. The data controller is ${site.name} (the site owner), contact: <a href="mailto:${site.email}">${site.email}</a>. You can change your choice at any time with &ldquo;Cookie settings&rdquo; in the footer.</p>
+  </details>
+  <div class="consent__actions">
+    <button class="btn btn-ghost btn-sm" type="button" data-consent-choice="denied">Decline</button>
+    <button class="btn btn-ghost btn-sm" type="button" data-consent-choice="granted">Accept</button>
+  </div>
+</section>`;
+}
+
 /** Palette data with every URL rebased for this page. */
 function paletteJson(pctx, page) {
   const rebase = (item) => (item.url ? { ...item, url: pctx.url(item.url) } : item);
@@ -297,7 +344,7 @@ function paletteJson(pctx, page) {
  * @returns {string}
  */
 export function renderDocument(pctx, page) {
-  const { site, url } = pctx;
+  const { url } = pctx;
   const bodyClass = ['page-' + page.id, page.bodyClass].filter(Boolean).join(' ');
   return String(html`<!doctype html>
 <!-- Generated by src/build.mjs from content/*.json — edit the sources, not this file. -->
@@ -305,14 +352,13 @@ export function renderDocument(pctx, page) {
 <head>${renderHead(pctx, page)}
 </head>
 <body data-page="${page.id}" class="${bodyClass}">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${site.analytics.gtm}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 ${renderHeader(pctx, page)}
 <main id="main" tabindex="-1">
 ${page.body}
 </main>
 ${renderFooter(pctx)}
 ${renderPalette()}
+${renderConsent(pctx)}
 <script type="application/json" id="palette-data">${json(paletteJson(pctx, page))}</script>
 <script type="module" src="${url('assets/js/main.js')}"></script>
 ${(page.js ?? []).map((src) => html`<script type="module" src="${url(src)}"></script>`)}

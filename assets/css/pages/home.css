@@ -54,6 +54,12 @@
 }
 
 @media (min-width: 1000px) {
+  .hero__name {
+    max-inline-size: 20ch;
+  }
+}
+
+@media (min-width: 1000px) {
   .hero__inner {
     grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
     gap: var(--space-7);
@@ -95,7 +101,7 @@
 }
 
 .hero__name {
-  font-size: clamp(2.5rem, 0.9rem + 5.9vw, 5.25rem);
+  font-size: clamp(2.5rem, 0.9rem + 5.4vw, 4.75rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
   max-inline-size: 13ch;
@@ -155,6 +161,44 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   margin-block-start: var(--space-2);
+}
+
+/* Three intentional buttons: the CV download leads (primary), the two others are equal ghosts.
+   On phones the CV button spans the full row and the ghosts share the row below. */
+@media (max-width: 639px) {
+  .hero__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    inline-size: 100%;
+    gap: var(--space-3);
+  }
+
+  .hero__actions .cv-btn {
+    grid-column: 1 / -1;
+  }
+
+  /* phones: the actions come before the long intro so the CV button is above the fold */
+  .hero__content {
+    gap: var(--space-4);
+  }
+
+  .hero__actions {
+    order: 4;
+    margin-block-start: 0;
+  }
+
+  .hero__intro {
+    order: 5;
+  }
+
+  .hero__socials {
+    order: 6;
+  }
+
+  .hero__actions .btn {
+    --btn-px: 1rem;
+    inline-size: 100%;
+  }
 }
 
 .hero__socials {
@@ -434,12 +478,21 @@
   inline-size: 100%;
 }
 
-.about-teaser__skills .chip {
-  color: var(--text-muted);
+.about-teaser__skills {
+  display: grid;
+  gap: var(--space-2);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--border);
+  inline-size: 100%;
 }
 
-.about-teaser__skills .chip svg {
-  color: var(--accent);
+.about-teaser__skills-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-subtle);
 }
 
 /* ================================================================== FEATURED PROJECTS */
@@ -485,19 +538,6 @@
 
 .skill-cat__title {
   font-size: var(--fs-lg);
-}
-
-.skill-cat__count {
-  margin-inline-start: auto;
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  color: var(--text-subtle);
-}
-
-.skill-cat__count::before {
-  content: "×";
-  margin-inline-end: 0.15em;
-  opacity: 0.6;
 }
 
 /* ================================================================== EXPERIENCE PREVIEW */

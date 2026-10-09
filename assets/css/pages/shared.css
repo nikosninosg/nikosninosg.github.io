@@ -1,0 +1,157 @@
+/**
+ * pages/shared.css: small pieces used by more than one page (CV download button/card, the one-line soft
+ * skills list, testimonial company link). Loaded by home, about and experience pages.
+ * Page css is unlayered on purpose: it overrides the shared @layer styles.
+ */
+
+/* ================================================================== CV DOWNLOAD */
+.cv-btn {
+  gap: 0.65rem;
+}
+
+/* dark text on the green gradient: the light link colour inherited from the hero was hard to read.
+   Scoped to the primary (filled) button so the header's ghost "CV" pill keeps its own colours. */
+.btn-primary.cv-btn,
+.btn-primary.cv-btn:visited,
+.btn-primary.cv-btn:hover,
+.btn-primary.cv-btn:focus-visible {
+  color: var(--accent-contrast);
+  font-weight: 700;
+}
+
+.cv-btn__note {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.16);
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.cv-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  inline-size: min(100%, 31rem);
+  padding: var(--space-3) var(--space-4);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.cv-card__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--radius-md);
+  background: var(--grad-accent);
+  color: var(--accent-contrast);
+}
+
+.cv-card__text {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.cv-card__title {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.cv-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
+  margin: 0.2rem 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.cv-card__btn {
+  flex: none;
+}
+
+@media (max-width: 479px) {
+  .cv-card {
+    flex-wrap: wrap;
+  }
+
+  .cv-card__text {
+    flex-basis: calc(100% - 4rem);
+  }
+
+  .cv-card__btn {
+    inline-size: 100%;
+  }
+}
+
+/* ================================================================== SOFT SKILLS: one line */
+.softline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.softline__item {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text);
+}
+
+/* the separator belongs to the item before it, so it never starts a wrapped line */
+.softline__item:not(:last-child)::after {
+  content: "·";
+  margin-inline: 0.65em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 599px) {
+  .softline {
+    font-size: var(--fs-base);
+  }
+
+  .softline__item:not(:last-child)::after {
+    margin-inline: 0.5em;
+  }
+}
+
+/* ================================================================== TESTIMONIAL ROLE + COMPANY */
+.quote__company {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a.quote__company:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.quote__sep {
+  opacity: 0.6;
+}

@@ -8,7 +8,8 @@
   "organization": "University of Patras",
   "summary": "Interactive heatmap visualization of real-time data, showing metrics such as population density, temperature variations or traffic patterns over a geographic area.",
   "description": [
-    "An interactive heatmap visualization using real-time data. The heatmap dynamically represents various data metrics, such as population density, temperature variations, or traffic patterns, over a specific geographic area. By integrating live data feeds, the heatmap provides an up-to-date visual representation, allowing users to identify trends, congestion, and patterns effectively. The project leverages modern web technologies and data visualization libraries to ensure an intuitive and responsive user experience."
+    "An interactive heatmap visualization using real-time data. The heatmap dynamically represents various data metrics, such as population density, temperature variations, or traffic patterns, over a specific geographic area.",
+    "By integrating live data feeds, the heatmap provides an up-to-date visual representation, allowing users to identify trends, congestion, and patterns effectively. The project leverages modern web technologies and data visualization libraries to ensure an intuitive and responsive user experience."
   ],
   "contributions": [],
   "technologies": [
@@ -70,6 +71,7 @@
     "Technologies split from one comma-separated line into an array; only \"NodeJS\" was normalised to its official spelling \"Node.js\". The other items are unchanged.",
     "Summary is distilled from the first two sentences of the description (the examples \"population density, temperature variations, or traffic patterns\" are from the old text).",
     "Gallery: the four screenshots were listed in the old slider order (ecomap-1.png, ecomap-2b.png, ecomap-2.png, ecomap-3.png); the old <img> tags had empty alt text, so alt text and captions are new and describe only what is visible. The map in ecomap-2.png carries Greek street labels and the label \"Πάτρα\", hence \"Patras\" in its alt/caption; the place shown in ecomap-3.png is not named in the old page, so it is not named in the alt/caption.",
-    "The cover (ecomap-bg.jpeg, card artwork) was not shown on the old detail page, so it is not duplicated in the gallery. Cover alt describes the artwork (glowing world-map heatmap)."
+    "The cover (ecomap-bg.jpeg, card artwork) was not shown on the old detail page, so it is not duplicated in the gallery. Cover alt describes the artwork (glowing world-map heatmap).",
+    "CV update (Oct 2026): description split into two paragraphs (same text). No period added: the PDF lists a 2019 – 2020 'Web Application for visualizing crowd behavior' (HTML, CSS, PHP, Javascript, MySQL; collecting, managing and analysing crowdsourcing information for spatiotemporal data of human activity) which may be this project, but the existing page describes a real-time heatmap, so the owner should confirm before it is merged."
   ]
 }

@@ -324,17 +324,331 @@
   line-height: 1.6;
 }
 
-/* ================================================================== PRINT: a clean 1-2 page A4 CV */
+/* ================================================================== CV CARD / HERO */
+.xp-hero .cv-card {
+  margin-block-start: var(--space-6);
+}
+
+.xp-hero .xp-actions {
+  margin-block-start: var(--space-4);
+}
+
+/* ================================================================== TIMELINE EXTRAS */
+.xp-kind {
+  gap: 0.35rem;
+  border-color: var(--violet-line);
+  background: var(--violet-soft);
+  color: var(--accent-violet);
+}
+
+.xp-item--volunteering .timeline-item__card {
+  border-style: dashed;
+}
+
+.xp-summary {
+  margin-block-start: var(--space-3);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* "Show more" disclosure: native <details>, so it works without JS and the print rules can open it */
+.xp-more {
+  margin-block-end: var(--space-4);
+}
+
+.xp-more__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.85rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+
+.xp-more__summary::-webkit-details-marker {
+  display: none;
+}
+
+.xp-more__summary:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+}
+
+.xp-more__summary .icon {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.xp-more[open] > .xp-more__summary .icon {
+  transform: rotate(90deg);
+}
+
+.xp-more__close,
+.xp-more[open] > .xp-more__summary .xp-more__open {
+  display: none;
+}
+
+.xp-more[open] > .xp-more__summary .xp-more__close {
+  display: inline;
+}
+
+.xp-more > .xp-list {
+  margin-block: var(--space-4) 0;
+}
+
+.xp-item .xp-list + .xp-more {
+  margin-block-start: calc(var(--space-2) * -1);
+}
+
+.xp-tags {
+  margin-block-start: var(--space-3);
+}
+
+/* ================================================================== CLIENT ENGAGEMENTS */
+.no-js .eng-toolbar {
+  display: none;
+}
+
+.eng-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+  margin-block-end: var(--space-6);
+}
+
+.eng-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.eng-count {
+  margin: 0;
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+}
+
+.eng-years {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.eng-year[hidden],
+.eng[hidden],
+.eng-empty[hidden] {
+  display: none;
+}
+
+.eng-year__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-block-end: var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--accent-line);
+}
+
+.eng-year__title::after {
+  content: "";
+  flex: 1;
+  block-size: 1px;
+  background: linear-gradient(90deg, var(--border-strong), transparent);
+}
+
+.eng-list {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eng {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+}
+
+@media (min-width: 760px) {
+  .eng {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+.eng__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem var(--space-3);
+}
+
+@media (min-width: 760px) {
+  .eng__meta {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    padding-block-start: var(--space-4);
+  }
+}
+
+.eng__period {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.eng__ongoing {
+  padding-block: 0.15rem;
+}
+
+.eng__client {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin: 0;
+}
+
+.eng__country {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-subtle);
+  font-size: var(--fs-xs);
+}
+
+.eng__body {
+  --card-pad: clamp(1rem, 0.8rem + 1vw, 1.35rem);
+  min-inline-size: 0;
+}
+
+.eng__title {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+}
+
+.eng__lead,
+.eng__rest {
+  margin-block-start: var(--space-2);
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.eng__more {
+  margin-block: var(--space-3) 0;
+}
+
+.eng__more .eng__rest {
+  margin-block-start: var(--space-3);
+}
+
+.eng__tags {
+  margin-block-start: var(--space-3);
+}
+
+.eng-empty {
+  margin-block-start: var(--space-5);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ================================================================== CERT HOURS / LANGUAGES */
+.cert-card__hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  margin-block-start: auto;
+  padding-block-start: var(--space-3);
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.05em;
+}
+
+.cert-card__hours .icon {
+  color: var(--accent);
+}
+
+.lang-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.lang-card__name {
+  font-size: var(--fs-lg);
+}
+
+.lang-card__details {
+  display: grid;
+  gap: 0.4rem;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+.lang-card__details li {
+  position: relative;
+  padding-inline-start: 1.1rem;
+}
+
+.lang-card__details li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.6em;
+  inset-inline-start: 0;
+  inline-size: 0.4rem;
+  block-size: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.8;
+}
+
+/* ================================================================== PRINT: a clean A4 CV (max 3 pages) */
 @page {
   size: A4;
-  margin: 13mm 15mm 14mm;
+  margin: 10mm 12mm 10mm;
 }
 
 @media print {
   html,
   body {
-    font-size: 9.5pt;
-    line-height: 1.38;
+    font-size: 8.0pt;
+    line-height: 1.26;
     background: #fff !important;
     color: #000;
   }
@@ -342,6 +656,12 @@
   /* Chrome, header, decoration, interaction: gone */
   .page-hero,
   .xp-cta,
+  .cv-card,
+  .eng-toolbar,
+  .eng-year__title,
+  .eng-empty,
+  .section-lede,
+  .xp-more__summary,
   .xp-actions,
   .xp-jump,
   .xp-current,
@@ -368,7 +688,7 @@
   .xp-section,
   .section--alt {
     padding: 0 !important;
-    margin: 0 0 4.5mm !important;
+    margin: 0 0 3mm !important;
     border: 0 !important;
     background: none !important;
     isolation: auto;
@@ -401,13 +721,13 @@
 
   /* ---- CV header (name, contact, profile, skills) ---- */
   .cv-head {
-    margin-block-end: 4.5mm;
+    margin-block-end: 3mm;
     color: #000;
   }
 
   .cv-head__name {
     font-family: var(--font-display);
-    font-size: 22pt;
+    font-size: 22.0pt;
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;
@@ -416,7 +736,7 @@
 
   .cv-head__title {
     margin-block-start: 1mm;
-    font-size: 11.5pt;
+    font-size: 10.5pt;
     font-weight: 500;
     color: #222;
   }
@@ -428,7 +748,7 @@
     margin: 2mm 0 0;
     padding: 0;
     list-style: none;
-    font-size: 8.6pt;
+    font-size: 7.7pt;
     color: #000;
   }
 
@@ -441,11 +761,11 @@
   .xp-section .section-title {
     inline-size: 100%;
     max-inline-size: none;
-    margin: 4.5mm 0 1.8mm;
+    margin: 3mm 0 1.4mm;
     padding-block-end: 0.8mm;
     border-block-end: 0.6pt solid #000;
     font-family: var(--font-display);
-    font-size: 10.5pt;
+    font-size: 10.0pt;
     font-weight: 700;
     letter-spacing: 0.14em;
     line-height: 1.2;
@@ -468,7 +788,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     color: #000;
   }
 
@@ -487,8 +807,11 @@
 
   .timeline-item,
   .timeline-item:nth-child(even) {
-    margin: 0 0 3.6mm !important;
+    margin: 0 0 2.4mm !important;
     padding: 0 !important;
+  }
+
+  .xp-list > li {
     break-inside: avoid;
   }
 
@@ -498,16 +821,62 @@
     grid-template-areas:
       "title period"
       "org org"
+      "summary summary"
       "list list"
+      "more more"
       "tags tags";
     column-gap: 4mm;
+  }
+
+  /* The "Show more" disclosures always print expanded */
+  details::details-content {
+    content-visibility: visible !important;
+    display: block !important;
+    block-size: auto !important;
+  }
+
+  .xp-summary {
+    grid-area: summary;
+    margin: 1mm 0 0;
+    font-size: 8.3pt;
+    color: #000;
+  }
+
+  .xp-more {
+    grid-area: more;
+    margin: 0;
+    display: block;
+  }
+
+  .xp-more > .xp-list {
+    margin: 0.5mm 0 0;
+  }
+
+  .xp-kind {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    font-size: 8.0pt;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #333;
+  }
+
+  .xp-kind::before {
+    content: "(";
+  }
+
+  .xp-kind::after {
+    content: ")";
   }
 
   .timeline-item__title {
     grid-area: title;
     margin: 0;
     font-family: var(--font-display);
-    font-size: 11pt;
+    font-size: 10.0pt;
     font-weight: 700;
     color: #000;
   }
@@ -517,7 +886,7 @@
     margin: 0;
     gap: 0 2mm;
     justify-content: flex-end;
-    font-size: 9pt;
+    font-size: 8.0pt;
     letter-spacing: 0;
     text-transform: none;
     color: #000;
@@ -528,12 +897,12 @@
     border: 0;
     background: none;
     color: #000;
-    font-size: 9pt;
+    font-size: 8.0pt;
     letter-spacing: 0;
   }
 
   .xp-duration {
-    font-size: 9pt;
+    font-size: 8.0pt;
     letter-spacing: 0;
     color: #444;
   }
@@ -549,7 +918,7 @@
   .timeline-item__org {
     grid-area: org;
     margin: 0.3mm 0 0;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     color: #000;
   }
 
@@ -559,7 +928,7 @@
   }
 
   .xp-loc {
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     color: #333;
   }
 
@@ -567,8 +936,8 @@
     grid-area: list;
     gap: 0.5mm;
     margin: 1.2mm 0 0;
-    font-size: 9.5pt;
-    line-height: 1.38;
+    font-size: 8.3pt;
+    line-height: 1.26;
     color: #000;
   }
 
@@ -589,7 +958,7 @@
     grid-area: tags;
     display: block;
     margin: 1.2mm 0 0;
-    font-size: 8.5pt;
+    font-size: 7.7pt;
     color: #333;
   }
 
@@ -615,14 +984,249 @@
     content: ", ";
   }
 
-  /* ---- Education ---- (always starts page 2: the two degrees and the certificates stay together) */
-  .xp-education {
-    break-before: page;
+  /* ---- Client engagements: compact entries, full text, no filters ---- */
+  .eng-years,
+  .eng-year,
+  .eng-list {
+    display: block;
+    margin: 0;
+    padding: 0;
   }
 
-  .xp-education,
-  .xp-certs {
+  .eng {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title period"
+      "client client"
+      "lead lead"
+      "more more"
+      "tags tags";
+    column-gap: 4mm;
+    row-gap: 0;
+    margin: 0 0 1.8mm;
     break-inside: avoid;
+  }
+
+  .eng__meta,
+  .eng__body {
+    display: contents;
+  }
+
+  .eng *,
+  .eng p {
+    line-height: 1.28;
+  }
+
+  .eng__title {
+    grid-area: title;
+    margin: 0 !important;
+    line-height: 1.2;
+    font-family: var(--font-display);
+    font-size: 9.2pt;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .eng__period {
+    grid-area: period;
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 8.0pt;
+    letter-spacing: 0;
+    color: #000;
+  }
+
+  .eng__ongoing {
+    display: none;
+  }
+
+  .eng__client {
+    grid-area: client;
+    display: block;
+    margin: 0 !important;
+    font-size: 7.7pt;
+    color: #000;
+  }
+
+  .eng__client .badge {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    font-size: 8.0pt;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #000;
+  }
+
+  .eng__country {
+    display: inline;
+    font-size: 8.0pt;
+    color: #333;
+  }
+
+  .eng__country::before {
+    content: " · ";
+  }
+
+  .eng__lead {
+    grid-area: lead;
+    margin: 0.4mm 0 0 !important;
+    font-size: 7.7pt;
+    line-height: 1.26;
+    color: #000;
+  }
+
+  .eng__more {
+    grid-area: more;
+    margin: 0;
+    display: block;
+  }
+
+  .eng__more .eng__rest,
+  .eng__rest {
+    margin: 0.5mm 0 0 !important;
+    font-size: 7.7pt;
+    line-height: 1.26;
+    color: #000;
+  }
+
+  .eng__tags {
+    grid-area: tags;
+    display: block;
+    margin: 0.4mm 0 0 !important;
+    font-size: 7.7pt;
+    color: #333;
+  }
+
+  .eng__tags::before {
+    content: "Technologies: ";
+    font-weight: 600;
+    color: #000;
+  }
+
+  .eng__tags .tag {
+    display: inline;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: 0;
+    color: #333;
+  }
+
+  .eng__tags .tag:not(:last-child)::after {
+    content: ", ";
+  }
+
+  /* ---- Education / certificates / languages ---- */
+  .xp-education,
+  .xp-langs {
+    break-inside: avoid;
+  }
+
+  .edu-card,
+  .edu-card .xp-list,
+  .edu-card__thesis,
+  .edu-card__school,
+  .edu-card__period,
+  .edu-card__loc,
+  .edu-card__grade-value,
+  .edu-card__grade .badge {
+    font-size: 7.9pt !important;
+    line-height: 1.28;
+  }
+
+  .edu-card__degree {
+    font-size: 9.0pt !important;
+  }
+
+  .cert-card__desc,
+  .cert-card__issuer,
+  .cert-card__hours {
+    font-size: 7.5pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .cert-card__title,
+  .cert-card__date {
+    font-size: 8.6pt !important;
+  }
+
+  .cert-grid {
+    gap: 1.6mm 7mm !important;
+  }
+
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6mm 7mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  .lang-grid > li {
+    display: block;
+    break-inside: avoid;
+  }
+
+  .lang-card__head {
+    display: block;
+  }
+
+  .lang-card__name {
+    display: inline;
+    font-family: var(--font-display);
+    font-size: 8.3pt;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .lang-card__level {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    font-size: 8.3pt;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #000;
+  }
+
+  .lang-card__level::before {
+    content: "· ";
+  }
+
+  .lang-card__details {
+    display: block;
+    margin: 0.4mm 0 0;
+    font-size: 7.7pt;
+    line-height: 1.26;
+    color: #333;
+  }
+
+  .lang-card__details li {
+    padding: 0;
+  }
+
+  .lang-card__details li::before {
+    display: none;
+  }
+
+  .cert-card__hours {
+    display: block;
+    margin: 0.4mm 0 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: 7.7pt;
+    letter-spacing: 0;
+    color: #000;
   }
 
   .edu-grid,
@@ -632,9 +1236,16 @@
     padding: 0;
   }
 
+  .edu-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2mm 7mm;
+    margin: 0;
+  }
+
   .edu-grid > li {
     display: block;
-    margin-block-end: 3mm;
+    margin-block-end: 0;
     break-inside: avoid;
   }
 
@@ -642,8 +1253,9 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      "degree period"
-      "school loc"
+      "degree degree"
+      "school school"
+      "period loc"
       "list list"
       "thesis thesis"
       "grade grade";
@@ -664,14 +1276,14 @@
     padding: 0;
     border: 0;
     background: none;
-    font-size: 9pt;
+    font-size: 8.0pt;
     color: #000;
   }
 
   .edu-card__degree {
     grid-area: degree;
     font-family: var(--font-display);
-    font-size: 10.5pt;
+    font-size: 10.0pt;
     font-weight: 700;
     color: #000;
   }
@@ -679,7 +1291,7 @@
   .edu-card__school {
     grid-area: school;
     margin: 0.3mm 0 0;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     font-weight: 400;
     color: #000;
   }
@@ -688,7 +1300,7 @@
   .edu-card__loc {
     grid-area: loc;
     margin: 0.3mm 0 0;
-    font-size: 9pt;
+    font-size: 8.0pt;
     color: #333;
   }
 
@@ -703,7 +1315,7 @@
     padding: 0;
     border: 0;
     background: none;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     color: #000;
   }
 
@@ -714,7 +1326,7 @@
   .edu-card__label {
     margin: 0;
     font-family: inherit;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     font-weight: 600;
     letter-spacing: 0;
     text-transform: none;
@@ -727,7 +1339,7 @@
 
   .edu-card__honors {
     margin: 1mm 0 0;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
   }
 
   .edu-card__grade {
@@ -746,7 +1358,7 @@
     background: none;
     color: #000;
     font-family: inherit;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     font-weight: 600;
     letter-spacing: 0;
     text-transform: none;
@@ -767,7 +1379,7 @@
 
   .edu-card__grade-value {
     font-family: inherit;
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     font-weight: 400;
     color: #000;
   }
@@ -800,7 +1412,7 @@
   .cert-card__title {
     display: inline;
     font-family: var(--font-display);
-    font-size: 9.5pt;
+    font-size: 8.3pt;
     font-weight: 700;
     color: #000;
   }
@@ -812,7 +1424,7 @@
   .cert-card__date {
     padding: 0;
     border: 0;
-    font-size: 8.5pt;
+    font-size: 7.7pt;
     letter-spacing: 0;
     color: #000;
   }
@@ -820,7 +1432,7 @@
   .cert-card__issuer {
     margin: 0.2mm 0 0;
     font-family: inherit;
-    font-size: 8.5pt;
+    font-size: 7.7pt;
     font-weight: 500;
     letter-spacing: 0;
     color: #000;
@@ -828,8 +1440,8 @@
 
   .cert-card__desc {
     margin: 0.6mm 0 0;
-    font-size: 8.5pt;
-    line-height: 1.32;
+    font-size: 7.7pt;
+    line-height: 1.26;
     color: #333;
   }
 
@@ -843,5 +1455,15 @@
 @media (prefers-reduced-motion: reduce) {
   .xp-current .badge__dot::after {
     animation: none;
+  }
+}
+
+@media screen {
+  .lang-grid > li {
+    display: flex;
+  }
+
+  .lang-grid .lang-card {
+    flex: 1;
   }
 }

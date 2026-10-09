@@ -10,6 +10,7 @@ import { existsSync, openSync, readSync, closeSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { html } from '../lib/html.mjs';
 import { icon } from '../lib/icons.mjs';
+import { SHARED_CSS, cvCard, softLine, quoteRole } from './_shared.mjs';
 
 /** UI labels only. Everything else is content. */
 const LABELS = {
@@ -109,6 +110,7 @@ function hero(ctx) {
     <p class="eyebrow"><span class="eyebrow__label">${LABELS.eyebrow}</span></p>
     <h1 class="page-hero__title about-hero__title">${LABELS.greeting} <span class="text-gradient">${site.shortName}</span>.</h1>
     <p class="page-hero__lede">${site.title} based in ${site.location}. ${site.tagline}.</p>
+    ${cvCard(ctx)}
     <nav class="about-jump" aria-label="${LABELS.jump}">
       <ul class="cluster gap-sm" role="list">
         ${jumps.map(([href, label]) => html`<li><a class="chip chip--mono" href="${href}">${label}</a></li>`)}
@@ -203,9 +205,7 @@ function skills(ctx) {
           <span class="skill-card__icon">${icon(style.icon, { size: 22 })}</span>
           <div class="skill-card__heading">
             <h3 class="skill-card__title" id="skill-${slug}">${g.category}</h3>
-            <p class="skill-card__sub">${g.items.length} ${g.items.length === 1 ? 'skill' : 'skills'}</p>
           </div>
-          <span class="skill-card__count" aria-hidden="true">${String(g.items.length).padStart(2, '0')}</span>
         </header>
         <ul class="skill-list" role="list">
           ${g.items.map((s) => {
@@ -215,10 +215,6 @@ function skills(ctx) {
               : html`<li><span class="skill">${label}</span></li>`;
           })}
         </ul>
-        <p class="skill-card__share" aria-hidden="true">
-          <span class="skill-card__bar"><span style="--share:${(g.items.length / total).toFixed(3)}"></span></span>
-          <span>${g.items.length} / ${total}</span>
-        </p>
       </article>`;
       })}
     </div>
@@ -227,7 +223,6 @@ function skills(ctx) {
 }
 
 function softSkills(ctx) {
-  const { softSkills: items } = ctx;
   return html`
 <section class="section about-soft" id="soft-skills" aria-labelledby="soft-title">
   <div class="container">
@@ -236,14 +231,9 @@ function softSkills(ctx) {
       <h2 class="section-title" id="soft-title">${LABELS.soft.title}</h2>
       <p class="section-lede">${LABELS.soft.lede}</p>
     </header>
-    <ul class="grid soft-grid" role="list" data-reveal-stagger>
-      ${items.map((s, i) => html`
-      <li class="soft card" data-reveal>
-        <span class="soft__index" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
-        <span class="soft__icon">${icon(s.icon, { size: 24 })}</span>
-        <span class="soft__name">${s.name}</span>
-      </li>`)}
-    </ul>
+    <div class="soft-line" data-reveal>
+      ${softLine(ctx, { label: LABELS.soft.title })}
+    </div>
   </div>
 </section>`;
 }
@@ -268,7 +258,7 @@ function testimonials(ctx) {
             <blockquote class="quote__text"><p>${t.quote}</p></blockquote>
             <figcaption class="quote__author">
               <span class="quote__avatar" aria-hidden="true">${initialsOf(t.name)}</span>
-              <span class="quote__who"><strong>${t.name}</strong><span class="quote__role">${t.role}</span></span>
+              <span class="quote__who"><strong>${t.name}</strong>${quoteRole(t)}</span>
             </figcaption>
           </figure>
         </article>`)}
@@ -289,10 +279,10 @@ function testimonials(ctx) {
 
 /** Closing section: three big link cards. The numbers are derived from content, never typed in. */
 function whereNext(ctx) {
-  const { url, experience, education, certificates, projects } = ctx;
+  const { url, experience, education, certificates, projects, engagements } = ctx;
   const plural = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
   const cards = [
-    { href: 'experience.html', icon: 'briefcase', title: 'Experience', meta: [plural(experience.length, 'role'), plural(education.length, 'degree'), plural(certificates.length, 'certificate')] },
+    { href: 'experience.html', icon: 'briefcase', title: 'Experience', meta: [plural(experience.length, 'role'), ...(engagements?.length ? [plural(engagements.length, 'engagement')] : []), plural(education.length, 'degree'), plural(certificates.length, 'certificate')] },
     { href: 'projects.html', icon: 'folder', title: 'Projects', meta: [plural(projects.length, 'project')] },
     { href: 'contact.html', icon: 'mail', title: 'Contact', meta: ["Let's talk"], primary: true },
   ];
@@ -326,7 +316,7 @@ export default function render(ctx) {
     path: 'about.html',
     title: 'About',
     description: site.about.paragraphs[0],
-    css: ['assets/css/pages/about.css'],
+    css: [SHARED_CSS, 'assets/css/pages/about.css'],
     js: [],
     breadcrumbs: [{ name: 'About', path: 'about.html' }],
     body: html`

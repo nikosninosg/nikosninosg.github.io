@@ -1,0 +1,38 @@
+{
+  "slug": "energy-meters-iot",
+  "title": "IoT application for energy meters",
+  "categories": [
+    "iot"
+  ],
+  "client": "Athenian Brewery (Heineken), Patras, Greece",
+  "organization": "IoT-Lab",
+  "summary": "RaspberryPi-based IoT application that reads electricity, water and steam energy meters over RS-485 (Modbus RTU), piloted at the Athenian Brewery factory in Patras.",
+  "description": [
+    "Application development on IoT devices (RaspberryPi based) for taking measurements from energy meters.",
+    "The devices communicate with energy meters (electricity, water, steam, etc.) using the RS-485 protocol (Modbus RTU).",
+    "It was applied in a pilot project of the IoT-Lab laboratory at the factory of the Athenian Brewery (Heineken) in Patras."
+  ],
+  "contributions": [],
+  "technologies": [
+    "Python",
+    "Modbus RTU",
+    "Linux",
+    "RS-485",
+    "RaspberryPi"
+  ],
+  "links": [],
+  "period": "2017 – 2018",
+  "cover": {
+    "src": "assets/img/portfolio/iot/energy-meters-iot.jpeg",
+    "alt": "Illustration of electricity, water and steam meter dials connected over an RS-485 bus to a small controller board"
+  },
+  "gallery": [],
+  "featured": false,
+  "order": 12,
+  "legacyPaths": [],
+  "_notes": [
+    "Source: PDF CV, Projects section ('IoT Application for taking measurements from energy meters', 2017 - 2018).",
+    "Client/organization: the PDF names the Athenian Brewery (Heineken) factory in Patras as the pilot site of the IoT-Lab laboratory; 'IoT-Lab' is used as organization. Owner to verify.",
+    "The cover is an original illustration made for this site with generic data (no real client data)."
+  ]
+}

@@ -28,24 +28,15 @@
       "id": "linkedin",
       "label": "LinkedIn",
       "url": "https://www.linkedin.com/in/nikos-georgopoulos-ninos"
-    },
-    {
-      "id": "fiverr",
-      "label": "Fiverr",
-      "url": "https://www.fiverr.com/nikosgninos"
-    },
-    {
-      "id": "upwork",
-      "label": "Upwork",
-      "url": "https://www.upwork.com/freelancers/~016c6337175cd4c994"
     }
   ],
+  "cv": {
+    "href": "assets/cv/Nikos-Georgopoulos-Ninos-CV.pdf",
+    "label": "Download CV",
+    "format": "PDF",
+    "updated": "October 2026"
+  },
   "facts": [
-    {
-      "label": "Birthday",
-      "value": "6 August 1998",
-      "icon": "cake"
-    },
     {
       "label": "Website",
       "value": "https://nikosninosg.github.io",
@@ -118,11 +109,6 @@
       "icon": "cpu"
     },
     {
-      "label": "Customers",
-      "value": 3,
-      "icon": "users"
-    },
-    {
       "label": "Certifications",
       "value": "auto:certificates",
       "icon": "award"
@@ -154,17 +140,15 @@
   "formEndpoint": "https://formsubmit.co/nikosninosg@gmail.com",
   "formAjaxEndpoint": "https://formsubmit.co/ajax/nikosninosg@gmail.com",
   "_notes": [
-    "site: stats - old hard-coded numbers were Projects 8 / Technologies 10 / Customers 3 / Certifications 6. New values are derived from data and two of them differ: Projects 8 -> 9 (number of project files; 9 project pages exist on the old site, the old counter said 8) and Technologies 10 -> 16 (number of visible skills). Certifications stays 6 (number of certificates). Customers stays at 3 as on the old site. To keep an old number, replace the 'auto:...' value in the stats list with a plain number.",
     "site: old fraktur text 'Tech Enthusiast' (mathematical alphanumeric unicode) replaced by plain 'Tech Enthusiast' (tagline); styling is now CSS.",
     "site: roles - first, second and last come from the old typing effect ('Software Engineer.', 'Developer.', 'Person.', trailing full stops dropped); 'Tech Enthusiast' and 'Idea Generator' were added from the About text ('technology enthusiast', 'generating innovative and creative ideas').",
     "site: intro is a new 2-sentence distillation using only phrases from the old About paragraph; about.paragraphs are the old paragraph verbatim, split into two paragraphs after the second sentence (line breaks and double spaces normalised).",
     "site: about.keyCharacteristic - the old bold, underlined lead-in 'My key characteristic:' became label 'My key characteristic' and the bold sentence became text (inline formatting dropped).",
     "site: initials 'NGN' and shortName 'Nikos' are derived from the full name; the old site had no initials or short name.",
-    "site: the old Website fact used a link icon, replaced by 'globe' per icon vocabulary; Nationality icon 'flag'; City icon 'map-pin'; Birthday icon 'cake'.",
+    "site: the old Website fact used a link icon, replaced by 'globe' per icon vocabulary; Nationality icon 'flag'; City icon 'map-pin'.",
     "site: softSkills - icons mapped to the closest vocabulary entries (Project Management -> workflow, Problem Solving -> puzzle, Time Management -> clock, Critical Thinking -> brain, Adaptability -> sliders, Communication -> message, Teamwork -> users, Focus -> focus). Old per-icon colours dropped.",
     "site: seo.description is new (old meta description was just 'Nikos Georgopoulos Ninos CV'); keywords keep the old four plus role/topic keywords. The old malformed og meta tags (property 'og:nikosninosg') were dropped.",
     "site: the old page also contained a commented-out LinkedIn profile badge and a commented-out PHP form action; neither is carried over.",
-    "site: the old header showed only GitHub and LinkedIn; Contact section showed GitHub, LinkedIn, Fiverr and Upwork. All four are kept in socials.",
     "site: formEndpoint is the existing formsubmit.co action of the old form; formAjaxEndpoint is formsubmit.co's documented /ajax/ variant of the same address (new, used for the no-reload enhancement). The old form had no honeypot.",
     "experience: old per-job 'Technologies:' lines were split on commas into technologies arrays with original spelling (e.g. 'Weblogic 10.x', 'Soap – Rest Web Services' kept as one item, 'Gitlab' kept as written). Periods use an en dash. start/end derived from the periods.",
     "experience: the Pobuca line was labelled 'Technologies & Skills' and is stored as the technologies array (CRM, Microsoft Tools, RDP, Support, Problem Solving). '(Internship)' kept in the role.",
@@ -176,6 +160,28 @@
     "certificates: order kept as on the old page (Cybersecurity, DevSecOps Academy, Industrial IoT on Google Cloud Platform, Personal Development, Distributed Computing in Sensor Systems, Digital Marketing). Descriptions kept verbatim with line breaks normalised; HTML ampersand entities in the old markup were converted to a plain '&'. Old icons (dribbble, file, tachometer, world, slideshow, arch) replaced by shield / cloud / gauge / users / presentation / megaphone.",
     "certificates: the Cybersecurity description is a sentence fragment in the original ('Company's resilience against cyber threats, ...') and was kept as is.",
     "skills: only the 16 visible skills are included (Languages 4, Technologies 7, Libraries 5). Commented-out entries C and MariaDB are excluded. Old logos were hot-linked images (devicon, vectorlogo.zone, Wikimedia, a GitHub user's repo) and are not carried over; only the local assets/img/skills/nixtla.png existed. 'Oracle OSM' stays in the Libraries group as on the old page. SVN keeps its visible caption (alt text said 'subversion').",
-    "testimonials: the 5 quotes are verbatim (line breaks normalised, curly apostrophe in 'I’ve' kept). The old images for each testimonial were commented out in the markup and are not used. Quote 4 contains the odd phrase 'dedication spirit' and quote 1 and 2 switch between 'Their' and 'He'; left untouched on purpose because testimonials are quoted text."
+    "testimonials: the 5 quotes are verbatim (line breaks normalised, curly apostrophe in 'I’ve' kept). The old images for each testimonial were commented out in the markup and are not used. Quote 4 contains the odd phrase 'dedication spirit' and quote 1 and 2 switch between 'Their' and 'He'; left untouched on purpose because testimonials are quoted text.",
+    "VERIFY testimonials: the owner supplied two links (https://www.indust.io/ and https://www.cognity.gr/) without saying which testimonial belongs to which company. Best guess applied: Gabriel Filios (Co-Founder) -> INDUST Systems; Anastasios Siamouris (Team Leader), Peter Koutsikouris (Colleague) and Philippos Stamatelis (Manager) -> Cognity; Sotirios Nikoletseas (Professor) has none. Please confirm or fix content/testimonials.json (company, url).",
+    "VERIFY location: the new public PDF CV says 'Patras, Greece' while this site says 'Athens, Greece' (site.json location, the City fact and seo.description). Not changed; owner to decide.",
+    "site: PRIVACY - the Birthday fact was removed entirely (also the birth date from the long CV and the phone number from the PDF are deliberately NOT used anywhere on the site).",
+    "site: stats - the 'Customers' stat (hard-coded 3) was removed; Projects, Technologies and Certifications remain automatic. Counts changed because of the new content (Projects 12 incl. two new IoT projects, Technologies = distinct skills incl. the new Workflow & testing group).",
+    "site: socials - the Fiverr and Upwork links were removed (kept: GitHub, LinkedIn). SOCIAL_IDS in content.mjs still accepts them if they are re-added.",
+    "site: new 'cv' block (href, label, format, updated). ctx.cv adds sizeKB computed from the real PDF at build time; the build fails if the file is missing. 'updated' is October 2026 as requested.",
+    "experience: Cognity role stays 'Software Engineer' (public PDF CV); the long CV titles it 'Consultant, Professional Services, Cognity S.A.'. Owner to decide which title to show.",
+    "experience: INDUST Systems role changed from 'Full-Stack Developer' (old site) to 'Back-End Developer' (both new CVs; the long CV adds 'IIoT'). Technologies now follow the PDF list (Python, TypeORM, Docker, TypeScript, MySQL, Grafana) plus the old-site items (JavaScript, NestJS, TimescaleDB, Keycloak, Git, GitHub); 'WebStorm' (an IDE) and 'AngularJS' were dropped. The zPasteurAIzer RaspberryPi controllers bullet comes from the long CV / PDF Projects section.",
+    "experience: Cognity bullets were rewritten from the long CV (11 faithful bullets) plus the PDF's 'Projects SPOC' line; the old bullets (analysis, developer, tester SIT/UAT, support engineer, 'Camunda') are superseded. Technologies are the union of the PDF list, the long CV and the old site list, reduced to items that appear in those sources (older items such as Java 1.8, Weblogic Portal 10, Bizagi Modeler, Design Studio, Gitlab, SOAP are no longer listed on this job; they still appear in project pages).",
+    "experience: Pobuca internship unchanged; the long CV has the typo 'May 20221', read as 05/2021 (consistent with the PDF).",
+    "VERIFY volunteering dates: Mindspace entry uses the PDF dates 03/2021 – 02/2022 and the PDF description ('Mindspace NPO' there, 'NGO' in the long CV; this site uses NGO as instructed). The long CV says October 2020 – November 2021 and calls the role 'Team Leader at IoT LAB'. Owner to confirm dates and NGO/NPO.",
+    "engagements: new content/engagements.json built from the 'Projects' section of the long CV (Cognity engagements, newest first by start). Descriptions follow the CV; typos fixed: Greek-letter 'ΟΜ' -> 'OM', 'e2e' -> 'end to end', 'PBIs' kept, 'Over Capture' (PDF) -> 'Order Capture' (long CV wording). The 4 yearly 'Integration & Order Management CRs' entries share the same CV description and are kept as separate engagements because their periods differ. Entries without a description (Yettel Presales) get a neutral one-line summary from client and period only.",
+    "VERIFY engagements: the CV lists 'O2B Microservices CRs 2025' with the period January 2023 – June 2023 (and 'OM Microservices CRs 2023' for the same period). Kept as written; probably a year typo.",
+    "VERIFY engagements: 'Mobile OCTs' (01/2025 – present) and 'MCV Prepaid One Order Drop' (10/2025 – present) are ongoing per the CV; 'Integration & Order Management CRs 2025' ends 02/2026 while the 2026 programme starts 01/2026.",
+    "engagements: client is the customer named in the CV ('OTE' or 'Cosmote'); Yettel is in Bulgaria. Engagement technologies list only systems named in each description.",
+    "languages: new content/languages.json from the PDF (Greek Native; English C2 with IELTS 6.5, LRN Level 3 ESOL CEF C2 and City & Guilds Level 3 ESOL). The long CV says 'Fluent (Certificate of Proficiency in English)'; the PDF wording was used.",
+    "certificates: optional 'hours' added: Cybersecurity '80 hours' (PDF), DevSecOps Academy '80+ hours' (long CV only; the PDF gives no hours).",
+    "skills: extended from the CVs (XQuery, SQL, PostgreSQL, Oracle, Maven, Keycloak, Grafana, MQTT, Redis, TimescaleDB, Spring Boot, TypeORM, NestJS) and a fourth group 'Workflow & testing' (Camunda, Zeebe, BPMN, Citrus). The long CV also lists 'Integration/End-to-End Testing', 'Emulator', 'AI/LLM-based tools' and 'Workflow Automation' as skills; not added as tool names.",
+    "testimonials: optional company and url fields added (see VERIFY testimonials above).",
+    "projects: optional 'period' added to the schema and filled where the CVs state one. Not filled (not clearly supported): Ecomap (the PDF's 2019 - 2020 'Web Application for visualizing crowd behavior' might be this project, but the existing page describes a real-time heatmap, so no period or facts were taken), Production Line Simulator (thesis simulation, no stated project dates; the degree ran 10/2016 - 07/2022), IoT Control (no period in the CVs).",
+    "projects: new category 'iot' (IoT) after 'web'; IoT Control and ThingsBoard are now ['web','iot']. Two new projects from the PDF: zpasteuraizer-controllers (2021 - 2022) and energy-meters-iot (2017 - 2018), with original illustrated covers made for this site (no real client data).",
+    "VERIFY zPasteurAIzer: the PDF dates the controllers project 2021 - 2022 (Athenian Brewery) while the INDUST job entry runs 02/2022 - 06/2022 and the long CV dates the same description 02/2022 - 06/2022."
   ]
 }
