@@ -159,7 +159,7 @@ function stats(ctx) {
   return html`
 <section class="section section--tight stats" id="highlights" aria-label="Highlights">
   <div class="container">
-    <div class="grid grid--4 stats__grid" data-reveal-stagger>
+    <div class="grid grid--3 stats__grid" data-reveal-stagger>
       ${site.stats.map((s) => {
         const suffix = s.suffix ?? '';
         return html`

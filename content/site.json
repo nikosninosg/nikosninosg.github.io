@@ -99,14 +99,15 @@
   ],
   "stats": [
     {
+      "label": "Years of experience",
+      "value": 5,
+      "suffix": "+",
+      "icon": "briefcase"
+    },
+    {
       "label": "Projects",
       "value": "auto:projects",
       "icon": "folder"
-    },
-    {
-      "label": "Technologies",
-      "value": "auto:technologies",
-      "icon": "cpu"
     },
     {
       "label": "Certifications",
@@ -182,6 +183,7 @@
     "testimonials: optional company and url fields added (see VERIFY testimonials above).",
     "projects: optional 'period' added to the schema and filled where the CVs state one. Not filled (not clearly supported): Ecomap (the PDF's 2019 - 2020 'Web Application for visualizing crowd behavior' might be this project, but the existing page describes a real-time heatmap, so no period or facts were taken), Production Line Simulator (thesis simulation, no stated project dates; the degree ran 10/2016 - 07/2022), IoT Control (no period in the CVs).",
     "projects: new category 'iot' (IoT) after 'web'; IoT Control and ThingsBoard are now ['web','iot']. Two new projects from the PDF: zpasteuraizer-controllers (2021 - 2022) and energy-meters-iot (2017 - 2018), with original illustrated covers made for this site (no real client data).",
-    "VERIFY zPasteurAIzer: the PDF dates the controllers project 2021 - 2022 (Athenian Brewery) while the INDUST job entry runs 02/2022 - 06/2022 and the long CV dates the same description 02/2022 - 06/2022."
+    "VERIFY zPasteurAIzer: the PDF dates the controllers project 2021 - 2022 (Athenian Brewery) while the INDUST job entry runs 02/2022 - 06/2022 and the long CV dates the same description 02/2022 - 06/2022.",
+    "site: stats - the 'Technologies' counter (33, derived from the skills list) was replaced at the owner's request by a fixed 'Years of experience' = 5+ (owner's own figure; first role starts 03/2021). Projects and Certifications stay automatic. Update the number by hand each year if wanted."
   ]
 }
